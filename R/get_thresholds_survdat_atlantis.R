@@ -1,8 +1,8 @@
 # Use pulled survdat.rds file to get environmental thresholds for Atlantis groups
+library(dplyr)
+library(here)
 
-
-survdat_dt <- readRDS("C:/Users/robert.gamble/Desktop/Env_Thresholds/SurvDat/surveyPull.rds")
-
+survdat_dt <-readRDS(here("data","surveyPull.rds"))
 summary_table <- group_by(survdat_dt$survdat,SVSPP,SEASON)
 summary_table_SEASON <- summarise(summary_table, min_bottom_temp = min(BOTTEMP, na.rm=T), max_bottom_temp = max(BOTTEMP, na.rm=T),
                                 min_surface_temp = min(SURFTEMP,na.rm=T), max_surface_temp = max(SURFTEMP,na.rm=T),
@@ -15,7 +15,8 @@ summary_table_SPECIES <- summarise(summary_table_SPECIES, min_bottom_temp = min(
                                   min_bottom_sal = min(BOTSALIN,na.rm=T), max_bottom_sal = max(BOTSALIN,na.rm=T),
                                   min_surface_sal = min(SURFSALIN,na.rm=T), max_surface_sal = max(SURFSALIN,na.rm=T))
 
-atlantis_groups <- read.csv("C:/Users/robert.gamble/Desktop/Env_Thresholds/SurvDat/atlantis_codes_svspp_survey_thresholds.csv")
+atlantis_groups <- read.csv(here("inputs","atlantis_codes_svspp_survey_thresholds.csv"))
+
 atlantis_group_table <- group_by(atlantis_groups,Code)
 combined_table_SEASON <- full_join(summary_table_SEASON, atlantis_group_table)
 combined_table_SEASON <- filter(combined_table_SEASON, !is.na(Code))
@@ -49,5 +50,5 @@ summary_table_ATLANTIS_SPECIES$max_bottom_sal[(summary_table_ATLANTIS_SPECIES$ma
 summary_table_ATLANTIS_SPECIES$min_surface_sal[(summary_table_ATLANTIS_SPECIES$min_surface_sal == 'Inf') | (summary_table_ATLANTIS_SPECIES$min_surface_sal == '-Inf')] <- 'NA'
 summary_table_ATLANTIS_SPECIES$max_surface_sal[(summary_table_ATLANTIS_SPECIES$max_surface_sal == 'Inf') | (summary_table_ATLANTIS_SPECIES$max_surface_sal == '-Inf')] <- 'NA'
 
-write.csv(summary_table_ATLANTIS_SEASON,"C:/Users/robert.gamble/Desktop/Env_Thresholds/SurvDat/atlantis_seasonal_thresholds.csv",row.names=FALSE)
-write.csv(summary_table_ATLANTIS_SPECIES,"C:/Users/robert.gamble/Desktop/Env_Thresholds/SurvDat/atlantis_group_thresholds.csv",row.names=FALSE)
+write.csv(summary_table_ATLANTIS_SEASON,here("thresholds","atlantis_seasonal_thresholds.csv"),row.names=FALSE)
+write.csv(summary_table_ATLANTIS_SPECIES,here("thresholds","atlantis_group_thresholds.csv"),row.names=FALSE)
