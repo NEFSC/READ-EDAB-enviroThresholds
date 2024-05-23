@@ -1,0 +1,191 @@
+Code,Name,SVSPP
+PSH,Dusky shark,3
+SK,Roughtail stingray,4
+SSH,Sandbar shark,9
+DSH,Sand tiger,12
+SMO,Smooth dogfish,13
+DSH,Chain dogfish,14
+DOG,Spiny dogfish,15
+DSH,Atlantic angel shark,16
+BLS,Blue shark,17
+SK,Bluntnose stingray,18
+SK,Bullnose ray,19
+SK,Atlantic torpedo,21
+SK,Barndoor skate,22
+WSK,Winter skate,23
+SK,Clearnose skate,24
+SK,Rosette skate,25
+LSK,Little skate,26
+SK,Smooth skate,27
+SK,Thorny skate,28
+BPF,Round herring,31
+HER,Atlantic herring,32
+FDE,Alewife,33
+FDE,Blueback herring,34
+FDE,American shad,35
+MEN,Menhaden,36
+FDE,Hickory shad,37
+ANC,Bay anchovy,43
+ANC,Striped anchovy,44
+BPF,Argentine,46
+MPF,Lanternfish,56
+FDF,Eel unclassified,60
+FDF,Conger eel,63
+OHK,Offshore hake,69
+SHK,Silver hake,72
+COD,Atlantic cod,73
+HAD,Haddock,74
+POL,Pollock,75
+WHK,White hake,76
+RHK,Red hake,77
+FDF,Spotted hake,78
+FDF,Fourbeard rockling,83
+FDF,Cusk,84
+FDF,Threebeard rockling,85
+FDF,Grenadier unclassified,90
+FDF,Roughhead grenadier,92
+HAL,Atlantic halibut,101
+PLA,American plaice,102
+SUF,Summer flounder,103
+FOU,Fourspot flounder,104
+YTF,Yellowtail flounder,105
+WIF,Winter flounder,106
+WTF,Witch flounder,107
+WPF,Windowpane flounder,108
+FLA,Gulfstream flounder,109
+FDF,Longspine snipefish,111
+FDF,John Dory,112
+BPF,Atlantic silverside,113
+FDF,Threespine stickleback,115
+FDF,Northern pipefish,116
+FLA,Hogchoker,118
+FDF,Trumpetfish,119
+MAK,Atlantic mackerel,121
+BPF,Chub mackerel,124
+BUT,Butterfish,131
+FDF,Atlantic moonfish,132
+FDF,Lookdown,133
+BLF,Bluefish,135
+DRM,Atlantic croaker,136
+STB,Striped Bass,139
+BSB,Black sea bass,141
+SCU,Scup,143
+DRM,Weakfish,145
+DRM,Northern kingfish,146
+DRM,Black drum,147
+DRM,Silver perch,148
+DRM,Spot,149
+TYL,Tilefish,151
+FDF,Longspine scorpionfish,154
+RED,Acadian redfish,155
+FDF,Blackbelly rosefish,156
+FDF,Sculpins unclassified,160
+FDF,Moustache sculpin,161
+FDF,Shorthorn sculpin,162
+FDF,Longhorn sculpin,163
+FDF,Sea raven,164
+FDF,Lumpfish,168
+FDF,Northern searobin,171
+FDF,Striped searobin,172
+FDF,Armored searobin,173
+FDF,Searobin uncl,174
+FDF,Cunner,176
+TAU,Tautog,177
+FDF,Oyster toadfish,185
+FDF,Wrymouth,191
+OPT,Ocean pout,193
+FDF,Northern puffer,196
+GOO,Goosefish,197
+MPF,Weitzmans pearlsides,229
+SK,Cownose ray,270
+SK,Spotted eagle ray,271
+NSH,Bristled longbeak,296
+NSH,Aesop shrimp,297
+LOB,Lobster,301
+NSH,Northern shrimp other pandalids,306
+OSH,Other penaeids,307
+RCB,Red deep-sea crab,310
+BMS,Cancer crab,311
+BMS,Jonah crab,312
+BMS,Atantic rock crab,313
+BMS,Blue crab,314
+BMS,Spider crab,317
+BMS,Horseshoe crab,318
+BMS,Lady crab,322
+BMS,Snow crab,325
+BMS,Green crab,327
+BG,Benthic grazer,331
+BMS,Knobbed whelk,337
+BFF,Iceland scallop,340
+DSH,Nurse shark,350
+PSH,White shark,351
+PSH,Shortfin mako,352
+POR,Porbeagle shark,353
+PSH,Silky shark,355
+DSH,Bull shark,356
+PSH,Blacktip shark,357
+PSH,Tiger shark,358
+DSH,Lemon shark,359
+DSH,Sharpnose shark,360
+DSH,Scalloped hammerhead,362
+PSH,Great hammerhead,363
+SK,Atlantic stingray,373
+SK,Yellow stingray,377
+FDF,Shortnose sturgeon,379
+FDF,Atlantic sturgeon,380
+SDF,American eel,384
+SCA,Sea scallop,401
+BFF,Bay scallop,402
+CLA,Atlantic surf clam,403
+BFF,Atlantic calico scallop,404
+BFF,Arctic surfclam,407
+QHG,Ocean quahog,409
+FDF,Pipefish unclassified,421
+FDE,Gizzard shad,426
+FDF,Largescale lizardfish,433
+FDF,Shortjaw lizardfish,434
+FDF,Inshore lizardfish,435
+FDF,Offshore lizardfish,437
+FDF,Red lizardfish,438
+FDF,Tomcod,453
+FDF,Atlantic needlefish,471
+FDF,Fourspine stickleback,488
+FDF,Whitenose pipefish,491
+FDF,Dusky pipefish,494
+FDF,Chain pipefish,495
+ISQ,Illex squid,502
+LSQ,Loligo squid,503
+BC,Octopus unclassified,510
+BC,Common octopus,511
+BC,Spoonarm octopus,512
+BC,Unicorn octopus,513
+FDF,Sand perch,530
+TYL,Blueline tilefish,621
+FDF,Sheepshead,631
+FDF,Hogfish,682
+BIL,Swordfish,700
+TUN,Albacore,703
+TUN,Blackfin tuna,705
+TUN,Bigeye tuna,706
+BIL,Blue marlin,707
+BIL,White marlin,708
+BPF,American sandlance,734
+TUN,Little tunny,743
+BFT,Atlantic bluefin tuna,747
+BPF,Harvest fish,749
+FDF,Lizardfish unclassified,852
+SAL,Atlantic salmon,894
+FDF,Blackspotted stickleback,901
+FDF,Ninespine stickleback,902
+OSH,Brown shrimp,913
+OSH,Pink shrimp,914
+OSH,White shrimp,915
+DSH,Thresher shark,925
+PSH,Finetooth shark,928
+PSH,Blacknose shark,929
+PSH,Bignose shark,929
+REP,Loggerhead seaturtle,950
+REP,Green seaturtle,951
+REP,Leatherback seaturtle,952
+REP,Hawksbill seaturtle,953
+REP,Kemp's Ridley seaturtle,954
