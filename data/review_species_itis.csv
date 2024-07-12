@@ -1,0 +1,59 @@
+"Provided","binomial","common","combined","Species","SPECIES_ITIS","COMMON_NAME"
+"Gadus morhua (Atlantic cod)","gadus morhua","atlantic cod","""gadus morhua"" OR ""atlantic cod""","Gadus morhua (Atlantic cod)","164712","COD,ATLANTIC"
+"Melanogrammus aeglefinus (Haddock)","melanogrammus aeglefinus","haddock","""melanogrammus aeglefinus"" OR ""haddock""","Melanogrammus aeglefinus (Haddock)","164744","HADDOCK"
+"Myzopetta ferruginea (Yellowtail flounder)","myzopetta ferruginea","yellowtail flounder","""myzopetta ferruginea"" OR ""yellowtail flounder""","Myzopetta ferruginea (Yellowtail flounder)",NA,NA
+"Pollachius virens (Pollock, Saithe)","pollachius virens","pollock, saithe","""pollachius virens"" OR ""pollock"" OR ""saithe""","Pollachius virens (Pollock, Saithe)","164727","POLLOCK,ATLANTIC"
+"Hippoglossoides platessoides (American Plaice, Long rough dab)","hippoglossoides platessoides","american plaice, long rough dab","""hippoglossoides platessoides"" OR ""american plaice"" OR ""long rough dab""","Hippoglossoides platessoides (American Plaice, Long rough dab)","172877","FLOUNDER,PLAICE,AMERICAN (DAB)"
+"Glyptocephalus cynoglossus (Witch flounder)","glyptocephalus cynoglossus","witch flounder","""glyptocephalus cynoglossus"" OR ""witch flounder""","Glyptocephalus cynoglossus (Witch flounder)","172873","FLOUNDER,WITCH (GRAY SOLE)"
+"Urophycis tenuis (White hake)","urophycis tenuis","white hake","""urophycis tenuis"" OR ""white hake""","Urophycis tenuis (White hake)","164732","HAKE,ATLANTIC,WHITE"
+"Pseudopleuronectes americanus (Winter flounder)","pseudopleuronectes americanus","winter flounder","""pseudopleuronectes americanus"" OR ""winter flounder""","Pseudopleuronectes americanus (Winter flounder)","172905","FLOUNDER,WINTER"
+"Sebastes fasciatus (Acadian redfish)","sebastes fasciatus","acadian redfish","""sebastes fasciatus"" OR ""acadian redfish""","Sebastes fasciatus (Acadian redfish)","166774","REDFISH,ACADIAN"
+"Hippoglossus hippoglossus (Atlantic halibut)","hippoglossus hippoglossus","atlantic halibut","""hippoglossus hippoglossus"" OR ""atlantic halibut""","Hippoglossus hippoglossus (Atlantic halibut)","172933","HALIBUT,ATLANTIC"
+"Scopthalmus aquosus (Windowpane, Windowpane flounder)","scopthalmus aquosus","windowpane, windowpane flounder","""scopthalmus aquosus"" OR ""windowpane"" OR ""windowpane flounder""","Scopthalmus aquosus (Windowpane, Windowpane flounder)",NA,NA
+"Zoarces americanus (Ocean pout)","zoarces americanus","ocean pout","""zoarces americanus"" OR ""ocean pout""","Zoarces americanus (Ocean pout)","630979","OCEAN POUT"
+"Anarhichas lupus (Atlantic wolffish)","anarhichas lupus","atlantic wolffish","""anarhichas lupus"" OR ""atlantic wolffish""","Anarhichas lupus (Atlantic wolffish)","171341","WOLFFISH,ATLANTIC"
+"Placopecten magellanicus (Atlantic sea scallop)","placopecten magellanicus","atlantic sea scallop","""placopecten magellanicus"" OR ""atlantic sea scallop""","Placopecten magellanicus (Atlantic sea scallop)","079718","SCALLOP,SEA"
+"Lophius americanus (Goosefish, Monkfish, American angler)","lophius americanus","goosefish, monkfish, american angler","""lophius americanus"" OR ""goosefish"" OR ""monkfish"" OR ""american angler""","Lophius americanus (Goosefish, Monkfish, American angler)","164499","GOOSEFISH"
+"Clupea harengus (Atlantic herring)","clupea harengus","atlantic herring","""clupea harengus"" OR ""atlantic herring""","Clupea harengus (Atlantic herring)","161722","HERRING,ATLANTIC,SEA"
+"Leucoraja ocellata (Winter skate)","leucoraja ocellata","winter skate","""leucoraja ocellata"" OR ""winter skate""","Leucoraja ocellata (Winter skate)","564145","SKATE,WINTER"
+"Amblyraja radiata (Thorny skate)","amblyraja radiata","thorny skate","""amblyraja radiata"" OR ""thorny skate""","Amblyraja radiata (Thorny skate)","564149","SKATE,THORNY"
+"Leucoraja erinaceus (Little skate)","leucoraja erinaceus","little skate","""leucoraja erinaceus"" OR ""little skate""","Leucoraja erinaceus (Little skate)",NA,NA
+"Dipturus laevis (Barndoor skate)","dipturus laevis","barndoor skate","""dipturus laevis"" OR ""barndoor skate""","Dipturus laevis (Barndoor skate)","564139","SKATE,BARNDOOR"
+"Rostroraja eglanteria (Clearnose skate)","rostroraja eglanteria","clearnose skate","""rostroraja eglanteria"" OR ""clearnose skate""","Rostroraja eglanteria (Clearnose skate)",NA,NA
+"Leucoraja garmani (Rosette skate, Freckled skate)","leucoraja garmani","rosette skate, freckled skate","""leucoraja garmani"" OR ""rosette skate"" OR ""freckled skate""","Leucoraja garmani (Rosette skate, Freckled skate)","564136","SKATE,ROSETTE"
+"Malacoraja senta (Smooth skate)","malacoraja senta","smooth skate","""malacoraja senta"" OR ""smooth skate""","Malacoraja senta (Smooth skate)","564151","SKATE,SMOOTH"
+"Merluccius bilinearis (Silver hake)","merluccius bilinearis","silver hake","""merluccius bilinearis"" OR ""silver hake""","Merluccius bilinearis (Silver hake)","164791","HAKE,SILVER (WHITING)"
+"Urophycis chuss (Red hake)","urophycis chuss","red hake","""urophycis chuss"" OR ""red hake""","Urophycis chuss (Red hake)","164730","HAKE,ATLANTIC,RED"
+"Mercluccius albidus (Offshore hake)","mercluccius albidus","offshore hake","""mercluccius albidus"" OR ""offshore hake""","Mercluccius albidus (Offshore hake)",NA,NA
+"Squalus acanthias (Spiny dogfish)","squalus acanthias","spiny dogfish","""squalus acanthias"" OR ""spiny dogfish""","Squalus acanthias (Spiny dogfish)","160617","DOGFISH,SPINY"
+"Salmo salar (Atlantic salmon)","salmo salar","atlantic salmon","""salmo salar"" OR ""atlantic salmon""","Salmo salar (Atlantic salmon)","161996","SALMON,ATLANTIC"
+"Paralichthys dentatus (Summer flounder)","paralichthys dentatus","summer flounder","""paralichthys dentatus"" OR ""summer flounder""","Paralichthys dentatus (Summer flounder)","172735","FLOUNDER,SUMMER (FLUKE)"
+"Stenotomus chrysops (Scup)","stenotomus chrysops","scup","""stenotomus chrysops"" OR ""scup""","Stenotomus chrysops (Scup)","169182","SCUP"
+"Centropristis striata (Black sea bass, Black seabass)","centropristis striata","black sea bass, black seabass","""centropristis striata"" OR ""black sea bass"" OR ""black seabass""","Centropristis striata (Black sea bass, Black seabass)","167687","SEA BASS,BLACK"
+"Scomber scombrus (Atlantic mackerel)","scomber scombrus","atlantic mackerel","""scomber scombrus"" OR ""atlantic mackerel""","Scomber scombrus (Atlantic mackerel)","172414","MACKEREL,ATLANTIC"
+"Peprilus triacanthus (Butterfish, Atlantic butterfish)","peprilus triacanthus","butterfish, atlantic butterfish","""peprilus triacanthus"" OR ""butterfish"" OR ""atlantic butterfish""","Peprilus triacanthus (Butterfish, Atlantic butterfish)","172567","BUTTERFISH"
+"Doryteuthis pealeii (Longfin squid, Longfin inshore squid)","doryteuthis pealeii","longfin squid, longfin inshore squid","""doryteuthis pealeii"" OR ""longfin squid"" OR ""longfin inshore squid""","Doryteuthis pealeii (Longfin squid, Longfin inshore squid)",NA,NA
+"Illex illecebrosus (Illex shortfin squid)","illex illecebrosus","illex shortfin squid","""illex illecebrosus"" OR ""illex shortfin squid""","Illex illecebrosus (Illex shortfin squid)","082521","SQUID,SHORT FINNED (ILLEX)"
+"Spisula solidissima (Atlantic surfclam)","spisula solidissima","atlantic surfclam","""spisula solidissima"" OR ""atlantic surfclam""","Spisula solidissima (Atlantic surfclam)","080944","CLAM,SURF"
+"Arctica islandica (Ocean quahog)","arctica islandica","ocean quahog","""arctica islandica"" OR ""ocean quahog""","Arctica islandica (Ocean quahog)","081343","CLAM,OCEAN QUAHOG"
+"Pomatomus saltatrix (Bluefish)","pomatomus saltatrix","bluefish","""pomatomus saltatrix"" OR ""bluefish""","Pomatomus saltatrix (Bluefish)","168559","BLUEFISH"
+"Lopholatilus chamaeleonticeps (Tilefish, Great northern tilefish, Golden tilefish)","lopholatilus chamaeleonticeps","tilefish, great northern tilefish, golden tilefish","""lopholatilus chamaeleonticeps"" OR ""tilefish"" OR ""great northern tilefish"" OR ""golden tilefish""","Lopholatilus chamaeleonticeps (Tilefish, Great northern tilefish, Golden tilefish)","168546","TILEFISH (GOLDEN TILEFISH)"
+"Caulolatilus microps (Blueline tilefish, Grey tilefish)","caulolatilus microps","blueline tilefish, grey tilefish","""caulolatilus microps"" OR ""blueline tilefish"" OR ""grey tilefish""","Caulolatilus microps (Blueline tilefish, Grey tilefish)","168543","TILEFISH,BLUELINE"
+"Anguilla rostrata (American eel)","anguilla rostrata","american eel","""anguilla rostrata"" OR ""american eel""","Anguilla rostrata (American eel)","161127","EEL,AMERICAN"
+"Homarus americanus (American lobster)","homarus americanus","american lobster","""homarus americanus"" OR ""american lobster""","Homarus americanus (American lobster)","097314","LOBSTER,AMERICAN"
+"Micropoginias undulatus (Atlantic croaker)","micropoginias undulatus","atlantic croaker","""micropoginias undulatus"" OR ""atlantic croaker""","Micropoginias undulatus (Atlantic croaker)",NA,NA
+"Brevoortia tyrannus (Atlantic menhaden)","brevoortia tyrannus","atlantic menhaden","""brevoortia tyrannus"" OR ""atlantic menhaden""","Brevoortia tyrannus (Atlantic menhaden)",NA,NA
+"Morone saxatilis (Striped Bass)","morone saxatilis","striped bass","""morone saxatilis"" OR ""striped bass""","Morone saxatilis (Striped Bass)","167680","STRIPED BASS"
+"Pandalus borealis (Northern shrimp)","pandalus borealis","northern shrimp","""pandalus borealis"" OR ""northern shrimp""","Pandalus borealis (Northern shrimp)","096967","SHRIMP,PANDALID"
+"Sciaenops ocellatus (Red drum)","sciaenops ocellatus","red drum","""sciaenops ocellatus"" OR ""red drum""","Sciaenops ocellatus (Red drum)","169290","DRUM,RED"
+"Alosa sapidissima (American shad)","alosa sapidissima","american shad","""alosa sapidissima"" OR ""american shad""","Alosa sapidissima (American shad)","161702","SHAD,AMERICAN"
+"Alosa pseudoharengus (Alewife)","alosa pseudoharengus","alewife","""alosa pseudoharengus"" OR ""alewife""","Alosa pseudoharengus (Alewife)","161706","ALEWIFE"
+"Alosa aestivalus (Blueback herring, Blueback shad)","alosa aestivalus","blueback herring, blueback shad","""alosa aestivalus"" OR ""blueback herring"" OR ""blueback shad""","Alosa aestivalus (Blueback herring, Blueback shad)",NA,NA
+"Scomberomorus maculatus (Spanish mackerel, Atlantic spanish mackerel)","scomberomorus maculatus","spanish mackerel, atlantic spanish mackerel","""scomberomorus maculatus"" OR ""spanish mackerel"" OR ""atlantic spanish mackerel""","Scomberomorus maculatus (Spanish mackerel, Atlantic spanish mackerel)","172436","MACKEREL,SPANISH"
+"Leiostomus xanthurus (Spot, Spot croaker)","leiostomus xanthurus","spot, spot croaker","""leiostomus xanthurus"" OR ""spot"" OR ""spot croaker""","Leiostomus xanthurus (Spot, Spot croaker)","169267","SPOT"
+"Cynoscion nebulosus (Spotted seatrout, Spotted weakfish)","cynoscion nebulosus","spotted seatrout, spotted weakfish","""cynoscion nebulosus"" OR ""spotted seatrout"" OR ""spotted weakfish""","Cynoscion nebulosus (Spotted seatrout, Spotted weakfish)","169239","SEA TROUT,SPOTTED"
+"Tautoga onitis (Tautog)","tautoga onitis","tautog","""tautoga onitis"" OR ""tautog""","Tautoga onitis (Tautog)","170479","TAUTOG"
+"Cynoscion regalis (Weakfish)","cynoscion regalis","weakfish","""cynoscion regalis"" OR ""weakfish""","Cynoscion regalis (Weakfish)","169241","SEA TROUT,GRAY(WEAKFISH)"
+"","","","","",NA,NA
+"","","","","",NA,NA
+"NOTES","consider dropping ""spot"" for ""leiostomus xanthurus"" as it's pulling noise","","","",NA,NA
