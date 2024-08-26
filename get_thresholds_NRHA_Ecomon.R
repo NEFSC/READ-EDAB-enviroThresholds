@@ -22,8 +22,8 @@ convertCTDdate <- function(date) {
   return(converted_date)
 }
 
-TEMPORAL_BOUND <- 14      # days
-SPATIAL_BOUND <- 5       # miles
+TEMPORAL_BOUND <- 7      # days
+SPATIAL_BOUND <- 1       # miles
 # Get output data
 NRHA_dt <-read.csv(here("data","NRHA_data.csv"))
 CTD_dt <-read.csv(here("data","CTD_data.csv"))
@@ -153,5 +153,5 @@ atlantis_NRHA_summary_table_SPECIES$min_surface_sal[(atlantis_NRHA_summary_table
 atlantis_NRHA_summary_table_SPECIES$max_surface_sal[(atlantis_NRHA_summary_table_SPECIES$max_surface_sal == 'Inf') | (atlantis_NRHA_summary_table_SPECIES$max_surface_sal == '-Inf')] <- 'NA'
 
 
-write.csv(atlantis_NRHA_summary_table_SEASON,here("thresholds","seasonal_thresholds_NRHA_ecomon.csv"),row.names=FALSE)
-write.csv(atlantis_NRHA_summary_table_SPECIES,here("thresholds","group_thresholds_NRHA_ecomon.csv"),row.names=FALSE)
+write.csv(atlantis_NRHA_summary_table_SEASON,here("thresholds","seasonal_thresholds_NRHA_ecomon_t7_d1.csv"),row.names=FALSE)
+write.csv(atlantis_NRHA_summary_table_SPECIES,here("thresholds","group_thresholds_NRHA_ecomon_t7_d1.csv"),row.names=FALSE)

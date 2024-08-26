@@ -4,12 +4,18 @@ library(here)
 
 survdat_dt <-readRDS(here("data","surveyPull.rds"))
 summary_table <- group_by(survdat_dt$survdat,SVSPP,SEASON)
+
+# The data includes a lot of 0's in the surface temperature data and some above 31 (the max reported temperature in the MAB)
+# for the surface temperature data.  This constricts the ranges to exclude 0's and temperatures above 31.
+
+summary_table$BOTTEMP[(summary_table$BOTTEMP == 0) | (summary_table$BOTTEMP > 31)] <- NA
+summary_table$SURFTEMP[(summary_table$SURFTEMP == 0) | (summary_table$SURFTEMP > 31)] <- NA
 summary_table_SEASON <- summarise(summary_table, min_bottom_temp = min(BOTTEMP, na.rm=T), max_bottom_temp = max(BOTTEMP, na.rm=T),
                                 min_surface_temp = min(SURFTEMP,na.rm=T), max_surface_temp = max(SURFTEMP,na.rm=T),
                                           min_bottom_sal = min(BOTSALIN,na.rm=T), max_bottom_sal = max(BOTSALIN,na.rm=T),
                                           min_surface_sal = min(SURFSALIN,na.rm=T), max_surface_sal = max(SURFSALIN,na.rm=T))
 
-summary_table_SPECIES <- group_by(survdat_dt$survdat,SVSPP)
+summary_table_SPECIES <- group_by(summary_table,SVSPP)
 summary_table_SPECIES <- summarise(summary_table_SPECIES, min_bottom_temp = min(BOTTEMP, na.rm=T), max_bottom_temp = max(BOTTEMP, na.rm=T),
                                   min_surface_temp = min(SURFTEMP,na.rm=T), max_surface_temp = max(SURFTEMP,na.rm=T),
                                   min_bottom_sal = min(BOTSALIN,na.rm=T), max_bottom_sal = max(BOTSALIN,na.rm=T),
@@ -50,5 +56,5 @@ summary_table_ATLANTIS_SPECIES$max_bottom_sal[(summary_table_ATLANTIS_SPECIES$ma
 summary_table_ATLANTIS_SPECIES$min_surface_sal[(summary_table_ATLANTIS_SPECIES$min_surface_sal == 'Inf') | (summary_table_ATLANTIS_SPECIES$min_surface_sal == '-Inf')] <- 'NA'
 summary_table_ATLANTIS_SPECIES$max_surface_sal[(summary_table_ATLANTIS_SPECIES$max_surface_sal == 'Inf') | (summary_table_ATLANTIS_SPECIES$max_surface_sal == '-Inf')] <- 'NA'
 
-write.csv(summary_table_ATLANTIS_SEASON,here("thresholds","atlantis_seasonal_thresholds.csv"),row.names=FALSE)
-write.csv(summary_table_ATLANTIS_SPECIES,here("thresholds","atlantis_group_thresholds.csv"),row.names=FALSE)
+write.csv(summary_table_ATLANTIS_SEASON,here("thresholds","atlantis_seasonal_thresholds_survdat.csv"),row.names=FALSE)
+write.csv(summary_table_ATLANTIS_SPECIES,here("thresholds","atlantis_group_thresholds_survdat.csv"),row.names=FALSE)
