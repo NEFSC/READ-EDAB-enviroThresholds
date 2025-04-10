@@ -1,8 +1,8 @@
-# Use pulled survdat.rds file to get environmental thresholds for Atlantis groups
+# Use NRHA_data.rds file to get environmental thresholds for Atlantis groups
 library(dplyr)
 library(here)
 # Get output data
-NRHA_dt <-read.csv(here("data","NRHA_data.csv"))
+NRHA_dt <-readRDS(here("data","NRHA_data.rds"))
 atlantis_groups_dt <- read.csv(here("inputs","atlantis_codes_svspp_survey_thresholds.csv"))
 # Modify data tables for ease of use
 colnames(atlantis_groups_dt)[2] <- "COMNAME"
