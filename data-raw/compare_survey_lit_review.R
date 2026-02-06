@@ -15,14 +15,14 @@ lit <- read_csv(here::here('data','MS_screening_analysis_cleaned.csv')) |>
 
 library(dplyr)
 
-comparison_tbl <- survey %>%
-  select(common.name, tmin, tmax) %>%
+comparison_tbl <- survey  |> 
+  select(common.name, tmin, tmax)  |> 
   mutate(
     tmin = as.numeric(tmin),
     tmax = as.numeric(tmax)
-  ) %>%
+  )  |> 
   inner_join(
-    lit %>%
+    lit  |> 
       select(
         common.name,
         age.group,
@@ -31,8 +31,10 @@ comparison_tbl <- survey %>%
         opt.temp.mean,
         opt.temp.max,
         stress.temp.min,
-        stress.temp.max
-      ) %>%
+        stress.temp.max,
+        lethal.temp.min,
+        lethal.temp.max
+      )  |> 
       mutate(
         across(
           c(
@@ -40,13 +42,15 @@ comparison_tbl <- survey %>%
             opt.temp.mean,
             opt.temp.max,
             stress.temp.min,
-            stress.temp.max
+            stress.temp.max,
+            lethal.temp.min,
+            lethal.temp.max
           ),
           ~ as.numeric(.x)
         )
       ),
     by = "common.name"
-  ) %>%
+  )  |> 
   mutate(
     # Optimal temperature differences
     diff_opt_min_from_survey_min  = opt.temp.min  - tmin,
@@ -54,8 +58,12 @@ comparison_tbl <- survey %>%
     
     # Stress temperature differences
     diff_stress_min_from_survey_min = stress.temp.min - tmin,
-    diff_stress_max_from_survey_max = stress.temp.max - tmax
-  ) %>%
+    diff_stress_max_from_survey_max = stress.temp.max - tmax,
+    
+    # lethal temperature differences
+    diff_lethal_min_from_survey_min = lethal.temp.min - tmin,
+    diff_lethal_max_from_survey_max = lethal.temp.max - tmax    
+  )  |> 
   select(
     age.group,
     effect.type,
@@ -67,10 +75,14 @@ comparison_tbl <- survey %>%
     opt.temp.max,
     stress.temp.min,
     stress.temp.max,
+    lethal.temp.min,
+    lethal.temp.max,
     diff_opt_min_from_survey_min,
     diff_opt_max_from_survey_max,
     diff_stress_min_from_survey_min,
-    diff_stress_max_from_survey_max
+    diff_stress_max_from_survey_max,
+    diff_lethal_min_from_survey_min,
+    diff_lethal_max_from_survey_max
   )
 
 saveRDS(

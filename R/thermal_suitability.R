@@ -15,6 +15,7 @@
 # call in packages -------------------
 library(tidyverse)
 library(terra)
+library(ecodata)
 
 
 # get species strata --------------------
@@ -23,11 +24,25 @@ library(terra)
 ## Calling in data -----------------------
 
 ## survey data
-survdat <- readRDS("/home/mgrezlik/EDAB_Datasets/Workflows/surveyNoLengthsData.rds")
+survdat <- readRDS("~/EDAB_Datasets/Workflows/surveyNoLengthsData.rds")
 survdat <- survdat$survdat
 
+## Mass inshore survey
+inshore <- readRDS("~/EDAB_Datasets/Workflows/massInshoreData.rds")
+inshore <- inshore$survdat
+
+## add inshore to survdat
+survdat <- dplyr::full_join(survdat, inshore)
+
 ## species names
-species <- readRDS("/home/mgrezlik/EDAB_Datasets/Workflows/SOE_species_list_24.rds")
+species <- readRDS("~/EDAB_Datasets/Workflows/SOE_species_list_24.rds")
+
+# windowpane is managed by NEFMC
+# fix that in species
+
+species <- species |> 
+            dplyr::mutate(Fed.Managed = ifelse(COMNAME == "WINDOWPANE","NEFMC",Fed.Managed))
+
 
 ### filter for NEFMC managed species
 ne_species <- species  |> 
@@ -39,12 +54,12 @@ ne_species <- species  |>
 survdat_mgmt <- survdat |> 
   inner_join(ne_species, by = "SVSPP")
 
-# ## bottom temp data
-#  nc_path <- "/home/mgrezlik/EDAB_Datasets/GLORYS/GLORYS_daily"
-#  nc_files <- list.files(nc_path, pattern = "GLORYS_daily_BottomTemp_\\d{4}\\.nc$", full.names = TRUE)
-# 
-#  first_file <- terra::rast(nc_files[1])
-#  first_file
+## bottom temp data
+ nc_path <- "/home/mgrezlik/EDAB_Datasets/GLORYS/GLORYS_daily"
+ nc_files <- list.files(nc_path, pattern = "GLORYS_daily_BottomTemp_\\d{4}\\.nc$", full.names = TRUE)
+
+ first_file <- terra::rast(nc_files[1])
+ first_file
 # 
 # # loop over years
 #  for (f in nc_files) {
@@ -182,27 +197,27 @@ indicators <- bind_rows(results)
 
 
 
-# indicators |> 
-#   filter(species == "ATLANTIC COD") |> 
+# indicators |>
+#   filter(species == "ATLANTIC COD") |>
 #   ggplot(aes(x = as.numeric(year), y = perc_within_year)) +
 #   geom_line() +
 #   labs(title = "Percent of days within thermal niche", x = "Year", y = "Percent")
 # 
-# indicators |> 
-#   filter(species == "ATLANTIC COD") |> 
-#   ggplot(aes(x = as.numeric(year), y = perc_within_year)) +
+# indicators |>
+#   filter(species == "ATLANTIC COD") |>
+#   ggplot(aes(x = as.numeric(year), y = perc_within_hist)) +
 #   geom_line() +
 #   labs(title = "Percent of days within thermal niche", x = "Year", y = "Percent")
 # 
 # 
-# indicators |> 
-#   filter(species == "ATLANTIC COD") |> 
+# indicators |>
+#   filter(species == "ATLANTIC COD") |>
 #   ggplot(aes(x = as.numeric(year), y = stress_index_year)) +
 #   geom_line() +
 #   labs(title = "Stress Index", x = "Year", y = "Degree Days")
 # 
-# indicators |> 
-#   filter(species == "ATLANTIC COD") |> 
+# indicators |>
+#   filter(species == "ATLANTIC COD") |>
 #   ggplot(aes(x = as.numeric(year), y = stress_index_hist)) +
 #   geom_line() +
 #   labs(title = "Stress Index", x = "Year", y = "Degree Days")
