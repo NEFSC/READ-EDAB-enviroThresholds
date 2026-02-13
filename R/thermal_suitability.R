@@ -40,22 +40,22 @@ species <- readRDS("~/EDAB_Datasets/Workflows/SOE_species_list_24.rds")
 # windowpane is managed by NEFMC
 # fix that in species
 
-species <- species |> 
+species <- species |>
             dplyr::mutate(Fed.Managed = ifelse(COMNAME == "WINDOWPANE","NEFMC",Fed.Managed))
 
 
 ### filter for NEFMC managed species
-ne_species <- species  |> 
-  filter(!is.na(Fed.Managed), Fed.Managed == "NEFMC")  |> 
-  distinct(SVSPP, .keep_all = TRUE) |> 
+ne_species <- species  |>
+  filter(!is.na(Fed.Managed), Fed.Managed == "NEFMC")  |>
+  distinct(SVSPP, .keep_all = TRUE) |>
   select(SVSPP, COMNAME, SCINAME, Fed.Managed)
 
 ### join survdat and species by SVSPP
-survdat_mgmt <- survdat |> 
+survdat_mgmt <- survdat |>
   inner_join(ne_species, by = "SVSPP")
 
 ## bottom temp data
- nc_path <- "/home/mgrezlik/EDAB_Datasets/GLORYS/GLORYS_daily"
+ nc_path <- "~/EDAB_Datasets/GLORYS/GLORYS_daily"
  nc_files <- list.files(nc_path, pattern = "GLORYS_daily_BottomTemp_\\d{4}\\.nc$", full.names = TRUE)
 
  first_file <- terra::rast(nc_files[1])
@@ -81,15 +81,20 @@ survdat_mgmt <- survdat |>
 
 
 # thermal niche from survey ---------------
-thermal_niche <- survdat_mgmt  |> 
-  filter(!is.na(BOTTEMP), ABUNDANCE > 0)  |> 
-  group_by(SVSPP, COMNAME, SCINAME)  |> 
-  summarise(
-    tmin = quantile(BOTTEMP, 0.10, na.rm = TRUE),
-    tmax = quantile(BOTTEMP, 0.90, na.rm = TRUE),
-    n_obs = n(),
-    .groups = "drop"
-  )
+# thermal_niche <- survdat_mgmt  |> 
+#   filter(!is.na(BOTTEMP), ABUNDANCE > 0)  |> 
+#   group_by(SVSPP, COMNAME, SCINAME)  |> 
+#   summarise(
+#     tmin = quantile(BOTTEMP, 0.10, na.rm = TRUE),
+#     tmax = quantile(BOTTEMP, 0.90, na.rm = TRUE),
+#     n_obs = n(),
+#     .groups = "drop"
+#   )
+ 
+# Thermal niche from survey was compared to lit review values
+# some survey values were replaced where appropriate
+ 
+thermal_niche <- readRDS(here::here("data-raw/thermal_niche.rds"))
 
 
 ## spot check for cod
@@ -253,4 +258,134 @@ for (sp in unique(indicators$species)) {
     ggsave(file_name, plot = p, width = 6, height = 4, dpi = 300)
   }
 }
+
+# Mapping suitable thermal habitat by species and year --------
+
+if (!dir.exists("images/suitable_habitat")) {
+  dir.create("images/suitable_habitat", recursive = TRUE)
+}
+
+library(rnaturalearth)
+
+
+## mapping function ---------
+map_suitable_habitat <- function(species_name,
+                                 thermal_niche,
+                                 nc_file,
+                                 out_dir = "images/suitable_habitat") {
+  
+  year <- as.numeric(stringr::str_extract(nc_file, "\\d{4}"))
+  message("Mapping ", species_name, " - ", year)
+  
+  # Thermal limits
+  th <- thermal_niche |> 
+    dplyr::filter(COMNAME == species_name)
+  
+  if (nrow(th) == 0) {
+    message("No thermal niche found for ", species_name)
+    return(NULL)
+  }
+  
+  tmin <- th$tmin
+  tmax <- th$tmax
+  
+  # Load GLORYS
+  bt <- terra::rast(nc_file)
+  bt_mean <- terra::mean(bt)
+  
+  # Suitable habitat mask
+  suitable <- bt_mean >= tmin & bt_mean <= tmax
+  suitable <- terra::ifel(suitable, 1, NA)
+  
+  suitable_df <- as.data.frame(suitable, xy = TRUE, na.rm = FALSE)
+  colnames(suitable_df)[3] <- "suitable"
+  
+  # Get raster extent
+  r_ext <- terra::ext(bt_mean)
+  xmin <- r_ext[1]
+  xmax <- r_ext[2]
+  ymin <- r_ext[3]
+  ymax <- r_ext[4]
+  
+  # Get land polygons
+  land <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
+  land <- sf::st_transform(land, terra::crs(bt_mean))
+  
+  # Plot
+  p <- ggplot() +
+    
+    geom_raster(
+      data = suitable_df,
+      aes(x = x, y = y, fill = suitable)
+    ) +
+    
+    scale_fill_gradient(
+      low = "white",
+      high = "blue",
+      na.value = "white",
+      name = "Suitable"
+    ) +
+    
+    geom_sf(
+      data = land,
+      fill = "darkgreen",
+      color = NA
+    ) +
+    
+    coord_sf(
+      xlim = c(xmin, xmax),
+      ylim = c(ymin, ymax),
+      expand = FALSE
+    ) +
+    
+    labs(
+      title = paste0(species_name, " Suitable Thermal Habitat"),
+      subtitle = paste0("Annual Mean Bottom Temp - ", year),
+      x = NULL,
+      y = NULL
+    ) +
+    
+    theme_minimal()
+  
+  # Save
+  file_name <- file.path(
+    out_dir,
+    paste0(gsub(" ", "_", species_name), "_", year, "_suitable.png")
+  )
+  
+  ggsave(file_name, plot = p, width = 7, height = 6, dpi = 300)
+  
+  rm(bt, bt_mean, suitable)
+  gc()
+}
+
+
+
+## call mapping function --------
+### Cod as a test
+
+# # Example: first GLORYS file
+# test_file <- nc_files[1]
+# 
+# map_suitable_habitat(
+#   species_name = "ATLANTIC COD",
+#   thermal_niche = thermal_niche,
+#   nc_file = test_file
+# )
+
+# Got it working for cod
+# Now looping over species and year
+
+for (f in nc_files) {
+  for (sp in unique(ne_species$COMNAME)) {
+    map_suitable_habitat(
+      species_name = sp,
+      thermal_niche = thermal_niche,
+      nc_file = f
+    )
+  }
+}
+
+
+
 
