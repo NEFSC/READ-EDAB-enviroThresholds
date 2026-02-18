@@ -272,6 +272,7 @@ library(rnaturalearth)
 map_suitable_habitat <- function(species_name,
                                  thermal_niche,
                                  nc_file,
+                                 survdat_mgmt,
                                  out_dir = "images/suitable_habitat") {
   
   year <- as.numeric(stringr::str_extract(nc_file, "\\d{4}"))
@@ -307,13 +308,34 @@ map_suitable_habitat <- function(species_name,
   ymin <- r_ext[3]
   ymax <- r_ext[4]
   
-  # Get land polygons
+  # Land polygons
   land <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
   land <- sf::st_transform(land, terra::crs(bt_mean))
   
+  # -----------------------------
+  # Survey points for this species & year
+  # -----------------------------
+  year_pts <- survdat_mgmt |>
+    dplyr::filter(
+      COMNAME == species_name,
+      YEAR == year,
+      ABUNDANCE > 0,
+      !is.na(LAT),
+      !is.na(LON)
+    ) |>
+    dplyr::distinct(STATION, LAT, LON) |>
+    dplyr::mutate(
+      LAT = as.numeric(LAT),
+      LON = as.numeric(LON)
+    )
+  
+  # -----------------------------
   # Plot
+  # -----------------------------
+  
   p <- ggplot() +
     
+    # Suitable raster
     geom_raster(
       data = suitable_df,
       aes(x = x, y = y, fill = suitable)
@@ -326,10 +348,20 @@ map_suitable_habitat <- function(species_name,
       name = "Suitable"
     ) +
     
+    # Land
     geom_sf(
       data = land,
       fill = "darkgreen",
       color = NA
+    ) +
+    
+    # Observed stations
+    geom_point(
+      data = year_pts,
+      aes(x = LON, y = LAT),
+      color = "red",
+      size = 1.5,
+      alpha = 0.8
     ) +
     
     coord_sf(
@@ -340,7 +372,8 @@ map_suitable_habitat <- function(species_name,
     
     labs(
       title = paste0(species_name, " Suitable Thermal Habitat"),
-      subtitle = paste0("Annual Mean Bottom Temp - ", year),
+      subtitle = paste0("Annual Mean Bottom Temp - ", year,
+                        " | Red dots = observed presence"),
       x = NULL,
       y = NULL
     ) +
@@ -370,7 +403,8 @@ map_suitable_habitat <- function(species_name,
 # map_suitable_habitat(
 #   species_name = "ATLANTIC COD",
 #   thermal_niche = thermal_niche,
-#   nc_file = test_file
+#   nc_file = test_file,
+#   survdat_mgmt = survdat_mgmt
 # )
 
 # Got it working for cod
@@ -381,7 +415,8 @@ for (f in nc_files) {
     map_suitable_habitat(
       species_name = sp,
       thermal_niche = thermal_niche,
-      nc_file = f
+      nc_file = f,
+      survdat_mgmt = survdat_mgmt
     )
   }
 }
