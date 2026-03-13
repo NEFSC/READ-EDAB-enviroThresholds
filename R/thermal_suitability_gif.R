@@ -1,25 +1,24 @@
 # Creating .gif files from .png files of thermal suitability
 # to better visualize change over time
 
-# load packages ----------
+# load packages ---------
 library(magick)
 library(stringr)
 library(dplyr)
 
 # set directories ----------
-input_dir <- "images/suitable_habitat"
+input_dir  <- "images/suitable_habitat"
 output_dir <- "images/animations"
 
 dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 
-# Get all PNG files ----------
+# list files -----------------
 png_files <- list.files(
   input_dir,
   pattern = "\\.png$",
   full.names = TRUE
 )
 
-# Extract species names ------------
 file_info <- tibble(
   file = png_files,
   filename = basename(png_files),
@@ -27,7 +26,7 @@ file_info <- tibble(
   year = as.numeric(str_extract(filename, "\\d{4}"))
 )
 
-# Loop over species -------
+# loop over species to create gif -------------
 for (sp in unique(file_info$species)) {
   
   message("Creating animation for ", sp)
@@ -36,23 +35,39 @@ for (sp in unique(file_info$species)) {
     filter(species == sp) %>%
     arrange(year)
   
-  ## Read images in chronological order -----------
-  img <- image_read(sp_files$file)
+  img_sequence <- NULL
   
-  ## Set frame rate --------
+  for (i in seq_along(sp_files$file)) {
+    
+    frame <- image_read(sp_files$file[i])
+    
+    # Downscale to reduce memory
+    frame <- image_scale(frame, "800x")
+    
+    if (is.null(img_sequence)) {
+      # First frame initializes object
+      img_sequence <- frame
+    } else {
+      img_sequence <- c(img_sequence, frame)
+    }
+    
+    rm(frame)
+    gc()
+  }
+  
+  # Animate
   img_animated <- image_animate(
-    img,
-    fps = 2   # 2 frames per second (0.5 sec per year)
+    img_sequence,
+    fps = 1
   )
   
-  ## Save GIF --------
   output_file <- file.path(
     output_dir,
     paste0(sp, "_animation.gif")
   )
   
-  image_write(
-    img_animated,
-    path = output_file
-  )
+  image_write(img_animated, path = output_file)
+  
+  rm(img_sequence, img_animated)
+  gc()
 }
