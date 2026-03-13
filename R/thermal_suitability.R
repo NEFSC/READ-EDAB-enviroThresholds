@@ -228,6 +228,8 @@ indicators <- bind_rows(results)
 #   labs(title = "Stress Index", x = "Year", y = "Degree Days")
 
 
+
+
 # loop through plots of all species and indicators
 
 # Ensure folder exists
@@ -423,74 +425,74 @@ for (f in nc_files) {
 
 # Mapping species habitats ----------
 
-## mapping function ---------
-
-library(sf)
-library(concaveman)
-
-species_habitat_polygon <- function(species_name, survdat_mgmt){
-  
-  pts <- survdat_mgmt |>
-    filter(COMNAME == species_name,
-           !is.na(LAT),
-           !is.na(LON)) |>
-    distinct(STATION, LAT, LON)
-  
-  if(nrow(pts) < 3) return(NULL)
-  
-  pts_sf <- st_as_sf(
-    pts,
-    coords = c("LON","LAT"),
-    crs = 4326
-  )
-  
-  # concave hull around all points
-  habitat_poly <- pts_sf |>
-    concaveman()
-  
-  habitat_poly
-}
-
-## edited script which excludes land
-library(sf)
-library(concaveman)
-library(rnaturalearth)
-
-species_habitat_polygon <- function(species_name, survdat_mgmt){
-  
-  pts <- survdat_mgmt |>
-    dplyr::filter(COMNAME == species_name,
-                  !is.na(LAT),
-                  !is.na(LON)) |>
-    dplyr::distinct(STATION, LAT, LON)
-  
-  if(nrow(pts) < 3) return(NULL)
-  
-  pts_sf <- sf::st_as_sf(
-    pts,
-    coords = c("LON","LAT"),
-    crs = 4326
-  )
-  
-  # Create concave hull
-  habitat_poly <- pts_sf |>
-    concaveman(concavity = 2)
-  
-  # Get land polygons
-  land <- rnaturalearth::ne_countries(
-    scale = "medium",
-    returnclass = "sf"
-  ) |>
-    sf::st_transform(sf::st_crs(habitat_poly))
-  
-  # Remove land from habitat polygon
-  habitat_poly <- sf::st_difference(
-    habitat_poly,
-    sf::st_union(land)
-  )
-  
-  habitat_poly
-}
+# ## mapping function ---------
+# 
+# library(sf)
+# library(concaveman)
+# 
+# species_habitat_polygon <- function(species_name, survdat_mgmt){
+#   
+#   pts <- survdat_mgmt |>
+#     filter(COMNAME == species_name,
+#            !is.na(LAT),
+#            !is.na(LON)) |>
+#     distinct(STATION, LAT, LON)
+#   
+#   if(nrow(pts) < 3) return(NULL)
+#   
+#   pts_sf <- st_as_sf(
+#     pts,
+#     coords = c("LON","LAT"),
+#     crs = 4326
+#   )
+#   
+#   # concave hull around all points
+#   habitat_poly <- pts_sf |>
+#     concaveman()
+#   
+#   habitat_poly
+# }
+# 
+# ## edited script which excludes land
+# library(sf)
+# library(concaveman)
+# library(rnaturalearth)
+# 
+# species_habitat_polygon <- function(species_name, survdat_mgmt){
+#   
+#   pts <- survdat_mgmt |>
+#     dplyr::filter(COMNAME == species_name,
+#                   !is.na(LAT),
+#                   !is.na(LON)) |>
+#     dplyr::distinct(STATION, LAT, LON)
+#   
+#   if(nrow(pts) < 3) return(NULL)
+#   
+#   pts_sf <- sf::st_as_sf(
+#     pts,
+#     coords = c("LON","LAT"),
+#     crs = 4326
+#   )
+#   
+#   # Create concave hull
+#   habitat_poly <- pts_sf |>
+#     concaveman(concavity = 2)
+#   
+#   # Get land polygons
+#   land <- rnaturalearth::ne_countries(
+#     scale = "medium",
+#     returnclass = "sf"
+#   ) |>
+#     sf::st_transform(sf::st_crs(habitat_poly))
+#   
+#   # Remove land from habitat polygon
+#   habitat_poly <- sf::st_difference(
+#     habitat_poly,
+#     sf::st_union(land)
+#   )
+#   
+#   habitat_poly
+# }
 
 ## version robust to edges crossing
 library(sf)
@@ -569,4 +571,29 @@ ggplot() +
   labs(title = "Scallop Observed Habitat Envelope")
 
 
+# Comparing with Rob's data ----------
 
+library(terra)
+
+# Call in Rob's cod data as a raster
+cod_raster_rob <- rast(here::here('DisMAP/Figures/Gadus morhua_Total.tif'))
+
+
+# Convert my cod polygon to a raster
+library(sf)
+
+hab_vect <- vect(cod_habitat)
+
+cod_raster_max <- rasterize(
+  hab_vect,
+  cod_raster_rob,
+  field = 1,
+  background = 0
+)
+
+# compare overlap
+
+overlap <- global((cod_raster_max == 1) & (cod_raster_rob > 0), "sum", na.rm = TRUE)
+hab_area <- global(cod_raster_max == 1, "sum", na.rm = TRUE)
+
+percent_overlap <- overlap / hab_area

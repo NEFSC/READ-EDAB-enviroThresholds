@@ -8,7 +8,7 @@ library(concaveman)
 library(dplyr)
 library(here)
 
-outdir <- "/home/rgamble/Neus-Atlantis/DisMAP/Figures/"
+outdir <- here::here('data/DisMAP_Figures_test')
 datasets <- dm_datasets$dataset_code
 
 
