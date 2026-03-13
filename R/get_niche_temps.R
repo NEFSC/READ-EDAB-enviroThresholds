@@ -13,7 +13,7 @@ thermal_niche <- thermal_niche  |>
   mutate(
     tmin = case_when(
       COMNAME == "THORNY SKATE" ~ 2,
-      COMNAME == "ATLANTIC HERRING" ~ 2.8,
+      COMNAME == "ATLANTIC HERRING" ~ 2,
       COMNAME == "ATLANTIC COD" ~ 3,
       COMNAME == "ATLANTIC HALIBUT" ~ 5,
       COMNAME == "WINTER FLOUNDER" ~ 3,
@@ -22,7 +22,7 @@ thermal_niche <- thermal_niche  |>
       TRUE ~ tmin
     ),
     tmax = case_when(
-      COMNAME == "ATLANTIC HERRING" ~ 19.35,
+      COMNAME == "ATLANTIC HERRING" ~ 16,
       COMNAME == "OFFSHORE HAKE" ~ 13,
       COMNAME == "ATLANTIC COD" ~ 11,
       COMNAME == "ATLANTIC HALIBUT" ~ 16,

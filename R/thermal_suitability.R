@@ -421,6 +421,152 @@ for (f in nc_files) {
   }
 }
 
+# Mapping species habitats ----------
+
+## mapping function ---------
+
+library(sf)
+library(concaveman)
+
+species_habitat_polygon <- function(species_name, survdat_mgmt){
+  
+  pts <- survdat_mgmt |>
+    filter(COMNAME == species_name,
+           !is.na(LAT),
+           !is.na(LON)) |>
+    distinct(STATION, LAT, LON)
+  
+  if(nrow(pts) < 3) return(NULL)
+  
+  pts_sf <- st_as_sf(
+    pts,
+    coords = c("LON","LAT"),
+    crs = 4326
+  )
+  
+  # concave hull around all points
+  habitat_poly <- pts_sf |>
+    concaveman()
+  
+  habitat_poly
+}
+
+## edited script which excludes land
+library(sf)
+library(concaveman)
+library(rnaturalearth)
+
+species_habitat_polygon <- function(species_name, survdat_mgmt){
+  
+  pts <- survdat_mgmt |>
+    dplyr::filter(COMNAME == species_name,
+                  !is.na(LAT),
+                  !is.na(LON)) |>
+    dplyr::distinct(STATION, LAT, LON)
+  
+  if(nrow(pts) < 3) return(NULL)
+  
+  pts_sf <- sf::st_as_sf(
+    pts,
+    coords = c("LON","LAT"),
+    crs = 4326
+  )
+  
+  # Create concave hull
+  habitat_poly <- pts_sf |>
+    concaveman(concavity = 2)
+  
+  # Get land polygons
+  land <- rnaturalearth::ne_countries(
+    scale = "medium",
+    returnclass = "sf"
+  ) |>
+    sf::st_transform(sf::st_crs(habitat_poly))
+  
+  # Remove land from habitat polygon
+  habitat_poly <- sf::st_difference(
+    habitat_poly,
+    sf::st_union(land)
+  )
+  
+  habitat_poly
+}
+
+## version robust to edges crossing
+library(sf)
+library(concaveman)
+library(rnaturalearth)
+
+species_habitat_polygon <- function(species_name, survdat_mgmt){
+  
+  pts <- survdat_mgmt |>
+    dplyr::filter(COMNAME == species_name,
+                  !is.na(LAT),
+                  !is.na(LON)) |>
+    dplyr::distinct(STATION, LAT, LON)
+  
+  if(nrow(pts) < 3) return(NULL)
+  
+  pts_sf <- sf::st_as_sf(
+    pts,
+    coords = c("LON","LAT"),
+    crs = 4326
+  )
+  
+  # concave hull
+  habitat_poly <- pts_sf |>
+    concaveman()
+  
+  # fix invalid geometry
+  habitat_poly <- sf::st_make_valid(habitat_poly)
+  
+  # land polygons
+  land <- rnaturalearth::ne_countries(
+    scale = "medium",
+    returnclass = "sf"
+  ) |>
+    sf::st_transform(sf::st_crs(habitat_poly))
+  
+  # remove land from polygon
+  habitat_poly <- sf::st_difference(
+    habitat_poly,
+    sf::st_union(land)
+  )
+  
+  habitat_poly
+}
+
+## call by species --------
+
+### Cod ------
+cod_habitat <- species_habitat_polygon(
+  "ATLANTIC COD",
+  survdat_mgmt
+)
+
+pts <- survdat_mgmt |>
+  filter(COMNAME == "ATLANTIC COD")
+
+ggplot() +
+  geom_sf(data = cod_habitat, fill = "lightblue", alpha = 0.4) +
+  geom_point(data = pts, aes(x = LON, y = LAT), size = 0.6) +
+  theme_minimal() +
+  labs(title = "Atlantic Cod Observed Habitat Envelope")
+
+### Scallop ---------
+scallop_habitat <- species_habitat_polygon(
+  "SEA SCALLOP",
+  survdat_mgmt
+)
+
+pts <- survdat_mgmt |>
+  filter(COMNAME == "SEA SCALLOP")
+
+ggplot() +
+  geom_sf(data = scallop_habitat, fill = "lightblue", alpha = 0.4) +
+  geom_point(data = pts, aes(x = LON, y = LAT), size = 0.6) +
+  theme_minimal() +
+  labs(title = "Scallop Observed Habitat Envelope")
 
 
 
