@@ -573,10 +573,11 @@ ggplot() +
 
 # Comparing with Rob's data ----------
 
+## cod ----------
 library(terra)
 
 # Call in Rob's cod data as a raster
-cod_raster_rob <- rast(here::here('DisMAP/Figures/Gadus morhua_Total.tif'))
+cod_raster_rob <- rast(here::here('data/DisMAP_Rasters/Gadus morhua_Total_raster.tif'))
 
 
 # Convert my cod polygon to a raster
@@ -584,6 +585,10 @@ library(sf)
 
 hab_vect <- vect(cod_habitat)
 
+# Project polygon to raster CRS to match Rob's raster extent
+hab_vect <- project(hab_vect, cod_raster_rob)
+
+# Rasterize habitat polygon
 cod_raster_max <- rasterize(
   hab_vect,
   cod_raster_rob,
@@ -593,7 +598,15 @@ cod_raster_max <- rasterize(
 
 # compare overlap
 
-overlap <- global((cod_raster_max == 1) & (cod_raster_rob > 0), "sum", na.rm = TRUE)
-hab_area <- global(cod_raster_max == 1, "sum", na.rm = TRUE)
+A <- cod_raster_max == 1
+B <- cod_raster_rob > 0
 
-percent_overlap <- overlap / hab_area
+intersection <- global(A & B, "sum", na.rm = TRUE)
+hab_area <- global(A, "sum", na.rm = TRUE)
+
+percent_overlap <- intersection / hab_area
+percent_overlap
+
+# visual check
+plot(cod_raster_rob)
+plot(hab_vect, add = TRUE, border = "red", lwd = 2)
