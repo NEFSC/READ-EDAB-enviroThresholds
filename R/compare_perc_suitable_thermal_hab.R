@@ -5,13 +5,13 @@
 ## Scott shared that he has been working on a very similar indicator using different methods
 ## Comparing the time series here to help decide whether or not to adopt Scott's methods
 
-library(dplyr)
+library(tidyverse)
 
 # Call in data ------------
 
 ## Max's indicators ------------
 
-rds_dir <- here::here('thresholds')
+rds_dir <- here::here('data/thresholds')
 
 max_data <- list.files(rds_dir, pattern = "^indicators_\\d{4}\\.rds$", full.names = TRUE) |>
   map(readRDS) |>
