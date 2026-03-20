@@ -1,0 +1,42 @@
+Code,CommonName,min_temp,max_temp
+BSB,Black sea bass,7.9,30
+CLA,Surf clam,8,22
+COD,Atlantic cod,4,13.3
+DOG,Spiny dogfish,5,21
+DRM,Drums,5,30
+GOO,Goosefish,8.8,21.1
+HAD,Haddock,4,12
+HAL,Halibut,2,15
+LSK,Little skate,NA,NA
+OHK,Offshore hake,11,13
+OPT,Ocean pout,NA,NA
+PLA,American plaice,NA,NA
+POL,Pollock,NA,NA
+QHG,Quahog,11,14.5
+RED,Acadian redfish,NA,NA
+RHK,Red hake,NA,NA
+SAL,Atlantic salmon,NA,NA
+SCA,Sea scallop,5,18
+SCU,Scup,NA,NA
+SDF,Atlantic states demersals,NA,NA
+SHK,Silver hake,NA,NA
+SK,Skates,0.5,27
+STB,Striped bass,5,28
+SUF,Summer flounder,10,24
+TAU,Tautog,10,22
+TYL,Tilefish,9,14
+WHK,White hake,NA,NA
+WIF,Winter flounder,0,20
+WOL,Wolffish,2,16
+WPF,Windowpane flounder,0,19
+WSK,Winter skate,NA,NA
+WTF,Witch flounder,0,16.2
+YTF,Yellowtail flounder,5,12
+BLF,Bluefish,NA,NA
+BUT,Butterfish,NA,NA
+FDE,Shallow water pelagics,10,27
+HER,Atlantic herring,7,17
+ISQ,Illex squid,12,22
+MAK,Atlantic mackerel,7.5,20.7
+MEN,Atlantic menhaden,12,25
+NSH,Northern shrimp,1,10

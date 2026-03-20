@@ -1,0 +1,41 @@
+Code,CommonName,min_temp,max_temp
+BSB,Black sea bass,2.3,30.42
+CLA,Surf clam,1.2,27.4
+COD,Atlantic cod,-1,24.78000069
+DOG,Spiny dogfish,0.6,22.91
+DRM,Drums,0.2,39.8
+GOO,Goosefish,0.9,25.4
+HAD,Haddock,1.6,20.1
+HAL,Halibut,2,14.1
+LSK,Little skate,-1.4,24.3
+OHK,Offshore hake,3.2,17.64
+OPT,Ocean pout,0.1,20.2
+PLA,American plaice,1.3,21.9
+POL,Pollock,1.6,21.3
+QHG,Quahog,3,20.7
+RED,Acadian redfish,1.5,24.82999992
+RHK,Red hake,0.1,25
+SAL,Atlantic salmon,3.5,8.7
+SCA,Sea scallop,1.4,22.61286
+SCU,Scup,3.35,28.51
+SDF,Atlantic states demersals,0.5,36.4
+SHK,Silver hake,1,24.46
+STB,Striped bass,0.4,34.3
+SUF,Summer flounder,1.74,38.1
+TAU,Tautog,-0.5,30.6
+TYL,Tilefish,7.95,17.95
+WHK,White hake,1.3,25.3
+WIF,Winter flounder,-1.4,28.15999985
+WOL,Wolffish,1.5,14.8
+WPF,Windowpane flounder,-1.2,38.1
+WSK,Winter skate,-1.4,23.6
+WTF,Witch flounder,1.5,26.1
+YTF,Yellowtail flounder,-1,19.6
+BLF,Bluefish,5.4,34
+BUT,Butterfish,0.6,34.4
+FDE,Shallow water pelagics,-0.09,34.7
+HER,Atlantic herring,-0.75,29.7
+ISQ,Illex squid,0.6,29.76
+MAK,Atlantic mackerel,1.21,27.4
+MEN,Atlantic menhaden,0.4,35.5
+NSH,Northern shrimp,1.67,26.3

@@ -1,0 +1,182 @@
+"","Scientific.Name","Location","Age.Group","Temp_Obs_Min","Temp_Obs_Mean","Temp_Obs_Max","Temp_Stress_Min","Temp_Stress_Max","Temp_Lethal_Min","Temp_Lethal_Mean","Temp_Lethal_Max","temp_threshold","Salinity_Obs_Min","Salinity_Obs_Mean","Salinity_Obs_Max","Salinity_Stress_Min","Salinity_Stress_Max","Salinity_Lethal_Min","Salinity_Lethal_Max","sal_threshold"
+"1","Alosa aestivalis","Northeast US","Egg",0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,1
+"2","Alosa aestivalis","Northeast US","Juvenile",1,0,1,0,0,0,0,0,1,0,0,0,1,1,0,0,1
+"3","Alosa aestivalis","Northeast US","Larval",0,1,0,0,0,1,0,1,1,1,0,1,0,0,0,1,1
+"4","Alosa pseudoharengus","Northeast US","Adult",1,0,1,0,0,1,0,1,2,0,0,0,0,0,0,0,0
+"5","Alosa pseudoharengus","Northeast US","Egg",0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,1
+"6","Alosa pseudoharengus","Northeast US","Juvenile",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"7","Alosa pseudoharengus","Northeast US","Larval",0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,1
+"8","Alosa pseudoharengus","Other","Adult",1,0,1,1,0,2,0,1,2,0,0,0,0,0,0,0,0
+"9","Alosa pseudoharengus","Other","Juvenile",1,0,1,1,0,1,0,1,2,0,0,0,0,0,0,0,0
+"10","Alosa sapidissima","China","Adult",0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0
+"11","Alosa sapidissima","China","Egg",0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,1,1
+"12","Alosa sapidissima","China","Juvenile",0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0,2
+"13","Alosa sapidissima","Northeast US","Juvenile",0,0,0,2,0,2,1,2,3,0,0,0,1,1,0,0,1
+"14","Alosa sapidissima","Northeast US","Larval",0,1,0,0,0,1,0,1,1,0,0,0,0,0,0,1,1
+"15","Amblyraja radiata","Canada","Adult",1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+"16","Amblyraja radiata","Europe","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"17","Amblyraja radiata","Northeast US","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"18","Anarhichas lupus","Canada","Adult",1,0,1,0,0,0,0,0,1,1,0,1,0,0,0,0,1
+"19","Anarhichas lupus","Canada","Juvenile",0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,1,2
+"20","Anarhichas lupus","Canada","Larval",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"21","Anarhichas lupus","Europe","Egg",0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0
+"22","Anarhichas lupus","Europe","Juvenile",1,1,1,1,1,0,0,0,2,0,0,0,0,0,0,0,0
+"23","Anarhichas lupus","Europe","Larval",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"24","Anguilla rostrata","Canada","Adult",1,1,0,1,0,0,0,0,2,1,0,0,0,0,0,0,1
+"25","Anguilla rostrata","Canada","Juvenile",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"26","Anguilla rostrata","Central America","Adult",1,0,1,0,0,1,0,1,1,0,0,0,0,0,0,0,0
+"27","Anguilla rostrata","Europe","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"28","Anguilla rostrata","Northeast US","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"29","Arctica islandica","Northeast US","Larval",2,1,1,1,1,0,0,0,2,2,0,1,0,0,0,0,2
+"30","Brevoortia tyrannus","Northeast US","Egg",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"31","Brevoortia tyrannus","Northeast US","Juvenile",0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0
+"32","Brevoortia tyrannus","Southeast US","Larval",0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,1
+"33","Centropristis striata","China","Juvenile",0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"34","Centropristis striata","Northeast US","Adult",1,1,2,0,0,0,0,0,2,1,1,1,0,0,0,0,1
+"35","Centropristis striata","Northeast US","Egg",1,1,0,0,0,1,0,0,1,1,0,0,0,0,1,0,1
+"36","Centropristis striata","Northeast US","Juvenile",2,2,1,1,1,2,0,2,4,2,2,2,1,1,0,0,3
+"37","Centropristis striata","Northeast US","Larval",2,1,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2
+"38","Centropristis striata","Southeast US","Adult",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"39","Centropristis striata","Southeast US","Juvenile",0,0,0,0,0,1,0,1,1,1,0,1,0,0,1,0,1
+"40","Centropristis striata","Southeast US","Larval",0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1
+"41","Chpea harengus L.","Europe","Larval",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"42","Clupea harengus","Europe","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"43","Clupea harengus","Europe","Egg",1,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0
+"44","Clupea harengus","Europe","Juvenile",1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"45","Clupea harengus","Europe","Larval",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"46","Cynoscion nebulosas","Southeast US","Juvenile",0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0
+"47","Cynoscion nebulosus","Northeast US","Adult",1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0
+"48","Cynoscion nebulosus","Northeast US","Larval",0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+"49","Cynoscion nebulosus","Southeast US","Adult",1,0,1,0,0,1,0,1,2,0,1,0,1,1,2,2,3
+"50","Cynoscion nebulosus","Southeast US","Egg",1,0,1,1,0,0,0,0,1,1,0,0,0,1,0,0,1
+"51","Cynoscion nebulosus","Southeast US","Juvenile",0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1
+"52","Cynoscion nebulosus","Southeast US","Larval",1,0,1,1,0,0,0,0,1,1,0,1,1,0,1,0,1
+"53","Cynoscion regalis","Northeast US","Adult",0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0
+"54","Cynoscion regalis","Northeast US","Egg",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"55","Cynoscion regalis","Northeast US","Juvenile",1,0,1,0,0,1,0,0,1,1,1,2,0,0,0,0,2
+"56","Dipturus laevis","Canada","Adult",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"57","Dipturus laevis","Northeast US","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"58","Gadus morhua","Canada","Adult",1,2,1,3,3,0,2,2,6,1,0,1,0,0,0,0,1
+"59","Gadus morhua","Canada","Juvenile",1,1,1,1,1,1,0,0,2,0,0,0,0,0,0,0,0
+"60","Gadus morhua","Europe","Adult",6,3,6,1,3,0,1,1,9,0,0,0,0,0,0,0,0
+"61","Gadus morhua","Europe","Egg",2,0,2,0,1,1,0,3,4,0,0,0,0,0,0,0,0
+"62","Gadus morhua","Europe","Juvenile",2,1,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0
+"63","Gadus morhua","Northeast US","Adult",1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"64","Gadus morhua","Northeast US","Egg",0,1,1,0,0,1,0,0,1,0,0,0,1,0,0,0,1
+"65","Gadus morhua","Northeast US","Larval",0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1
+"66","Gadus morhua L.","Europe","Larval",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"67","Glyptocephalus cynoglossus","Canada","Adult",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"68","Glyptocephalus cynoglossus","Europe","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"69","Glyptocephalus cynoglossus","Northeast US","Larval",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"70","Hippoglossoides platessoides","Canada","Adult",0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+"71","Hippoglossoides platessoides","Europe","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"72","Hippoglossus hippoglossus","Canada","Egg",0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+"73","Hippoglossus hippoglossus","Canada","Juvenile",1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"74","Hippoglossus hippoglossus","Canada","Larval",0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1
+"75","Hippoglossus hippoglossus","Europe","Juvenile",0,2,1,0,0,0,0,0,2,0,0,0,0,0,0,0,0
+"76","Hippoglossus hippoglossus","Europe","Larval",1,0,1,1,0,0,0,0,1,1,0,1,1,0,0,0,1
+"77","Hippoglossus hippoglossus L.","Europe","Juvenile",2,3,2,0,1,0,0,0,4,0,0,0,0,0,0,0,0
+"78","Hippoglossus hippoglossus L.","Europe","Larval",2,1,2,0,1,0,0,1,3,1,0,2,0,0,0,1,2
+"79","Hippogloussus hippoglossus","Europe","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"80","Hippogloussus hippoglossus","Europe","Juvenile",1,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0
+"81","Homarus americanus","Canada","Adult",1,0,1,0,0,1,0,1,2,0,0,0,0,0,1,0,1
+"82","Homarus americanus","Canada","Larval",0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0
+"83","Homarus americanus","Northeast US","Adult",1,0,2,1,2,1,1,0,3,0,0,0,0,0,0,0,0
+"84","Homarus americanus","Northeast US","Egg",1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0
+"85","Homarus americanus","Northeast US","Juvenile",1,0,1,0,1,0,0,1,2,0,0,0,0,0,0,0,0
+"86","Homarus americanus","Northeast US","Larval",1,1,1,0,0,2,0,3,4,1,0,1,0,0,0,1,1
+"87","Illex illecebrosus","Canada","Egg",1,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"88","Leiostomus xanthurus","Northeast US","Juvenile",0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"89","Leiostomus xanthurus","Southeast US","Juvenile",0,0,0,1,1,1,0,1,2,1,0,1,1,1,0,0,2
+"90","Leucoraja erinacea","Northeast US","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"91","Leucoraja garmani","Northeast US","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"92","Leucoraja ocellata","Northeast US","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"93","Limanda ferruginea","Northeast US","Egg",1,0,1,0,0,0,0,0,1,1,0,1,0,0,0,0,1
+"94","Lophius americanus","Northeast US","Adult",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"95","Lopholatilus chamaeleonticeps","Southeast US","Adult",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"96","Malacoraja senta","Northeast US","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"97","Melanogrammus aeglefinus","Canada","Adult",0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+"98","Melanogrammus aeglefinus","Canada","Egg",0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1
+"99","Melanogrammus aeglefinus","Canada","Juvenile",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"100","Melanogrammus aeglefinus","Canada","Larval",0,0,0,0,0,0,0,1,1,0,1,0,1,1,0,0,1
+"101","Melanogrammus aeglefinus","Europe","Adult",1,2,0,0,0,0,0,0,2,0,1,0,0,0,0,0,1
+"102","Melanogrammus aeglefinus","Europe","Juvenile",1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"103","Melanogrammus aeglefinus","Northeast US","Adult",1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+"104","Merluccius albidus","Northeast US","Adult",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"105","Micropoginias undulatus","Southeast US","Adult",0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"106","Micropogonias undulatus","Northeast US","Adult",0,1,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1
+"107","Micropogonias undulatus","Northeast US","Juvenile",0,1,0,1,0,2,0,0,3,1,0,1,0,0,0,0,1
+"108","Micropogonias undulatus","Northeast US","Larval",0,1,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1
+"109","Micropogonias undulatus","Southeast US","Adult",2,1,1,0,0,0,0,0,2,1,0,1,0,0,0,0,1
+"110","Micropogonias undulatus","Southeast US","Egg",0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0
+"111","Morone saxatilis","Canada","Egg",0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1
+"112","Morone saxatilis","Canada","Juvenile",2,0,2,0,1,1,0,0,3,0,0,0,0,0,0,0,0
+"113","Morone saxatilis","Canada","Larval",0,1,0,1,1,0,0,0,1,0,0,0,0,1,0,0,1
+"114","Morone saxatilis","Northeast US","Adult",0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,1
+"115","Morone saxatilis","Northeast US","Juvenile",0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,0,1
+"116","Morone saxatilis","Northeast US","Larval",1,1,1,0,0,1,0,1,2,1,0,1,0,1,0,1,1
+"117","Morone saxatilis","Unknown","Adult",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"118","Morone saxatilis","Unknown","Egg",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"119","Morone saxitilis","Pacific US","Larval",0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1
+"120","Morone saxitilis","Southeast US","Adult",0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"121","Pandalus borealis","Canada","Adult",4,0,5,0,3,0,0,0,5,0,0,0,0,0,0,0,0
+"122","Pandalus borealis","Canada","Juvenile",2,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0
+"123","Pandalus borealis","Canada","Larval",1,1,1,0,0,1,0,1,1,0,0,0,0,0,0,0,0
+"124","Pandalus borealis","Europe","Adult",0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0
+"125","Paralichthys dentatus","East Coast US","Juvenile",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"126","Paralichthys dentatus","Northeast US","Juvenile",0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0
+"127","Paralichthys dentatus","Northeast US","Larval",0,0,0,0,0,1,0,0,1,1,0,1,0,0,0,0,1
+"128","Paralichthys dentatus","Southeast US","Juvenile",1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0
+"129","Paralichthys dentatus","Southeast US","Larval",1,1,1,0,0,0,0,0,1,1,0,1,0,0,0,0,1
+"130","Placopecten magellanicus","Canada","Adult",0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,0,1
+"131","Placopecten magellanicus","Canada","Juvenile",2,1,3,0,1,1,0,0,3,2,0,1,0,0,0,0,2
+"132","Placopecten magellanicus","Northeast US","Adult",1,0,3,2,0,1,0,0,3,0,0,0,0,0,0,0,0
+"133","Pleuronectes americanus","Canada","Adult",1,0,1,0,0,1,0,1,1,0,0,0,0,0,0,1,1
+"134","Pleuronectes americanus","Northeast US","Juvenile",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"135","Pleuronectes americanus)","Northeast US","Adult",0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0
+"136","Pollachius virens","Europe","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"137","Pomatomus saltatrix","Northeast US","Adult",0,0,0,1,1,0,0,0,1,1,0,1,0,0,0,0,1
+"138","Pseudopleuronectes americanus","Canada","Adult",1,0,1,2,1,0,0,0,2,0,0,0,0,0,0,0,0
+"139","Pseudopleuronectes americanus","Canada","Egg",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+"140","Pseudopleuronectes americanus","Canada","Larval",0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1
+"141","Pseudopleuronectes americanus","Northeast US","Adult",1,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,0
+"142","Pseudopleuronectes americanus","Northeast US","Egg",0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0
+"143","Pseudopleuronectes americanus","Northeast US","Juvenile",1,0,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0
+"144","Pseudopleuronectes americanus","Northeast US","Larval",0,1,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1
+"145","Pseudopleuronectes americanus and Stenotomus chrysops, L.","Northeast US","Juvenile",0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"146","Raja eglanteria","Northeast US","Adult",1,1,1,0,0,0,0,0,2,1,0,1,0,0,0,0,1
+"147","Salmo salar","Canada","Adult",0,0,0,0,0,0,1,3,4,0,0,0,0,0,0,0,0
+"148","Salmo salar","Canada","Juvenile",0,0,1,2,2,1,0,2,6,0,0,0,0,0,0,0,0
+"149","Salmo salar","Canada","Larval",0,1,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0
+"150","Salmo salar","Europe","Adult",1,1,1,2,1,0,0,0,3,0,1,0,0,1,0,0,1
+"151","Salmo salar","Europe","Egg",0,0,0,1,1,0,0,1,2,0,0,0,0,0,0,0,0
+"152","Salmo salar","Europe","Juvenile",1,1,1,2,1,1,0,2,4,0,1,0,0,0,0,0,1
+"153","Salmo salar","Europe","Larval",0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"154","Salmo salar","Northeast US","Juvenile",2,0,2,0,1,0,0,1,2,0,0,0,0,0,0,0,0
+"155","Salmo salar","Tasmania","Adult",1,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,0
+"156","Sciaenops ocellata","Southeast US","Egg",0,1,0,0,0,0,0,1,1,0,1,0,0,0,1,0,1
+"157","Sciaenops ocellatus","Southeast US","Adult",2,1,1,0,1,1,0,1,3,0,0,0,0,0,0,0,0
+"158","Sciaenops ocellatus","Southeast US","Juvenile",0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"159","Sciaenops ocellatus","Southeast US","Larval",0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"160","Sciaenops octellatus","Southeast US","Juvenile",0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0
+"161","Scomber scombrus","East Coast US","Egg",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"162","Scomber scombrus","East Coast US","Larval",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"163","Scomber scombrus","Europe","Adult",3,1,3,1,1,0,0,0,4,0,0,0,0,0,0,0,0
+"164","Scomber scombrus","Europe","Egg",1,1,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0
+"165","Scomber scombrus","Europe","Larval",1,0,1,0,0,1,0,1,1,0,0,0,0,0,0,0,0
+"166","Scophthalmus aquosus","Northeast US","Juvenile",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"167","Scophthalmus aquosus","Northeast US","Larval",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"168","Spisula solidissima","Canada","Adult",1,0,1,1,1,0,0,0,1,1,0,1,0,0,0,0,1
+"169","Spisula solidissima","Northeast US","Adult",1,1,2,2,1,1,0,0,5,0,0,0,0,0,0,0,0
+"170","Spisula solidissima","Northeast US","Juvenile",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"171","Spisula solidissima","Northeast US","Larval",1,2,1,0,0,1,0,1,3,0,1,0,0,0,0,0,1
+"172","Squalus acanthias","Canada","Adult",1,0,1,0,0,0,0,0,1,1,0,1,0,0,0,0,1
+"173","Squalus acanthias","Europe","Adult",0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"174","Squalus acanthias","Northeast US","Adult",3,2,3,1,1,0,0,0,4,1,1,1,0,0,0,0,1
+"175","Squalus acanthias","Northeast US","Juvenile",2,1,1,1,1,0,0,1,3,1,1,1,0,0,0,0,1
+"176","Squalus acanthias","Northeast US","Larval",1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,0,1
+"177","Squalus acanthias","Pacific US","Adult",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"178","Squalus acanthias","Southeast US","Adult",1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"179","Stenotomus chrysops, L.","Northeast US","Juvenile",0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"180","Tautoga onitis","Northeast US","Adult",0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0
+"181","Tautoga onitis","Northeast US","Larval",0,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0

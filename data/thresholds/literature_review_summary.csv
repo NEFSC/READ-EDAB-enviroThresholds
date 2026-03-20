@@ -1,0 +1,378 @@
+"","Title","Scientific.Name","Age.Group","Location","Temp_Obs_Min","Temp_Obs_Mean","Temp_Obs_Max","Temp_Stress_Min","Temp_Stress_Max","Temp_Lethal_Min","Temp_Lethal_Mean","Temp_Lethal_Max","Salinity_Obs_Min","Salinity_Obs_Mean","Salinity_Obs_Max","Salinity_Stress_Min","Salinity_Stress_Max","Salinity_Lethal_Min","Salinity_Lethal_Max","temp_threshold","sal_threshold"
+"1","Combined tracers reveal the multi-dimensionality of resource partitioning among sympatric forage fish","Alosa pseudoharengus","Adult","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"2","Thermal Tolerance of the Alewife","Alosa pseudoharengus","Adult","Northeast US",0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"3","Spawning, Larviculture, and Salinity Tolerance of Alewives and Blueback Herring in Captivity","Alosa pseudoharengus","Juvenile","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"4","Lethal and Preferred Temperatures of the Alewife (Alosa pseudoharengus) in Lake Michigan","Alosa pseudoharengus","Adult","Other",1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"5","Influence of dietary nutrients on low temperature tolerance of freshwater alewives","Alosa pseudoharengus","Adult","Other",0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0
+"6","Lethal and Preferred Temperatures of the Alewife (Alosa pseudoharengus) in Lake Michigan","Alosa pseudoharengus","Juvenile","Other",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"7","Effects of Temperature on Electrolyte Balance and Osmoregulation in the Alewife (Alosa pseudoharengus) in Fresh and Sea Water","Alosa pseudoharengus","Juvenile","Other",0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0
+"8","The effects of elevated salinity on river herring embryo and larval survival","Alosa pseudoharengus","Egg","Northeast US",0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1
+"9","The effects of elevated salinity on river herring embryo and larval survival","Alosa pseudoharengus","Larval","Northeast US",0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1
+"10","Tidal Influence on Movements and on Daily Cycle of Activity of American Eels","Anguilla rostrata","Adult","Canada",1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1
+"11","Impact of an acute temperature change on performance and metabolism of pickerel (Esox niger) and Eel (Anguilla rostrata) hearts","Anguilla rostrata","Adult","Canada",0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"12","Oxygen isotope fractionation of otoliths formed across the maximum thermal range for somatic growth of the American eel 
+
+<i>Anguilla rostrata</i>","Anguilla rostrata","Juvenile","Canada",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"13","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Anguilla rostrata","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"14","Temperature behavioral responses of the American eel, Anguilla rostrata (Lesueur), from Maryland","Anguilla rostrata","Adult","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"15","Tolerance of Anguilla rostrata from Central America to Several Ecological Factors","Anguilla rostrata","Adult","Central America",1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"16","Effects of Temperature, Salinity and Oxygen on the Survival of the American Lobster","Homarus americanus","Adult","Canada",0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,1,1
+"17","Threshold temperatures for performance and survival of American lobster larvae: A review of current knowledge and implications to modeling impacts of climate change","Homarus americanus","Larval","Canada",0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0
+"18","Threshold temperatures for performance and survival of American lobster larvae: A review of current knowledge and implications to modeling impacts of climate change","Homarus americanus","Larval","Canada",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"19","Effects of temperature and habitat biogeochemicals on disease susceptibility and survival of lobsters (Homarus americanus) in western Long Island Sound","Homarus americanus","Adult","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"20","A comparison of the osmoregulatory capabilities of estuarine and coastal populations of the American lobster, Homarus americanus.","Homarus americanus","Adult","Northeast US",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"21","Enhancing thermal tolerance by eliminating the pejus range: a comparative study with three decapod crustaceans","Homarus americanus","Adult","Northeast US",0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0
+"22","Implications of Future Northwest Atlantic Bottom Temperatures on the American Lobster (Homarus americanus) Fishery","Homarus americanus","Adult","Northeast US",0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"23","Implications of Future Northwest Atlantic Bottom Temperatures on the American Lobster (Homarus americanus) Fishery","Homarus americanus","Egg","Northeast US",1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"24","Implications of Future Northwest Atlantic Bottom Temperatures on the American Lobster (Homarus americanus) Fishery","Homarus americanus","Juvenile","Northeast US",1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"25","The impact of ocean warming on juvenile American lobster recruitment off southeastern Massachusetts","Homarus americanus","Juvenile","Northeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"26","Effects of thermal pollution on pelagic larvae of crustacea","Homarus americanus","Larval","Northeast US",1,0,1,0,0,1,0,1,1,0,1,0,0,0,1,1,1
+"27","A comparison of growth and temperature tolerance in the larvae of the lobsters Homarus gammarus (L.) and Homarus americanus H. milne Edwards (Decapoda, Nephropidae)","Homarus americanus","Larval","Northeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"28","Factors Influencing the Size of American Lobster (Homarus americanus) Stocks Along the Atlantic Coast of Nova Scotia, Gulf of St. Lawrence, and Gulf of Maine: A New Synthesis","Homarus americanus","Larval","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"29","Ontogenetic shifts in thermal tolerance of the American lobster (Homarus americanus)","Homarus americanus","Larval","Northeast US",0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"30","Top-down and bottom-up forces interact at thermal range extremes on American lobster","Homarus americanus","Adult","Canada",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"31","Low?Temperature Tolerance of American Plaice in Relation to Declines in Abundance","Hippoglossoides platessoides","Adult","Canada",0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"32","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Hippoglossoides platessoides","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"33","Observations on the reactions of young American shad to heated effluent","Alosa sapidissima","Juvenile","Northeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"34","Responses of Young American Shad, Alosa sapidissima, to Low Temperatures","Alosa sapidissima","Juvenile","Northeast US",0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0
+"35","Salinity tolerance of young American shad. Alosa sapidissima","Alosa sapidissima","Juvenile","Northeast US",0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1
+"36","Upper Thermal Tolerance and Heat Shock Protein Response of Juvenile American Shad ( 
+
+<i>Alosa sapidissima</i>)","Alosa sapidissima","Juvenile","Northeast US",0,0,0,1,0,1,1,1,0,0,0,0,0,0,0,1,0
+"37","The ontogeny of salinity tolerance in the American shad, Alosa sapidissima","Alosa sapidissima","Larval","Northeast US",0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1
+"38","Thermal effects of power plant entrainment on survival of larval fishes: a laboratory assessment","Alosa sapidissima","Larval","Northeast US",0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"39","High-temperature stress response: Insights into the molecular regulation of American shad 
+
+<i> (Alosa</i> 
+
+<i> sapidissima)</i> using a multi-omics approach","Alosa sapidissima","Adult","China",0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"40","Survival, Growth, and Feed Utilization of Pre? and Postmetamorphic American Shad Exposed to Increasing Salinity","Alosa sapidissima","Egg","China",0,0,0,0,0,0,0,0,1,0,1,0,0,1,1,0,1
+"41","Effects of different salinities on growth performance, survival, digestive enzyme activity, immune response, and muscle fatty acid composition in juvenile American shad (Alosa sapidissima)","Alosa sapidissima","Juvenile","China",0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1
+"42","Effects of Different Salinities on Growth, Body Composition, Oxygen Consumption Rate, and Ammonia Excretion Rate in American shad (Alosa sapidissima) Juveniles","Alosa sapidissima","Juvenile","China",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"43","Thermal habitat for 0-group fish in the Barents Sea; how climate variability impacts their density, length, and geographic distribution","Gadus morhua","Juvenile","Europe",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"44","Atmosphereâ€“Ocean Coupling and Atlantic Cod Migrations: Effect of Wind-Forced Variations in Sea Temperatures and Currents or Nearshore Distributions and Catch Rates of Gadus morhua","Gadus morhua","Adult","Canada",1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"45","Thermal biology and swimming performance of Atlantic cod (Gadus morhua) and haddock (Melanogrammus aeglefinus)","Gadus morhua","Adult","Canada",0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"46","Associations between Atlantic cod (Gadus morhua) and hydrographic variables: Implications for the management of the 4VsW cod stock","Gadus morhua","Adult","Canada",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"47","Brain cooling marginally increases acute upper thermal tolerance in Atlantic cod","Gadus morhua","Adult","Canada",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"48","The acute and incremental thermal tolerance of Atlantic cod ( 
+
+<i>Gadus morhua</i>) families under normoxia and mild hypoxia","Gadus morhua","Adult","Canada",0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0
+"49","Thermal sensitivity of metabolic rates and swimming performance in two latitudinally separated populations of cod, Gadus morhua L","Gadus morhua","Adult","Canada",0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"50","Temperature and dietary effects on the physiology of two gadids, the Atlantic cod (Gadus morhua) and haddock (Melanogrammus aeglefinus)","Gadus morhua","Juvenile","Canada",1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0
+"51","Growth, survival and feed efficiency for post-metamorphosed Atlantic cod ( 
+
+<i>Gadus morhua</i>) reared at different temperatures","Gadus morhua","Juvenile","Canada",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"52","Cardiovascular and haematological responses of Atlantic cod (Gadus morhua) to acute temperature increase","Gadus morhua","Adult","Canada",0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0
+"53","Effects of temperature on specific dynamic action in Atlantic cod 
+
+<i>Gadus morhua</i>","Gadus morhua","Adult","Europe",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"54","Oxygen limitation of thermal tolerance in cod, 
+
+<i>Gadus morhua</i> L., studied by magnetic resonance imaging and on-line venous oxygen monitoring","Gadus morhua","Adult","Europe",1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,1,0
+"55","Identification of lifecycle bottlenecks to assess the vulnerability of fish species to climate change","Gadus morhua","Adult","Europe",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"56","Northern cod species face spawning habitat losses if global warming exceeds 1.5Â°C","Gadus morhua","Adult","Europe",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"57","Climate change with increasing seawater temperature will challenge the health of farmed Atlantic Cod (Gadus morhua L.)","Gadus morhua","Adult","Europe",1,0,1,0,1,0,0,1,0,0,0,0,0,0,0,1,0
+"58","Cod and climate in a latitudinal cline: physiological analyses of climate effects in marine fishes","Gadus morhua","Adult","Europe",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"59","Climate induced temperature effects on growth performance, fecundity and recruitment in marine fish: developing a hypothesis for cause and effect relationships in Atlantic cod (Gadus morhua) and common eelpout (Zoarces viviparus)","Gadus morhua","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"60","Identification of lifecycle bottlenecks to assess the vulnerability of fish species to climate change","Gadus morhua","Adult","Europe",0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"61","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Gadus morhua","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"62","Effects of ocean acidification increase embryonic sensitivity to thermal extremes in Atlantic cod, Gadus morhua","Gadus morhua","Egg","Europe",1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"63","Northern cod species face spawning habitat losses if global warming exceeds 1.5Â°C","Gadus morhua","Egg","Europe",1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"64","Effect of temperature on viability and axial muscle development in embryos and yolk sac larvae of the Northeast Arctic cod (Gadus morhua)","Gadus morhua","Egg","Europe",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"65","Identification of lifecycle bottlenecks to assess the vulnerability of fish species to climate change","Gadus morhua","Egg","Europe",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"66","Cod and climate in a latitudinal cline: physiological analyses of climate effects in marine fishes","Gadus morhua","Juvenile","Europe",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"67","Seasonal movements and connectivity of an Atlantic cod (Gadus morhua) spawning component in the western Gulf of Maine","Gadus morhua","Adult","Northeast US",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"68","Effects of salinity on eggs and yolk-sac larvae of Atlantic cod, Atlantic halibut, haddock and winter flounder","Gadus morhua","Egg","Northeast US",0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1
+"69","Fathers modify thermal reaction norms for hatching success in Atlantic cod, 
+
+<i>Gadus morhua</i>","Gadus morhua","Egg","Northeast US",0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+"70","Effects of salinity on eggs and yolk-sac larvae of Atlantic cod, Atlantic halibut, haddock and winter flounder","Gadus morhua","Larval","Northeast US",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"71","Ontogenetic Changes in Behavioral and Energetic Responses of Juvenile Atlantic Croaker to an Estuarine Salinity Gradient","Micropogonias undulatus","Adult","Northeast US",0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,1,1
+"72","Low-temperature tolerance of age-0 Atlantic croakers : recruitment implications for U.S. mid-Atlantic estuaries","Micropogonias undulatus","Juvenile","Northeast US",0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+"73","Mechanistic links between climate and fisheries along the east coast of the United States: explaining population outbursts of Atlantic croaker (Micropogonias undulatus)","Micropogonias undulatus","Juvenile","Northeast US",0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0
+"74","Ontogenetic Changes in Behavioral and Energetic Responses of Juvenile Atlantic Croaker to an Estuarine Salinity Gradient","Micropogonias undulatus","Juvenile","Northeast US",0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,1,1
+"75","Ontogenetic Changes in Behavioral and Energetic Responses of Juvenile Atlantic Croaker to an Estuarine Salinity Gradient","Micropogonias undulatus","Larval","Northeast US",0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,1,1
+"76","Temperature?adaptive differences between the M4 lactate dehydrogenases of stenothermal and eurythermal sciaenid fishes","Micropogonias undulatus","Adult","Southeast US",1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"77","SUBMERGED CAGE CULTURE OF FISH IN SUPERSATURATED THERMAL EFFLUENT","Micropoginias undulatus","Adult","Southeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"78","Hatchery methods and natural, hormone-implant-induced, and synchronized spawning of captive Atlantic croaker ( 
+
+<i>Micropogonias undulatus</i>) Linnaeus 1766","Micropogonias undulatus","Egg","Southeast US",0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"79","Seasonal abundance of atlantic croaker (Micropogonias undulatus) in relation to bottom salinity and temperature in South Carolina estuaries","Micropogonias undulatus","Adult","Southeast US",1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,1,1
+"80","Effects of salinity on eggs and yolk-sac larvae of Atlantic cod, Atlantic halibut, haddock and winter flounder","Hippoglossus hippoglossus","Egg","Canada",0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1
+"81","Low temperature tolerance of Atlantic halibut, Hippoglossus hippoglossus , at ambient ocean temperatures in Newfoundland","Hippoglossus hippoglossus","Juvenile","Canada",1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"82","Effects of salinity on eggs and yolk-sac larvae of Atlantic cod, Atlantic halibut, haddock and winter flounder","Hippoglossus hippoglossus","Larval","Canada",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"83","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Hippogloussus hippoglossus","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"84","Effects of size on optimal temperature for growth and growth efficiency of immature Atlantic halibut (Hippoglossus hippoglossus L.)","Hippoglossus hippoglossus L.","Juvenile","Europe",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"85","Effects of size on optimal temperature for growth and growth efficiency of immature Atlantic halibut (Hippoglossus hippoglossus L.)","Hippoglossus hippoglossus L.","Juvenile","Europe",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"86","Aerobic scope fails to explain the detrimental effects on growth resulting from warming and elevated CO2 in Atlantic halibut","Hippogloussus hippoglossus","Juvenile","Europe",1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"87","Optimal temperature of immature halibut (Hippoglossus hippoglossus L.): Effects of size","Hippoglossus hippoglossus","Juvenile","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"88","Combined effects of temperature and salinity on development and survival of Atlantic halibut larvae","Hippoglossus hippoglossus","Larval","Europe",1,0,1,1,0,0,0,0,1,0,1,1,0,0,0,1,1
+"89","Effects of size on optimal temperature for growth and growth efficiency of immature Atlantic halibut (Hippoglossus hippoglossus L.)","Hippoglossus hippoglossus L.","Larval","Europe",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"90","Effects of salinity on yolk sac larvae of Atlantic halibut (Hippoglossus hippoglossus L.)","Hippoglossus hippoglossus L.","Larval","Europe",0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1
+"91","Effects of temperature on yolk sac larvae of Atlantic halibut (Hippoglossus hippoglossus L.)","Hippoglossus hippoglossus L.","Larval","Europe",0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0
+"92","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Clupea harengus","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"93","Thermal windows supporting survival of the earliest life stages of Baltic herring (Clupea harengus)","Clupea harengus","Egg","Europe",1,0,1,1,0,0,0,1,0,0,0,0,0,0,0,1,0
+"94","Temperature, salinity tolerance, and buoyancy during early development and starvation of Clyde and North Sea herring, cod, and flounder larvae","Chpea harengus L.","Larval","Europe",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"95","Effects of warming rate, acclimation temperature and ontogeny on the critical thermal maximum of temperate marine fish larvae","Clupea harengus","Larval","Europe",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"96","Effects of warming rate, acclimation temperature and ontogeny on the critical thermal maximum of temperate marine fish larvae","Clupea harengus","Larval","Europe",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"97","Linking individual physiological indicators to the productivity of fish populations: A case study of Atlantic herring","Clupea harengus","Larval","Europe",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"98","Fishing from space : mackerel fishing in Icelandic waters and correlation with satellite variables","Scomber scombrus","Adult","Europe",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"99","Geographical expansion of Northeast Atlantic mackerel (Scomber scombrus) in the Nordic Seas from 2007 to 2016 was primarily driven by stock size and constrained by low temperatures","Scomber scombrus","Adult","Europe",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"100","Poleward spawning of Atlantic mackerel (Scomber scombrus) is facilitated by ocean warming but triggered by energetic constraints","Scomber scombrus","Adult","Europe",1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"101","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Scomber scombrus","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"102","Poleward spawning of Atlantic mackerel (Scomber scombrus) is facilitated by ocean warming but triggered by energetic constraints","Scomber scombrus","Egg","Europe",1,1,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"103","Thermal effects on growth and time to starvation during the yolk-sac larval period of Atlantic mackerel 
+
+<i>Scomber scombrus</i> L","Scomber scombrus","Larval","Europe",1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"104","EGGS AND LARVAE OF SCOMBER-SCOMBRUS AND SCOMBER-JAPONICUS IN CONTINENTAL-SHELF WATERS BETWEEN MASSACHUSETTS AND FLORIDA","Scomber scombrus","Egg","East Coast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"105","EGGS AND LARVAE OF SCOMBER-SCOMBRUS AND SCOMBER-JAPONICUS IN CONTINENTAL-SHELF WATERS BETWEEN MASSACHUSETTS AND FLORIDA","Scomber scombrus","Larval","East Coast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"106","Atlantic menhaden recruitment to a southern estuary: defining potential spawning regions","Brevoortia tyrannus","Egg","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"107","Effects of Temperature on Age?0 Atlantic Menhaden Growth in Chesapeake Bay","Brevoortia tyrannus","Juvenile","Northeast US",0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"108","A synthesis of water quality and contaminants data for the atlantic menhaden, brevoortia tyrannus: Implications for chesapeake bay","Brevoortia tyrannus","Juvenile","Northeast US",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"109","Adaptive management strategies to protect Atlantic salmon (Salmo salar) under environmentally stressful conditions","Salmo salar","Adult","Canada",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"110","Cardiorespiratory responses of seawater-acclimated adult Arctic char (Salvelinus alpinus) and Atlantic salmon (Salmo salar) to an acute temperature increase","Salmo salar","Adult","Canada",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"111","The Atlantic salmon's ( 
+
+<i>Salmo salar</i>) incremental thermal maximum is a more relevant and sensitive indicator of family-based differences in upper temperature tolerance than its critical thermal maximum","Salmo salar","Adult","Canada",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"112","The genomic architecture of high temperature tolerance in a year class of Atlantic Salmon","Salmo salar","Adult","Canada",0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0
+"113","Understanding summertime thermal refuge use by adult Atlantic salmon using remote sensing, river temperature monitoring, and acoustic telemetry","Salmo salar","Adult","Canada",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"114","Regional thermal analysis approach: A management tool for predicting water temperature metrics relevant for thermal fish habitat","Salmo salar","Juvenile","Canada",0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"115","Behaviour during elevated water temperatures: can physiology explain movement of juvenile Atlantic salmon to cool water","Salmo salar","Juvenile","Canada",0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"116","High temperature events shape the broadscale distribution of juvenile Atlantic salmon (Salmo salar)","Salmo salar","Juvenile","Canada",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"117","Physiological effects of environmentally relevant, multi-day thermal stress on wild juvenile Atlantic salmon (Salmo salar)","Salmo salar","Juvenile","Canada",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"118","The emerging role of climate in post-smolt growth of Atlantic salmon","Salmo salar","Juvenile","Canada",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"119","Effect of Reduction in Water Salinity on Osmoregulation and Survival of Large Atlantic Salmon Held at High Water Temperature","Salmo salar","Adult","Europe",0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,1
+"120","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Salmo salar","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"121","Effects of temperature on growth and efficiency of yolk utilisation in eggs and pre-feeding larval stages of Atlantic salmon","Salmo salar","Egg","Europe",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"122","The effect of heat and cold exposure on HSP70 expression and development of deformities during embryogenesis of Atlantic salmon (Salmo salar)","Salmo salar","Egg","Europe",0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"123","Effect of low temperature on seawater tolerance in Atlantic Salmon (Salmo salar) Smolts","Salmo salar","Juvenile","Europe",0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"124","Performance and welfare of Atlantic salmon, Salmo salar L. post?smolts in recirculating aquaculture systems: Importance of salinity and water velocity","Salmo salar","Juvenile","Europe",0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+"125","The effect of the rate of temperature increase on the critical thermal maximum for parr of Atlantic salmon and brown trout","Salmo salar","Juvenile","Europe",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"126","TOLERANCE AND RESISTANCE TO THERMAL-STRESS IN JUVENILE ATLANTIC SALMON, SALMO-SALAR","Salmo salar","Juvenile","Europe",0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"127","Effects of temperature on growth and efficiency of yolk utilisation in eggs and pre-feeding larval stages of Atlantic salmon","Salmo salar","Larval","Europe",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"128","Future of the Sea: Biological Responses to Ocean Warming","Salmo salar","Adult","Europe",1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"129","Genetic variation for upper thermal tolerance diminishes within and between populations with increasing acclimation temperature in Atlantic salmon","Salmo salar","Juvenile","Europe",1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"130","Ocean thermal conditions in the post-smolt nursery of North American Atlantic salmon","Salmo salar","Juvenile","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"131","Effects of elevated temperature on osmoregulation and stress responses in Atlantic salmon 
+
+<i>Salmo salar</i> smolts in fresh water and seawater","Salmo salar","Juvenile","Northeast US",1,0,1,0,1,0,0,1,0,0,0,0,0,0,0,1,0
+"132","Effects of an unprecedented summer heatwave on the growth performance, flesh colour and plasma biochemistry of marine cage-farmed Atlantic salmon (Salmo salar)","Salmo salar","Adult","Tasmania",1,0,1,0,1,0,0,1,0,0,0,0,0,0,0,1,0
+"133","CRITICAL THERMAL MAXIMA FOR YOUNG SALMONIDS","Salmo salar","Juvenile","Europe",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"134","Mortality of salmonids cultured at low temperature in sea water","Salmo salar","Juvenile","Canada",0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0
+"135","DEVELOPMENT OF ATLANTIC SALMON (SALMO-SALAR) EGGS AND ALEVINS UNDER VARIED TEMPERATURE REGIMES","Salmo salar","Larval","Canada",0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"136","Acute critical thermal maximum does not predict chronic incremental thermal maximum in Atlantic salmon (Salmo salar) [Corrigendum: Oct. 2023, v. 284, p. 111491]","Salmo salar","Juvenile","Canada",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"137","Environmental factors influencing the growth and survival of juvenile sea scallops, Placopecten magellanicus (Gmelin, 1791)","Placopecten magellanicus","Juvenile","Canada",1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,1,1
+"138","Effects of warming and fishing on Atlantic sea scallop ( 
+
+<i>Placopecten magellanicus</i>) size structure in the Mid-Atlantic rotationally closed areas","Placopecten magellanicus","Adult","Northeast US",0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"139","The coupled effects of stocking density and temperature on Sea Scallop ( 
+
+<i>Placopecten magellanicus</i>) growth in suspended culture","Placopecten magellanicus","Adult","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"140","Effects of elevated pCO 
+
+<sub>2</sub> and temperature on the calcification rate, survival, extrapallial fluid chemistry, and respiration of the Atlantic Sea scallop 
+
+<i>Placopecten magellanicus</i>","Placopecten magellanicus","Adult","Northeast US",0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0
+"141","Optimization of fertilization parameters for rearing surf clams (Spisula solidissima )","Spisula solidissima","Adult","Canada",1,0,1,1,1,0,0,0,1,0,1,0,0,0,0,1,1
+"142","Long-term dynamics in Atlantic surfclam (Spisula solidissima) populations: The role of bottom water temperature","Spisula solidissima","Adult","Northeast US",1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"143","The influence of temperature stress on the physiology of the Atlantic surfclam, 
+
+<i>Spisula solidissima</i>","Spisula solidissima","Adult","Northeast US",0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"144","Interactive roles of temperature and food availability in predicting habitat suitability for marine invertebrates","Spisula solidissima","Adult","Northeast US",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"145","Transcriptomic Response of the Atlantic Surfclam ( 
+
+<i>Spisula solidissima</i>) to Acute Heat Stress","Spisula solidissima","Adult","Northeast US",0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0
+"146","Interactive roles of temperature and food availability in predicting habitat suitability for marine invertebrates","Spisula solidissima","Juvenile","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"147","Interactive roles of temperature and food availability in predicting habitat suitability for marine invertebrates","Spisula solidissima","Larval","Northeast US",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"148","SWIMMING RATE AND RESPONSES OF LARVAE OF 3 MACTRID BIVALVES TO SALINITY DISCONTINUITIES","Spisula solidissima","Larval","Northeast US",0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1
+"149","Thermal tolerance by embryos and larvae of the surf clam Spisula solidissima","Spisula solidissima","Larval","Northeast US",0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"150","Tolerance and growth of juvenile common wolffish ( 
+
+<i>Anarhichas lupus</i>) under low salinity and hypoxic conditions:: Preliminary results","Anarhichas lupus","Juvenile","Canada",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"151","Tolerance, growth and haloplasticity of the Atlantic wolffish ( 
+
+<i>Anarhichas lupus</i>) exposed to various salinities","Anarhichas lupus","Juvenile","Canada",0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1
+"152","Management of wolffish broodstock","Anarhichas lupus","Egg","Europe",0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0
+"153","Impact of temperature and growth hormone on growth physiology of juvenile Atlantic wolffish ( 
+
+<i>Anarhichas lupus</i>)","Anarhichas lupus","Juvenile","Europe",0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"154","Barndoor skate in the Northwest Atlantic off Canada: Distribution in relation to temperature and depth based on commercial fisheries data","Dipturus laevis","Adult","Canada",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"155","Fishery Management Complexes: An Impediment or Aid to Sustainable Harvest? A Discussion Based on the Northeast Skate Complex","Dipturus laevis","Adult","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"156","Offshore Habitat Preference of Overwintering Juvenile and Adult Black Sea Bass, Centropristis striata, and the Relationship to Year-Class Success: e0147627","Centropristis striata","Adult","Northeast US",1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,1,1
+"157","The effect of ocean warming on black sea bass ( 
+
+<i>Centropristis striata</i>) aerobic scope and hypoxia tolerance","Centropristis striata","Adult","Northeast US",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"158","The Effects of Temperature and Salinity on Early Life Stages of Black Sea Bass Centropristis striata","Centropristis striata","Egg","Northeast US",1,1,0,0,0,1,0,0,1,0,0,0,0,1,0,1,1
+"159","Offshore Habitat Preference of Overwintering Juvenile and Adult Black Sea Bass, Centropristis striata, and the Relationship to Year-Class Success: e0147627","Centropristis striata","Juvenile","Northeast US",1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1
+"160","Effects of Temperature and Salinity on Growth of Juvenile Black Sea Bass, with Implications for Aquaculture","Centropristis striata","Juvenile","Northeast US",1,1,1,1,0,0,0,0,1,0,1,1,0,0,0,1,1
+"161","Limiting and Optimal Temperatures for the Northern Atlantic Population of Black Sea Bass","Centropristis striata","Juvenile","Northeast US",0,1,0,0,1,1,0,1,0,0,0,0,0,0,0,1,0
+"162","Overwintering survivorship and growth of young-of-the-year black sea bass Centropristis striata","Centropristis striata","Juvenile","Northeast US",0,0,0,0,0,1,0,1,0,1,0,0,1,0,0,1,1
+"163","The Effects of Temperature and Salinity on Early Life Stages of Black Sea Bass Centropristis striata","Centropristis striata","Larval","Northeast US",1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1
+"164","The Effects of Temperature and Salinity on Early Life Stages of Black Sea Bass Centropristis striata","Centropristis striata","Larval","Northeast US",1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1
+"165","The adaptability of black sea bass (Centropristis striata) to semi-lethal temperature and recovery mode from exposure to semi-lethal temperature","Centropristis striata","Juvenile","China",0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"166","A Potentially Commercial Black Sea Bass (Centripristis striata) Recirculating Mariculture System","Centropristis striata","Adult","Southeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"167","Evaluation of salt-incorporated diets on growth, body composition and plasma electrolytes of black sea bass 
+
+<i>Centropristis striata</i> reared in a semi-pilot scale low salinity recirculating aquaculture system","Centropristis striata","Juvenile","Southeast US",0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,1
+"168","Salinity and Temperature Tolerances of Black Sea Bass Juveniles","Centropristis striata","Juvenile","Southeast US",0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"169","Effects of feeding frequency of live prey on larval growth, survival, resistance to hyposalinity stress, Na 
+
+<sup>+</sup>/K 
+
+<sup>+</sup> ATPase activity, and fatty acid profiles in black sea bass 
+
+<i>Centropristis striata</i>","Centropristis striata","Larval","Southeast US",0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1
+"170","Spawning, Larviculture, and Salinity Tolerance of Alewives and Blueback Herring in Captivity","Alosa aestivalis","Juvenile","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"171","Salinity tolerance of young blueback herring, Alosa aestivalis","Alosa aestivalis","Juvenile","Northeast US",0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1
+"172","Thermal effects of power plant entrainment on survival of larval fishes: a laboratory assessment","Alosa aestivalis","Larval","Northeast US",0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"173","The effects of elevated salinity on river herring embryo and larval survival","Alosa aestivalis","Egg","Northeast US",0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1
+"174","The effects of elevated salinity on river herring embryo and larval survival","Alosa aestivalis","Larval","Northeast US",0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1
+"175","Scaling Acoustic Telemetry of Bluefish in an Estuarine Observatory: Detection and Habitat Use Patterns","Pomatomus saltatrix","Adult","Northeast US",0,0,0,1,1,0,0,0,1,0,1,0,0,0,0,1,1
+"176","Fishery Management Complexes: An Impediment or Aid to Sustainable Harvest? A Discussion Based on the Northeast Skate Complex","Raja eglanteria","Adult","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"177","Fluctuations in two osmoregulatory components, urea and sodium chloride, of the clearnose skate, Rafa eglanteria bosc 1802—II. Upon natural variation of the salinity of the external medium","Raja eglanteria","Adult","Northeast US",1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,1,1
+"178","Temperature, salinity tolerance, and buoyancy during early development and starvation of Clyde and North Sea herring, cod, and flounder larvae","Gadus morhua L.","Larval","Europe",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"179","The Effect of Temperature on the Respiratory Movements and Viability of a Cold?Water Prawn, Pandalus borealis","Pandalus borealis","Adult","Europe",0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+"180","Salinity-temperature tolerance of juvenile giant scallops, 
+
+<i>Placopecten magellanicus</i>","Placopecten magellanicus","Juvenile","Canada",0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,1
+"181","Thermal biology and swimming performance of Atlantic cod (Gadus morhua) and haddock (Melanogrammus aeglefinus)","Melanogrammus aeglefinus","Adult","Canada",0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"182","Effects of salinity on eggs and yolk-sac larvae of Atlantic cod, Atlantic halibut, haddock and winter flounder","Melanogrammus aeglefinus","Egg","Canada",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"183","Temperature and dietary effects on the physiology of two gadids, the Atlantic cod (Gadus morhua) and haddock (Melanogrammus aeglefinus)","Melanogrammus aeglefinus","Juvenile","Canada",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"184","Effects of salinity on eggs and yolk-sac larvae of Atlantic cod, Atlantic halibut, haddock and winter flounder","Melanogrammus aeglefinus","Larval","Canada",0,0,0,0,0,0,0,1,0,1,0,1,1,0,0,1,1
+"185","Spawning grounds of haddock ( 
+
+<i>Melanogrammus aeglefinus</i>) in the North Sea and West of Scotland","Melanogrammus aeglefinus","Adult","Europe",1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1
+"186","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Melanogrammus aeglefinus","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"187","Factors Relating to the Reproductive Biology of Georges Bank Haddock (Melanogrammus aeglefinus) in 1977-83","Melanogrammus aeglefinus","Adult","Northeast US",1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"188","Differences between Atlantic halibut (Hippoglossus hippoglossus L.) and turbot (Scophthalmus maximus L.) in tolerance to acute low temperature exposure","Hippoglossus hippoglossus L.","Juvenile","Europe",0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"189","Growth of juvenile halibut, Hippoglossus hippoglossus (L.), under a constant and switched temperature regime","Hippoglossus hippoglossus","Juvenile","Europe",0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"190","Stepwise temperature regulation and its effect on growth, feeding and muscle growth patterns of juvenile Atlantic halibut (Hippoglossus hippoglossus L.)","Hippoglossus hippoglossus L.","Juvenile","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"191","Development of eggs and yolk sac larvae of halibut (Hippoglossus hippoglossus L.)","Hippoglossus hippoglossus L.","Larval","Europe",1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,1
+"192","Fishery Management Complexes: An Impediment or Aid to Sustainable Harvest? A Discussion Based on the Northeast Skate Complex","Leucoraja erinacea","Adult","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"193","EFFECTS OF SALINITY AND TEMPERATURE ON SURVIVAL AND DEVELOPMENT OF LARVAL ATLANTIC MENHADEN BREVOORTIA TYRANNUS","Brevoortia tyrannus","Larval","Southeast US",0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,1
+"194","Determining Discard Mortality of Monkfish in a Sea Scallop Dredge Fishery","Lophius americanus","Adult","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"195","Thermal habitat for 0-group fish in the Barents Sea; how climate variability impacts their density, length, and geographic distribution","Melanogrammus aeglefinus","Juvenile","Europe",1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"196","The distribution and abundance of northern shrimp (Pandalus borealis) in relation to bottom temperatures in NAFO Divisions 3LNO based on multi-species surveys from 1995-2003","Pandalus borealis","Adult","Canada",1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"197","The distribution and abundance of northern shrimp (Pandalus borealis) in relation to bottom temperatures in NAFO Divisions 3LNO based on multi-species surveys from 1995-2004","Pandalus borealis","Adult","Canada",1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"198","The distribution and abundance of northern shrimp (Pandalus borealis) in relation to bottom temperatures in NAFO Divisions 3LNO based on multi-species surveys from 1995-2006","Pandalus borealis","Adult","Canada",1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"199","The lack of genetic variation underlying thermal transcriptomic plasticity suggests limited adaptability of the Northern shrimp, Pandalus borealis","Pandalus borealis","Adult","Canada",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"200","Size and temperature-dependent variations in intermolt duration and size increment at molt of Northern Shrimp, Pandalus borealis","Pandalus borealis","Juvenile","Canada",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"201","Temperature induced variation in oxygen consumption of juvenile and adult stages of the northern shrimp, Pandalus borealis","Pandalus borealis","Juvenile","Canada",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"202","Regional variations in early life stages response to a temperature gradient in the northern shrimp 
+
+<i>Pandalus borealis</i> and vulnerability of the populations to ocean warming","Pandalus borealis","Larval","Canada",1,1,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"203","Thermal habitat for 0-group fish in the Barents Sea; how climate variability impacts their density, length, and geographic distribution","Clupea harengus","Juvenile","Europe",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"204","EXPERIMENTAL CULTURE OF THE OCEAN QUAHOG, Arctica islandica","Arctica islandica","Larval","Northeast US",1,0,1,1,1,0,0,0,1,0,1,0,0,0,0,1,1
+"205","Larval and Early Post-Larval Development of Arctica Islandica","Arctica islandica","Larval","Northeast US",1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1
+"206","Population biology of a data poor species, offshore hake (Merluccius albidus) in the northwest Atlantic, United States","Merluccius albidus","Adult","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"207","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Pollachius virens","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"208","The Critical Thermal Maximum of Juvenile Red Drum Reared for Out?of?Season Stocking in Texas","Sciaenops ocellatus","Juvenile","Southeast US",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"209","SUBMERGED CAGE CULTURE OF FISH IN SUPERSATURATED THERMAL EFFLUENT","Sciaenops ocellatus","Larval","Southeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"210","Temperature?adaptive differences between the M4 lactate dehydrogenases of stenothermal and eurythermal sciaenid fishes","Sciaenops ocellatus","Adult","Southeast US",1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"211","Oxygen dependence of upper thermal limits in fishes","Sciaenops ocellatus","Adult","Southeast US",0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"212","Effects of temperature and salinity on egg hatching and larval survival of red drum, Sciaenops ocellata","Sciaenops ocellata","Egg","Southeast US",0,1,0,0,0,0,0,1,0,1,0,0,0,1,0,1,1
+"213","Comparisons of critical thermal maxima and minima of juvenile red drum (Sciaenops ocellatus) from Texas and North Carolina","Sciaenops octellatus","Juvenile","Southeast US",0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"214","Effect of salinity on the upper lethal temperature tolerance of early-juvenile red drum","Sciaenops ocellatus","Juvenile","Southeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"215","EFFECTS OF DIETARY-LIPID AND ENVIRONMENTAL SALINITY ON GROWTH, BODY-COMPOSITION, AND COLD TOLERANCE OF JUVENILE RED DRUM (SCIAENOPS-OCELLATUS)","Sciaenops ocellatus","Juvenile","Southeast US",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"216","Ecophys.Fish: A simulation model of fish growth in time-varying environmental regimes","Sciaenops ocellatus","Adult","Southeast US",1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"217","Fishery Management Complexes: An Impediment or Aid to Sustainable Harvest? A Discussion Based on the Northeast Skate Complex","Leucoraja garmani","Adult","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"218","Causes of Mass Mortalities of Scallops (Placopecten magellanicus) in the Southwestern Gulf of St. Lawrence","Placopecten magellanicus","Adult","Canada",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"219","CRITICAL THERMAL MAXIMA OF 2 SPECIES OF ESTUARINE FISH","Stenotomus chrysops, L.","Juvenile","Northeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"220","Tolerance of the giant sea scallop, Placopecten magellanicus, to low salinity","Placopecten magellanicus","Adult","Canada",0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1
+"221","Heat shock protein responses in thermally stressed bay scallops, 
+
+<i>Argopecten irradians</i>, and sea scallops, 
+
+<i>Placopecten magellanicus</i>","Placopecten magellanicus","Juvenile","Canada",1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"222","Thermal sensitivity of escape response performance by the scallop Placopecten magellanicus: Impact of environmental history","Placopecten magellanicus","Juvenile","Canada",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"223","Embryonic Development of the Squid,Illex illecebrosus, and Effect of Temperature on Development Rates","Illex illecebrosus","Egg","Canada",1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"224","Spatio-temporal variations in invertebrate?cod?environment relationships on the Newfoundland–Labrador Shelf, 1995?2008","Pandalus borealis","Adult","Canada",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"225","CHARACTERIZATION OF LIVER FLAVIN-CONTAINING MONOOXYGENASE OF THE DOGFISH SHARK (SQUALUS-ACANTHIAS) AND PARTIAL-PURIFICATION OF LIVER FLAVIN-CONTAINING MONOOXYGENASE OF THE SILKY SHARK (CARCHARHINUS-FALCIFORMIS)","Squalus acanthias","Juvenile","Northeast US",1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"226","Fishery Management Complexes: An Impediment or Aid to Sustainable Harvest? A Discussion Based on the Northeast Skate Complex","Malacoraja senta","Adult","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"227","Length and sex?specific associations between spiny dogfish (Squalus acanthias) and hydrographic variables in the Bay of Fundy and Scotian Shelf","Squalus acanthias","Adult","Canada",1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,1,1
+"228","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Squalus acanthias","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"229","Influence of environmental, spatial, and ontogenetic variables on habitat selection and management of spiny dogfish in the Northeast (US) shelf large marine ecosystem","Squalus acanthias","Adult","Northeast US",1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,1,1
+"230","Use of satellite tags to reveal the movements of spiny dogfish Squalus acanthias in the western North Atlantic Ocean","Squalus acanthias","Adult","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"231","Thermal Range and Physiological Tolerance Mechanisms in Two Shark Species from the Northwest Atlantic","Squalus acanthias","Adult","Northeast US",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"232","Thermal Range and Physiological Tolerance Mechanisms in Two Shark Species from the Northwest Atlantic","Squalus acanthias","Adult","Northeast US",0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"233","Influence of environmental, spatial, and ontogenetic variables on habitat selection and management of spiny dogfish in the Northeast (US) shelf large marine ecosystem","Squalus acanthias","Juvenile","Northeast US",1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,1,1
+"234","ON TEMPERATURE AND THE BREATHING RHYTHM OF CANIS MUSTELUS AND SQUALUS ACANTHIAS","Squalus acanthias","Juvenile","Northeast US",0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"235","Influence of environmental, spatial, and ontogenetic variables on habitat selection and management of spiny dogfish in the Northeast (US) shelf large marine ecosystem","Squalus acanthias","Larval","Northeast US",1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,1,1
+"236","Occurrence of Spiny Dogfish in the Pacific Waters off the Northern Kuril Islands and Southeastern Kamchatka","Squalus acanthias","Adult","Pacific US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"237","Population Estimates of Spiny Dogfish Aggregations Overwintering South of Cape Hatteras, North Carolina, Using an Area Density Method","Squalus acanthias","Adult","Southeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"238","Upper Temperature Tolerance of Spot, Leiostomus xanthurus , From the Cape Fear River Estuary, North Carolina","Leiostomus xanthurus","Juvenile","Northeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"239","SUBMERGED CAGE CULTURE OF FISH IN SUPERSATURATED THERMAL EFFLUENT","Leiostomus xanthurus","Juvenile","Southeast US",0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"240","Effects of salinity fluctuation on routine metabolism of juvenile spot, Leiostomus xanthums","Leiostomus xanthurus","Juvenile","Southeast US",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"241","Routine metabolism of juvenile spot, Leiostomus xanthurus (Lacepede), as a function of temperature, salinity and weight","Leiostomus xanthurus","Juvenile","Southeast US",0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,1
+"242","Effect of Temperature and Hypersalinity on Hatching Success of Spotted Seatrout Eggs","Cynoscion nebulosus","Egg","Southeast US",1,0,1,1,0,0,0,0,1,0,0,0,1,0,0,1,1
+"243","Relating cold tolerance to winterkill for spotted seatrout at its northern latitudinal limits","Cynoscion nebulosus","Adult","Northeast US",1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0
+"244","Age?linked changes in salinity tolerance of larval spotted seatrout (Cynoscion nebulosus, Cuvier)","Cynoscion nebulosus","Larval","Northeast US",0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1
+"245","Comparative transcriptomics of spotted seatrout (Cynoscion nebulosus) populations to cold and heat stress","Cynoscion nebulosus","Adult","Southeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"246","Salinity stress and swimming performance of spotted seatrout","Cynoscion nebulosus","Adult","Southeast US",0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1
+"247","SALINITY STRESSES, METABOLIC RESPONSES AND DISTRIBUTION OF COASTAL SPOTTED SEATROUT, CYNOSCION-NEBULOSUS","Cynoscion nebulosus","Adult","Southeast US",0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,1
+"248","Critical Thermal Maximum of Juvenile Spotted Seatrout (Cynoscion nebulosus) Reared for Summer Stocking in Texas","Cynoscion nebulosas","Juvenile","Southeast US",0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"249","Low?Temperature Tolerance of Juvenile Spotted Seatrout in South Carolina","Cynoscion nebulosus","Juvenile","Southeast US",0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,1
+"250","Salinity and temperature tolerance limits for larval spotted seatrout Cynoscion nebulosus C. (Pisces: Sciaenidae)","Cynoscion nebulosus","Larval","Southeast US",1,0,1,1,0,0,0,0,1,0,1,1,0,1,0,1,1
+"251","ESTUARINE SALINITY STRESS ON SPOTTED SEATROUT","Cynoscion nebulosus","Adult","Southeast US",0,0,0,0,0,1,0,1,0,0,0,0,0,1,1,1,1
+"252","Changes in high temperature tolerance of striped bass larvae, Morone saxatilis , during development","Morone saxatilis","Adult","Unknown",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"253","Changes in high temperature tolerance of striped bass larvae, Morone saxatilis , during development","Morone saxatilis","Egg","Unknown",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"254","Temperature and Salinity Effects on Survival and Growth of Early Life Stage Shubenacadie River Striped Bass","Morone saxatilis","Egg","Canada",0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,1
+"255","Increased acute thermal tolerance and little change to hematology following acclimation to warm water in juvenile Striped Bass, Morone saxatilis","Morone saxatilis","Juvenile","Canada",1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"256","Temperature and Salinity Effects on Survival and Growth of Early Life Stage Shubenacadie River Striped Bass","Morone saxatilis","Juvenile","Canada",0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+"257","Thermal tolerance of a northern population of striped bass 
+
+<i>Morone saxatilis</i>","Morone saxatilis","Juvenile","Canada",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"258","Temperature and Salinity Effects on Survival and Growth of Early Life Stage Shubenacadie River Striped Bass","Morone saxatilis","Larval","Canada",0,1,0,1,1,0,0,0,0,0,0,0,1,0,0,1,1
+"259","Spatial and temporal patterns in the distribution and feeding habits of Morone saxatilis in marsh creeks of Delaware Bay, USA","Morone saxatilis","Adult","Northeast US",0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+"260","Effects of temperature and salinity on survival of young-of-year Hudson River striped bass (Morone saxatilis): implications for optimal overwintering habitats","Morone saxatilis","Juvenile","Northeast US",0,0,0,0,0,0,0,0,1,1,1,0,0,1,0,0,1
+"261","TEMPERATURE EFFECTS ON THE TIMING OF STRIPED BASS EGG-PRODUCTION, LARVAL VIABILITY, AND RECRUITMENT POTENTIAL IN THE PATUXENT RIVER (CHESAPEAKE BAY)","Morone saxatilis","Larval","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"262","Thermal effects of power plant entrainment on survival of larval fishes: a laboratory assessment","Morone saxatilis","Larval","Northeast US",0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"263","Development of salinity stress tests for larval striped bass, Morone saxatilis , and inland silversides, Menidia beryllina , used in nutritional studies","Morone saxatilis","Larval","Northeast US",0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1
+"264","Assessment of potential impact of the Clinch River Breeder Reactor Plant thermal effluent on the Watts Bar Reservoir striped bass population","Morone saxitilis","Adult","Southeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"265","Survival of Striped Bass Entrained into the Cooling Systems of Two Hudson River Power Stations","Morone saxatilis","Adult","Northeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"266","Effect of body size on growth and food conversion of juvenile striped bass reared at 16-28 degrees C in freshwater and seawater","Morone saxatilis","Juvenile","Canada",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"267","ACCLIMATION AND REARING OF STRIPED BASS LARVAE IN SEA-WATER","Morone saxitilis","Larval","Pacific US",0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1
+"268","Distribution and environmental relationships of three species of wolffish (Anarhichas spp.) in the Gulf of St. Lawrence","Anarhichas lupus","Adult","Canada",1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,1,1
+"269","Feeding, growth and survival of juvenile summer flounder Paralichthys dentatus : Experimental analysis of the effects of temperature und salinity","Paralichthys dentatus","Juvenile","Northeast US",0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"270","Growth and temperature-induced mortality of young-of-the-year summer flounder (Paralichthys dentatus ) in southern New Jersey","Paralichthys dentatus","Larval","Northeast US",0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+"271","Metamorphosis in the summer flounder, 
+
+<i>Paralichthys dentatus</i>:: Thyroidal status influences salinity tolerance","Paralichthys dentatus","Larval","Northeast US",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"272","Effects of Ration Limitation and Low Temperature on Growth, Biochemical Condition, and Survival of Juvenile Summer Flounder from Two Atlantic Coast Nurseries","Paralichthys dentatus","Juvenile","East Coast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"273","Efforts to understand stock structure of summer flounder (Paralichthys dentatus) in North Carolina, USA","Paralichthys dentatus","Larval","Southeast US",1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"274","Efforts to understand stock structure of summer flounder (Paralichthys dentatus) in North Carolina, USA","Paralichthys dentatus","Larval","Southeast US",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"275","Thermal Optima for the Culture of Juvenile Summer Flounder, Paralichthys dentatus","Paralichthys dentatus","Juvenile","Southeast US",1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"276","Using Stable Isotopic Data to Resolve Rate and Duration of Growth throughout Ontogeny: An Example from the Surf Clam, Spisula solidissima","Spisula solidissima","Adult","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"277","Temperature constrains locomotion and muscle function in two temperate labrids","Tautoga onitis","Adult","Northeast US",0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+"278","Influence of temperature on energy utilization of embryonic and prolarval tautog, Tautoga onitis","Tautoga onitis","Larval","Northeast US",0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"279","A preliminary investigation of the effects of ocean climate variations on the spring distribution and abundance of thorny skate (Amblyraja radiata) in NAFO Divisions 3LNO and Subdivision 3Ps","Amblyraja radiata","Adult","Canada",1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"280","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Amblyraja radiata","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"281","Fishery Management Complexes: An Impediment or Aid to Sustainable Harvest? A Discussion Based on the Northeast Skate Complex","Amblyraja radiata","Adult","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"282","Temporal and spatial variation in habitat characteristics of tilefish (Lopholatilus chamaeleonticeps) off the east coast of Florida","Lopholatilus chamaeleonticeps","Adult","Southeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"283","Species profiles: Life histories and environmental requirements of coastal fishes and invertebrates (Mid-Atlantic). Weakfish","Cynoscion regalis","Adult","Northeast US",0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,0
+"284","Species profiles: Life histories and environmental requirements of coastal fishes and invertebrates (Mid-Atlantic). Weakfish","Cynoscion regalis","Egg","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"285","Suitability of estuarine nursery zones for juvenile weakfish (Cynoscion regalis): effects of temperature and salinity on feeding, growth and survival","Cynoscion regalis","Juvenile","Northeast US",1,0,1,0,0,1,0,0,1,1,1,0,0,0,0,1,1
+"286","Spatial and temporal variation in recent growth, overall growth, and mortality of juvenile weakfish (Cynoscion regalis) in Delaware Bay","Cynoscion regalis","Juvenile","Northeast US",0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1
+"287","DISTRIBUTION AND LIFE-HISTORY OF WINDOWPANE, SCOPHTHALMUS-AQUOSUS, OFF THE NORTHEASTERN UNITED-STATES","Scophthalmus aquosus","Larval","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"288","Windowpane flounder (Scophthalmus aquosus) and winter flounder (Pseudopleuronectes americanus) responses to cold temperature extremes in a Northwest Atlantic estuary","Scophthalmus aquosus","Juvenile","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"289","A comparison of the effects of temperature on melanophore in vitro responses to noradrenalin in two teleost species adapted to cold ocean and tropical conditions","Pseudopleuronectes americanus","Adult","Canada",1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0
+"290","The effects of acute changes in temperature and oxygen availability on cardiac performance in winter flounder (Pseudopleuronectes americanus)","Pseudopleuronectes americanus","Adult","Canada",0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"291","Effects of salinity on eggs and yolk-sac larvae of Atlantic cod, Atlantic halibut, haddock and winter flounder","Pseudopleuronectes americanus","Egg","Canada",0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1
+"292","Effects of salinity on eggs and yolk-sac larvae of Atlantic cod, Atlantic halibut, haddock and winter flounder","Pseudopleuronectes americanus","Larval","Canada",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1
+"293","Seasonal Use of Estuaries by Winter Flounder in the Southern Gulf of St. Lawrence","Pleuronectes americanus","Adult","Canada",1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1
+"294","Cardiovascular responses of the winter flounder, Pseudopleuronectes americanus to near-lethal temperature","Pseudopleuronectes americanus","Adult","Northeast US",1,0,1,0,1,0,0,1,0,0,0,0,0,0,0,1,0
+"295","TEMPERATURE TOLERANCES OF 3 SPECIES OF MARINE FISHES","Pseudopleuronectes americanus","Adult","Northeast US",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"296","Thermoprotection of a functional epithelium: heat stress effects on transepithelial transport by flounder renal tubule in primary monolayer culture","Pleuronectes americanus)","Adult","Northeast US",0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0
+"297","Viable embryogenesis of the winter flounder Pseudopleuronectes americanus from - 1.8° to 15°C","Pseudopleuronectes americanus","Egg","Northeast US",0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0
+"298","CRITICAL THERMAL MAXIMA OF 2 SPECIES OF ESTUARINE FISH","Pseudopleuronectes americanus and Stenotomus chrysops, L.","Juvenile","Northeast US",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"299","Effects of temperature and salinity on the survival of winter flounder embryos","Pseudopleuronectes americanus","Larval","Northeast US",0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,1,1
+"300","Windowpane flounder (Scophthalmus aquosus) and winter flounder (Pseudopleuronectes americanus) responses to cold temperature extremes in a Northwest Atlantic estuary","Pseudopleuronectes americanus","Juvenile","Northeast US",1,0,1,1,1,0,0,1,0,0,0,0,0,0,0,1,0
+"301","Growth rates of juvenile winter flounder under varying environmental conditions","Pleuronectes americanus","Juvenile","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"302","Fishery Management Complexes: An Impediment or Aid to Sustainable Harvest? A Discussion Based on the Northeast Skate Complex","Leucoraja ocellata","Adult","Northeast US",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"303","Witch Flounder Distribution off Southern Newfoundland, and Changes in Age, Growth, and Sexual Maturity Patterns with Commercial Exploitation","Glyptocephalus cynoglossus","Adult","Canada",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"304","Impact of ocean warming on sustainable fisheries management informs the Ecosystem Approach to Fisheries","Glyptocephalus cynoglossus","Adult","Europe",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"305","The Effect of Temperature on First Feeding, Growth, and Survival of Larval Witch Flounder Glyptocephalus cynoglossus","Glyptocephalus cynoglossus","Larval","Northeast US",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"306","Effects of prey density and temperature on survival, growth, and behaviour of newly hatched striped wolffish (Anarhichas lupus)","Anarhichas lupus","Larval","Canada",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"307","Growth of juveniles of White Sea common wolffish, Anarhichas lupus L., in captivity","Anarhichas lupus","Juvenile","Europe",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"308","Growth of juveniles of White Sea common wolffish, Anarhichas lupus L., in captivity","Anarhichas lupus","Larval","Europe",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"309","Embryology and Influence of Temperature and Salinity on Early Development and Survival of Yellowtail Flounder Limanda ferruginea","Limanda ferruginea","Egg","Northeast US",1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,1,1
