@@ -1,4 +1,4 @@
-# get_historic_habitat_V3.R
+# get_historic_habitat_V4.R
 #
 # Purpose: Define and visualize historic habitat for NEFMC-managed species.
 #
@@ -7,27 +7,34 @@
 #   V2 — Geometric fixes: isoband contour polygon (no right-angle artifacts),
 #         survey footprint clip (no coastal bleeding), bathymetry depth mask
 #         (removes depth-avoidance areas such as the Great South Channel).
-#   V3 — Collaborator feedback: depth masking removed from polygon construction
-#         after review showed it produced similar results to the observation-
-#         density filter with added complexity. Bathymetry is retained in the
-#         visualization only, with the color gradient capped at -2000 m to
-#         improve on-shelf contrast. Shapefiles replace RDS output.
+#   V3 — Collaborator feedback: depth masking removed. Bathymetry retained in
+#         visualization only with gradient capped at -2000 m. KDE contour level
+#         set to species-specific 95% station retention threshold from
+#         explore_habitat_params.R. Buffer tightened to 5 km.
+#   V4 — Collaborator feedback: KDE abandoned entirely. Habitat envelope is now
+#         a concave hull drawn directly around all density-filtered stations
+#         (stations observed >= 5 times), giving smooth rounded edges without
+#         any contour level parameter to tune. Buffer removed entirely — the
+#         5 km buffer in V3 was including too much off-shelf area. The concave
+#         hull already produces a naturally tight boundary around observations.
 #
-# Changes from V2:
-#   - get_species_habitat(): step f (bathymetry mask) removed entirely.
-#     ocean_mask is no longer computed or passed to the function.
-#   - depth_niche removed entirely: not used for filtering or map annotation.
-#   - Bathymetry fill scale capped at -2000 m so the shelf gradient is
-#     clearly visible (everything >= 2000 m deep shares the darkest color).
-#   - Output paths updated to V3 directories.
-#   - Habitat polygons saved as a single RDS file (named list, one entry per species).
+# Changes from V3:
+#   - kde_to_polygon() helper removed. MASS and isoband no longer needed.
+#   - KDE parameters (kde_bw_multiplier, kde_n, kde_contour_level) removed
+#     from habitat_params. A concavity parameter is added instead (see below).
+#   - buffer_m removed from habitat_params. st_buffer() step removed from
+#     get_species_habitat().
+#   - Species-specific contour lookup (Section 4 in V3) removed entirely.
+#   - get_species_habitat() step c now builds a concave hull via concaveman().
+#   - Map subtitle updated to reflect new approach.
+#   - All output paths, filenames, and labels updated to V4.
 #
 # Output:
-#   RDS  : data/historic_habitat_V3_95pct/historic_habitat_V3_95pct.rds
-#   Maps : images/historic_habitat_V3_95pct/<species>.png
+#   RDS  : data/historic_habitat_V4/historic_habitat_V4.rds
+#   Maps : images/historic_habitat_V4/<species>.png
 #
-# Dependencies: tidyverse, sf, terra, concaveman, rnaturalearth, MASS,
-#               isoband, ggnewscale, marmap, here
+# Dependencies: tidyverse, sf, terra, concaveman, rnaturalearth,
+#               ggnewscale, marmap, here
 
 # -------------------------------------------------------------------
 # 0. Packages
@@ -36,10 +43,8 @@
 library(tidyverse)
 library(sf)
 library(terra)
-library(concaveman)
+library(concaveman)  # concave hull around point set
 library(rnaturalearth)
-library(MASS)        # kde2d
-library(isoband)     # smooth contour polygon from KDE matrix
 library(ggnewscale)  # new_scale_fill() — overlay two fill scales in ggplot
 library(marmap)      # getNOAA.bathy — pulls ETOPO directly into R
 library(here)
@@ -49,8 +54,8 @@ library(here)
 # 1. Output directories
 # -------------------------------------------------------------------
 
-dir_data   <- here::here("data/historic_habitat_V3_95pct")
-dir_images <- here::here("images/historic_habitat_V3_95pct")
+dir_data   <- here::here("data/historic_habitat_V4")
+dir_images <- here::here("images/historic_habitat_V4")
 
 if (!dir.exists(dir_data))   dir.create(dir_data,   recursive = TRUE)
 if (!dir.exists(dir_images)) dir.create(dir_images, recursive = TRUE)
@@ -77,7 +82,7 @@ species <- species |>
 ne_species <- species |>
   filter(!is.na(Fed.Managed), Fed.Managed == "NEFMC") |>
   distinct(SVSPP, .keep_all = TRUE) |>
-  dplyr::select(SVSPP, COMNAME, SCINAME, Fed.Managed)
+  select(SVSPP, COMNAME, SCINAME, Fed.Managed)
 
 survdat_mgmt <- survdat |>
   inner_join(ne_species, by = "SVSPP")
@@ -96,65 +101,26 @@ land <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf") |>
 habitat_params <- list(
   
   # Minimum number of times a station must appear in presence records
-  # across all years before it contributes to the KDE.
+  # across all years before it contributes to the habitat envelope.
   min_station_count = 5,
   
-  # KDE bandwidth multiplier (> 1 = smoother; < 1 = tighter).
-  kde_bw_multiplier = 1.5,
-  
-  # KDE grid resolution — higher values give smoother contour edges.
-  kde_n = 400,
-  
-  # Fallback contour level used for any species absent from the sensitivity
-  # results loaded in Section 4. Species-specific inflection-point values
-  # from explore_habitat_params.R take precedence when available.
-  kde_contour_level = 0.10,
-  
-  # Buffer radius (metres) applied after contouring.
-  buffer_m = 5000     # 5 km
+  # Concavity parameter passed to concaveman::concaveman().
+  # Controls how tightly the hull wraps around the point cloud.
+  # 1 = tightest possible concave hull (may be spiky for sparse data).
+  # 2 = default, good balance between detail and smoothness.
+  # Higher values approach the convex hull.
+  # Increase if the hull produces narrow inlets or bridges over open water.
+  concavity = 2
   
 )
 
 
 # -------------------------------------------------------------------
-# 4. Species-specific KDE contour levels from sensitivity analysis
-# -------------------------------------------------------------------
-# Load the inflection-point estimates produced by explore_habitat_params.R.
-# These replace the single global kde_contour_level with the contour level
-# at which each species retains 95% of its density-filtered stations,
-# giving a less restrictive envelope than the inflection point while still
-# trimming the lowest-density fringe.
-#
-# contour_lookup is a named numeric vector: names = COMNAME, values = contour level.
-# get_species_habitat() uses this to override params$kde_contour_level per species.
-#
-# If the sensitivity RDS does not exist yet (e.g. first run), the script falls
-# back gracefully to the global default in habitat_params for all species.
-
-sensitivity_path <- here::here("data/sensitivity/sensitivity_results.rds")
-
-if (file.exists(sensitivity_path)) {
-  sensitivity_results <- readRDS(sensitivity_path)
-  
-  contour_lookup <- sensitivity_results$contour_95pct |>
-    filter(!is.na(contour_95pct)) |>
-    dplyr::select(species, contour_95pct) |>
-    tibble::deframe()   # named vector: species name -> contour value
-  
-  message(length(contour_lookup), " species-specific 95% retention contour levels loaded from sensitivity results.")
-} else {
-  contour_lookup <- c()   # empty — all species will use the global default
-  message("Sensitivity results not found at ", sensitivity_path,
-          " — using global default contour level (", habitat_params$kde_contour_level, ") for all species.\n",
-          "  Re-run explore_habitat_params.R to generate sensitivity_results.rds.")
-}
-
-
-# -------------------------------------------------------------------
-# 5. Survey footprint
+# 4. Survey footprint
 # -------------------------------------------------------------------
 # Convex hull of all ever-sampled stations. Each species' habitat polygon
-# is intersected with this so the KDE cannot extend into areas never surveyed.
+# is intersected with this so the concave hull cannot extend into areas
+# never surveyed.
 
 all_stations <- survdat |>
   filter(!is.na(LAT), !is.na(LON)) |>
@@ -169,7 +135,7 @@ survey_footprint <- all_stations |>
 
 
 # -------------------------------------------------------------------
-# 6. Bathymetry (visualization only in V3 — not used for masking)
+# 5. Bathymetry (visualization only — not used for masking)
 # -------------------------------------------------------------------
 # Downloads ETOPO 2022 from NOAA via marmap and caches locally.
 # resolution = 1 arc-minute (~1.8 km) is sufficient for shelf visualization.
@@ -185,117 +151,30 @@ bathy_marmap <- marmap::getNOAA.bathy(
 bathy <- terra::rast(marmap::as.raster(bathy_marmap))
 crs(bathy) <- "EPSG:4326"
 
-# Note: ocean_mask is NOT computed in V3 — bathymetry is used for
-# visualization only and does not filter the habitat polygon.
-
 
 # -------------------------------------------------------------------
-# 7. Helper: KDE contour polygon
-# -------------------------------------------------------------------
-
-kde_to_polygon <- function(pts_filtered, params) {
-  
-  # bandwidth.nrd() returns NULL with a warning (not a hard error) when its
-  # input is NULL or has fewer than 2 unique values. NULL * multiplier is also
-  # NULL, and is.na(NULL) returns logical(0) — a zero-length vector — which
-  # causes if() to fail with "missing value where TRUE/FALSE needed".
-  # safe_bw() collapses all failure modes to NA_real_ before the checks below.
-  safe_bw <- function(x, multiplier) {
-    raw <- tryCatch(
-      MASS::bandwidth.nrd(x),
-      warning = function(w) NULL,
-      error   = function(e) NULL
-    )
-    bw <- if (is.null(raw)) NULL else raw * multiplier
-    if (is.null(bw) || isTRUE(is.na(bw)) || isTRUE(bw == 0)) NA_real_ else bw
-  }
-  
-  bw_x <- safe_bw(pts_filtered$LON, params$kde_bw_multiplier)
-  bw_y <- safe_bw(pts_filtered$LAT, params$kde_bw_multiplier)
-  
-  if (is.na(bw_x)) {
-    warning("bandwidth.nrd failed for LON — using fallback bandwidth of 0.5 degrees")
-    bw_x <- 0.5
-  }
-  if (is.na(bw_y)) {
-    warning("bandwidth.nrd failed for LAT — using fallback bandwidth of 0.5 degrees")
-    bw_y <- 0.5
-  }
-  
-  bw_x <- max(bw_x, 0.1)
-  bw_y <- max(bw_y, 0.1)
-  
-  kde <- MASS::kde2d(
-    x = pts_filtered$LON,
-    y = pts_filtered$LAT,
-    h = c(bw_x, bw_y),
-    n = params$kde_n
-  )
-  
-  if (is.null(kde$z) || all(is.na(kde$z)) || max(kde$z, na.rm = TRUE) == 0) {
-    return(NULL)
-  }
-  
-  contour_val <- as.numeric(max(kde$z, na.rm = TRUE) * params$kde_contour_level)
-  
-  if (!is.finite(contour_val) || contour_val <= 0) {
-    return(NULL)
-  }
-  
-  # isoband expects z[row = y, col = x]; kde2d returns z[x, y] — transpose.
-  bands <- isoband::isobands(
-    x           = kde$x,
-    y           = kde$y,
-    z           = t(kde$z),
-    levels_low  = contour_val,
-    levels_high = Inf
-  )
-  
-  polys <- isoband::iso_to_sfg(bands)
-  
-  if (length(polys) == 0 || all(sapply(polys, is.null))) {
-    return(NULL)
-  }
-  
-  habitat_sfc <- sf::st_sfc(polys, crs = 4326) |>
-    sf::st_make_valid() |>
-    sf::st_union() |>
-    sf::st_make_valid()
-  
-  list(polygon = habitat_sfc, bw_x = bw_x, bw_y = bw_y)
-}
-
-
-# -------------------------------------------------------------------
-# 8. Core habitat polygon function
+# 6. Core habitat polygon function
 # -------------------------------------------------------------------
 # Steps:
 #   a. Filter to presence records with valid coordinates.
-#   b. Minimum station observation count filter.
-#   c. KDE contour polygon (smooth edges).
-#   d. Buffer.
-#   e. Intersect with survey footprint (prevents coastal bleeding).
-#   f. Subtract land.
-#   g. Attach metadata.
+#   b. Minimum station observation count filter (>= min_station_count).
+#   c. Concave hull around filtered stations (replaces KDE + contour in V3).
+#      concaveman() produces smooth, rounded edges without any density
+#      surface or contour level parameter to tune.
+#   d. Intersect with survey footprint (prevents extension into unsurveyed areas).
+#   e. Subtract land.
+#   f. Attach metadata.
 #
-# Note: bathymetry depth masking (V2 step f) is intentionally omitted in V3.
+# Note: buffer step removed in V4 — the 5 km buffer in V3 was pulling in
+# too much off-shelf area. The concave hull already sits tightly around
+# the observations.
 
 get_species_habitat <- function(species_name,
                                 survdat_mgmt,
                                 survey_footprint,
-                                contour_lookup = c(),
-                                params         = habitat_params) {
+                                params = habitat_params) {
   
   message("Building habitat polygon: ", species_name)
-  
-  # Override the global kde_contour_level with the species-specific inflection
-  # point if one is available in contour_lookup.
-  if (!is.null(contour_lookup) && species_name %in% names(contour_lookup)) {
-    params$kde_contour_level <- contour_lookup[[species_name]]
-    message("  Using species-specific contour level: ", round(params$kde_contour_level, 3))
-  } else {
-    message("  Using default contour level: ", params$kde_contour_level)
-  }
   
   # --- a. Presence records ---
   pts <- survdat_mgmt |>
@@ -313,6 +192,7 @@ get_species_habitat <- function(species_name,
   }
   
   # --- b. Density filter ---
+  # Retain only stations observed >= min_station_count times across all years.
   station_counts <- pts |> count(STATION, name = "n_obs")
   
   pts_filtered <- pts |>
@@ -325,22 +205,59 @@ get_species_habitat <- function(species_name,
     return(NULL)
   }
   
-  # --- c. KDE contour polygon ---
-  kde_result <- kde_to_polygon(pts_filtered, params)
+  # --- c. Concave hull ---
+  # Convert filtered stations to sf and compute a concave hull.
+  # concaveman() wraps tightly around the point cloud and produces
+  # smooth, naturally rounded edges — no KDE, no contour level needed.
+  pts_sf <- pts_filtered |>
+    sf::st_as_sf(coords = c("LON", "LAT"), crs = 4326)
   
-  if (is.null(kde_result)) {
-    message("  KDE contour returned no polygon — skipping.")
+  # Self-intersection handling:
+  # sf uses the S2 spherical geometry engine by default, which enforces strict
+  # edge-crossing rules and throws "Edge X crosses Edge Y" errors during
+  # st_make_valid() and boolean operations on geometries that GEOS would
+  # silently repair. Temporarily disabling S2 allows GEOS to handle the repair
+  # instead, which is more tolerant of minor self-intersections from concaveman().
+  # S2 is restored in an on.exit() call so it is always re-enabled even if the
+  # function exits early due to an error or skipped species.
+  s2_was_on <- sf::sf_use_s2()
+  if (s2_was_on) {
+    suppressMessages(sf::sf_use_s2(FALSE))
+    on.exit(suppressMessages(sf::sf_use_s2(TRUE)), add = TRUE)
+  }
+  
+  # concaveman() itself can also fail for very sparse or collinear point sets.
+  # Fall back to a convex hull in that case — always topologically valid.
+  habitat_sfc <- tryCatch(
+    concaveman::concaveman(pts_sf, concavity = params$concavity),
+    error = function(e) {
+      message("  concaveman() failed (", conditionMessage(e), ")",
+              " — falling back to convex hull.")
+      pts_sf |>
+        sf::st_union() |>
+        sf::st_convex_hull()
+    }
+  )
+  
+  if (is.null(habitat_sfc) || all(sf::st_is_empty(habitat_sfc))) {
+    message("  Hull returned empty geometry — skipping.")
     return(NULL)
   }
   
-  # --- d. Buffer ---
-  habitat_sf <- sf::st_sf(geometry = kde_result$polygon) |>
-    sf::st_transform(5070) |>           # NAD83 / Conus Albers (metres)
-    sf::st_buffer(params$buffer_m) |>
-    sf::st_transform(4326) |>
+  # Two-stage repair with GEOS (S2 is off at this point):
+  #   1. st_make_valid() resolves most self-intersections.
+  #   2. st_buffer(0) is a reliable GEOS trick for any remaining issues.
+  habitat_sf <- sf::st_sf(geometry = sf::st_geometry(habitat_sfc), crs = 4326) |>
+    sf::st_make_valid() |>
+    sf::st_buffer(0) |>
     sf::st_make_valid()
   
-  # --- e. Intersect with survey footprint ---
+  if (!all(sf::st_is_valid(habitat_sf))) {
+    message("  Geometry invalid after repair attempts for ", species_name, " — skipping.")
+    return(NULL)
+  }
+  
+  # --- d. Intersect with survey footprint ---
   habitat_sf <- suppressWarnings(
     sf::st_intersection(habitat_sf, survey_footprint)
   ) |> sf::st_make_valid()
@@ -350,7 +267,7 @@ get_species_habitat <- function(species_name,
     return(NULL)
   }
   
-  # --- f. Subtract land ---
+  # --- e. Subtract land ---
   land_union <- sf::st_union(land) |> sf::st_make_valid()
   
   habitat_marine <- suppressWarnings(
@@ -362,21 +279,18 @@ get_species_habitat <- function(species_name,
     return(NULL)
   }
   
-  # --- g. Metadata ---
+  # --- f. Metadata ---
   habitat_marine |>
     mutate(
-      COMNAME     = species_name,
-      n_stations  = nrow(pts_filtered),
-      kde_bw_x    = kde_result$bw_x,
-      kde_bw_y    = kde_result$bw_y,
-      contour_lvl = params$kde_contour_level,
-      buffer_m    = params$buffer_m
+      COMNAME    = species_name,
+      n_stations = nrow(pts_filtered),
+      concavity  = params$concavity
     )
 }
 
 
 # -------------------------------------------------------------------
-# 9. Build habitat polygons for all NEFMC species
+# 7. Build habitat polygons for all NEFMC species
 # -------------------------------------------------------------------
 
 historic_habitat <- map(
@@ -385,7 +299,6 @@ historic_habitat <- map(
     species_name     = .x,
     survdat_mgmt     = survdat_mgmt,
     survey_footprint = survey_footprint,
-    contour_lookup   = contour_lookup,
     params           = habitat_params
   )
 ) |>
@@ -397,37 +310,28 @@ message(length(historic_habitat), " species habitat polygons built.")
 
 
 # -------------------------------------------------------------------
-# 10. Save RDS
+# 8. Save RDS
 # -------------------------------------------------------------------
-# The full named list is saved as a single RDS file, preserving the
-# list structure, full column names, geometry types, and any R-specific
-# attributes — exactly as downstream indicator code expects to find it.
 
 saveRDS(
   historic_habitat,
-  here::here("data/historic_habitat_V3_95pct/historic_habitat_V3_95pct.rds")
+  here::here("data/historic_habitat_V4/historic_habitat_V4.rds")
 )
 
-message("RDS saved to: ", here::here("data/historic_habitat_V3_95pct/historic_habitat_V3_95pct.rds"))
+message("RDS saved to: ", here::here("data/historic_habitat_V4/historic_habitat_V4.rds"))
 
 
 # -------------------------------------------------------------------
-# 11. Visualization function
+# 9. Visualization function
 # -------------------------------------------------------------------
-# Key change from V2: bathymetry fill gradient is capped at -2000 m.
-# Ocean cells deeper than 2000 m share the darkest color, which
-# compresses the deep-water end of the scale and stretches the
-# on-shelf gradient so shelf features are clearly distinguishable.
-# Depth masking caption text is updated to reflect V3 behavior.
 
-map_historic_habitat_v3 <- function(species_name,
+map_historic_habitat_v4 <- function(species_name,
                                     historic_habitat,
                                     survdat_mgmt,
                                     survey_footprint,
                                     bathy,
-                                    contour_lookup = c(),
-                                    params         = habitat_params,
-                                    out_dir        = dir_images) {
+                                    params  = habitat_params,
+                                    out_dir = dir_images) {
   
   poly <- historic_habitat[[species_name]]
   if (is.null(poly)) {
@@ -441,7 +345,7 @@ map_historic_habitat_v3 <- function(species_name,
     mutate(LAT = as.numeric(LAT), LON = as.numeric(LON)) |>
     distinct(STATION, LAT, LON, DEPTH)
   
-  # Density-filtered presence points
+  # Density-filtered presence points (those that shaped the hull)
   station_counts <- all_pts |> count(STATION, name = "n_obs")
   density_pts    <- all_pts |>
     inner_join(station_counts, by = "STATION") |>
@@ -454,20 +358,20 @@ map_historic_habitat_v3 <- function(species_name,
   xlim <- c(bbox["xmin"] - xpad, bbox["xmax"] + xpad)
   ylim <- c(bbox["ymin"] - ypad, bbox["ymax"] + ypad)
   
-  # Bathymetry cropped to map extent
-  # Cap depth values at -2000 m so the gradient focuses on shelf variation.
-  # Values deeper than -2000 m are set to -2000 m and share the darkest color.
+  # Bathymetry cropped to map extent, gradient capped at -2000 m
   bathy_crop <- terra::crop(bathy, terra::ext(xlim[1], xlim[2], ylim[1], ylim[2]))
   bathy_df   <- as.data.frame(bathy_crop, xy = TRUE)
   colnames(bathy_df)[3] <- "depth"
   bathy_df <- bathy_df |>
     filter(depth < 0) |>
-    mutate(depth_capped = pmax(depth, -2000))   # cap: anything deeper = -2000
+    mutate(depth_capped = pmax(depth, -2000))
   
   p <- ggplot() +
     
     # Bathymetry — gradient capped at -2000 m for on-shelf contrast
-    geom_raster(
+    # geom_tile() used instead of geom_raster() to handle slightly uneven
+    # pixel spacing in the reprojected ETOPO raster without warnings.
+    geom_tile(
       data = bathy_df,
       aes(x = x, y = y, fill = depth_capped)
     ) +
@@ -532,27 +436,20 @@ map_historic_habitat_v3 <- function(species_name,
     labs(
       title = paste0(
         tools::toTitleCase(tolower(species_name)),
-        " \u2014 Historic Habitat Envelope (V3 — 95% retention)"
+        " \u2014 Historic Habitat Envelope (V4)"
       ),
       subtitle = paste0(
         "Stations retained: ", nrow(density_pts |> distinct(STATION)),
         " / ", nrow(all_pts |> distinct(STATION)),
-        "  |  KDE contour: ",
-        round(
-          if (!is.null(contour_lookup) && species_name %in% names(contour_lookup))
-            contour_lookup[[species_name]]
-          else
-            params$kde_contour_level,
-          3
-        ),
-        "  |  Buffer: ", params$buffer_m / 1000, " km"
+        "  |  Concavity: ", params$concavity,
+        "  |  No buffer"
       ),
       x       = NULL,
       y       = NULL,
       caption = paste0(
-        "Blue: habitat envelope (KDE + survey-footprint clip; no depth mask). KDE contour = 95% station retention. ",
+        "Blue: concave hull of stations with \u2265 ", params$min_station_count, " observations ",
+        "(survey-footprint clip applied; no KDE, no buffer, no depth mask). ",
         "Orange dashed: survey footprint. ",
-        "Colored points: stations \u2265 ", params$min_station_count, " obs. ",
         "Bathymetry gradient capped at -2000 m."
       )
     ) +
@@ -567,7 +464,7 @@ map_historic_habitat_v3 <- function(species_name,
   
   file_name <- file.path(
     out_dir,
-    paste0(gsub(" ", "_", species_name), "_historic_habitat_V3_95pct.png")
+    paste0(gsub(" ", "_", species_name), "_historic_habitat_V4.png")
   )
   ggsave(file_name, plot = p, width = 8, height = 7, dpi = 300)
   
@@ -577,42 +474,40 @@ map_historic_habitat_v3 <- function(species_name,
 
 
 # -------------------------------------------------------------------
-# 12. Generate maps for all species
+# 10. Generate maps for all species
 # -------------------------------------------------------------------
 
 walk(
   names(historic_habitat),
-  ~map_historic_habitat_v3(
+  ~map_historic_habitat_v4(
     species_name     = .x,
     historic_habitat = historic_habitat,
     survdat_mgmt     = survdat_mgmt,
     survey_footprint = survey_footprint,
     bathy            = bathy,
-    contour_lookup   = contour_lookup,
     params           = habitat_params
   )
 )
 
 
 # -------------------------------------------------------------------
-# 13. Spot-check: Atlantic Cod
+# 11. Spot-check: Atlantic Cod
 # -------------------------------------------------------------------
 # Uncomment to run interactively
 
-# map_historic_habitat_v3(
+# map_historic_habitat_v4(
 #   species_name     = "ATLANTIC COD",
 #   historic_habitat = historic_habitat,
 #   survdat_mgmt     = survdat_mgmt,
 #   survey_footprint = survey_footprint,
-#   bathy            = bathy,
-#   contour_lookup   = contour_lookup
+#   bathy            = bathy
 # )
 
 # historic_habitat[["ATLANTIC COD"]]
 
 
 # -------------------------------------------------------------------
-# 14. Summary table
+# 12. Summary table
 # -------------------------------------------------------------------
 
 habitat_summary <- map_dfr(
@@ -622,6 +517,7 @@ habitat_summary <- map_dfr(
     tibble(
       species    = .x,
       n_stations = poly$n_stations,
+      concavity  = poly$concavity,
       area_km2   = as.numeric(
         sf::st_area(sf::st_transform(poly, 5070))
       ) / 1e6

@@ -430,7 +430,7 @@ saveRDS(historic_habitat, here::here("data-raw/historic_habitat.rds"))
 
 
 
-# 9. Visualisation function ----------
+# 9. Visualization function ----------
 
 # Diagnostic additions vs v1:
 #   - Bathymetry shown as a greyscale raster so depth-driven exclusions
