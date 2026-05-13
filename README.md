@@ -31,7 +31,7 @@ The data is a combined GLORYS and bias-corrected ROMS time series hosted on the 
 2. Adjust the time slider to encompass the full time series (1959-01-02 to 2021-01-01).
 3. Under **File type**, select `.nc` (NetCDF-3 or NetCDF-4). *Do not download as a .csv or .htmlTable, as it will crash your R session.*
 4. Save the downloaded file as `duPontavice_bottom_temp.nc` in your local directory at:
-   `~/EDAB_Datasets/GLORYS/duPontavice_bottom_temp.nc` 
+   `data-raw/duPontavice_bottom_temp.nc` 
    *(Note: If you save it elsewhere, you must update the `nc_file` path in `get_perc_suitable_thermal_habitat.R`)*
 
 ## Dependencies

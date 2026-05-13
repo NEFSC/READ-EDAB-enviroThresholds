@@ -6,10 +6,11 @@
 #          percentage of the available "habitat-days" within that fixed 
 #          historic footprint fell within the species' thermal niche in a given year.
 #
-# Logic:   1. Loads daily GLORYS bottom temperature NetCDF files (multi-layer).
-#          2. Extracts all daily pixel values within the fixed V6 historic polygon.
-#          3. Evaluates every pixel on every day against tmin and tmax.
-#          4. Calculates the overall percentage of suitable pixel-days for the year.
+# Logic:   1. Loads the extended (1959-2021) GLORYS/ROMS bottom temp NetCDF.
+#          2. Dynamically subsets the 60+ year raster into single-year chunks.
+#          3. Extracts all daily pixel values within the fixed V6 historic polygon.
+#          4. Evaluates every pixel on every day against tmin and tmax.
+#          5. Calculates the overall percentage of suitable pixel-days for the year.
 #
 # Output:
 #   RDS : data/indicators/perc_suitable_thermal_habitat.rds
@@ -40,19 +41,32 @@ if (!dir.exists(dir_output)) dir.create(dir_output, recursive = TRUE)
 # -------------------------------------------------------------------
 
 # Load V6 Historic Habitat (List of sf polygons)
-# This represents the fixed geographic baseline for the perc_within_hist metric
 habitat_v6 <- readRDS(here::here("data/historic_habitat_V6/historic_habitat_V6.rds"))
 
 # Load Thermal Niche Definitions
 thermal_niche <- readRDS(here::here("data-raw/thermal_niche.rds"))
 
-# Define GLORYS files
-nc_path <- "~/EDAB_Datasets/GLORYS/GLORYS_daily"
-nc_files <- list.files(nc_path, pattern = "GLORYS_daily_BottomTemp_\\d{4}\\.nc$", full.names = TRUE)
+# Define Extended GLORYS/ROMS NetCDF file
+# Note: Download this from ERDDAP as a .nc file, not a CSV/HTML table!
+nc_file <- here::here("data-raw/duPontavice_bottom_temp.nc")
 
-if (length(nc_files) == 0) {
-  stop("No GLORYS .nc files found in the specified directory.")
+if (!file.exists(nc_file)) {
+  stop("Extended time series NetCDF not found at specified path.")
 }
+
+# Load the multi-decade raster
+# terra handles this lazily, so it won't crash your RAM
+bt_all <- terra::rast(nc_file)
+
+# Extract time attributes from the raster layers
+layer_times <- terra::time(bt_all)
+if (any(is.na(layer_times))) {
+  stop("Raster time dimension is missing or malformed.")
+}
+
+# Identify all unique years in the dataset
+layer_years <- as.numeric(format(layer_times, "%Y"))
+unique_years <- sort(unique(layer_years))
 
 
 # -------------------------------------------------------------------
@@ -61,14 +75,16 @@ if (length(nc_files) == 0) {
 
 results_list <- list()
 
-for (f in nc_files) {
+# Loop through each year sequentially to manage memory
+for (year in unique_years) {
   
-  # Extract year from the filename
-  year <- as.numeric(stringr::str_extract(basename(f), "\\d{4}"))
-  message("Processing year: ", year, " (", basename(f), ")")
+  message("Processing year: ", year)
   
-  # Load daily data (365 or 366 layers)
-  bt_daily <- terra::rast(f)
+  # Identify which layers belong to the current year
+  year_indices <- which(layer_years == year)
+  
+  # Subset the massive raster down to just the 365/366 layers for this year
+  bt_daily <- terra::subset(bt_all, year_indices)
   
   # Loop over all species with a V6 habitat polygon
   year_results <- map_dfr(names(habitat_v6), function(sp) {
@@ -84,16 +100,15 @@ for (f in nc_files) {
     tmin <- th$tmin[1]
     tmax <- th$tmax[1]
     
-    # Ensure CRS matches GLORYS (EPSG:4326)
+    # Ensure CRS matches the NetCDF (typically EPSG:4326 for ERDDAP)
     if (sf::st_crs(poly)$epsg != 4326) {
       poly <- sf::st_transform(poly, 4326)
     }
     
-    # Crop the multi-layer daily raster to the historic habitat bounding box
+    # Crop the daily raster to the historic habitat bounding box
     bt_crop <- terra::crop(bt_daily, terra::ext(poly))
     
-    # Extract pixel values for ALL days
-    # Returns a dataframe with 'coverage_fraction' and one column per day (layer)
+    # Extract pixel values for ALL days in the year subset
     extraction <- exactextractr::exact_extract(
       x = bt_crop, 
       y = poly, 
@@ -136,10 +151,11 @@ for (f in nc_files) {
   # Store the dataframe for this year
   results_list[[as.character(year)]] <- year_results
   
-  # Free up memory before the next NetCDF file loads
-  rm(bt_daily, year_results)
+  # Free up memory before subsetting the next year
+  rm(bt_daily, year_indices, year_results)
   gc()
 }
+
 
 # -------------------------------------------------------------------
 # 4. Finalize and Save
@@ -149,7 +165,7 @@ indicator_results_df <- bind_rows(results_list)
 
 message("Successfully calculated daily historic thermal habitat percentage for ", 
         length(unique(indicator_results_df$species)), " species across ", 
-        length(results_list), " years.")
+        length(unique_years), " years.")
 
 out_file <- file.path(dir_output, "perc_suitable_thermal_habitat.rds")
 saveRDS(indicator_results_df, out_file)
