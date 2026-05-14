@@ -1,26 +1,30 @@
-# thermal_suitability_z_scoring.R
+# thermal_suitability_z_scoring_30yr_baseline_V6.R
 #
 # Purpose: Generate Risk Policy scores (-4 to +4) from the V6 thermal 
-#          suitability indicators using Z-score (Standard Deviation).
+#          suitability indicators using a 30-Year Fixed Climatological Baseline.
 #
-# Logic:   Calculates a TRUE Expanding Window Hindcast. For any given year, the 
-#          mean and standard deviation are calculated using ONLY the historical 
-#          data available up to that year. 
+# Logic:   1. Identifies the first 30 years of the time series for each species.
+#          2. Calculates the mean and SD strictly from that baseline period.
+#          3. Calculates the Z-score for EVERY year relative to that fixed baseline.
+#          4. Maps the Z-score to the -4 to 4 scale.
 #
 # Output:
-#   RDS   : data/scoring/risk_scores_hindcast_V6.rds
-#   RDS   : data/scoring/risk_scores_terminal_V6.rds
-#   Plots : images/scoring/score_distribution_check_V6.png
+#   RDS   : data/scoring/risk_scores_hindcast_V6_30yr_baseline.rds
+#   RDS   : data/scoring/risk_scores_terminal_V6_30yr_baseline.rds
+#   Plots : images/scoring/score_distribution_check_V6_30yr_baseline.png
 #
 # Dependencies: tidyverse, here
 
 # -------------------------------------------------------------------
-# 0. Packages
+# 0. Packages & Parameters
 # -------------------------------------------------------------------
 
 library(tidyverse)
 library(here)
 
+# Number of years to use for the historical baseline
+# (30 years is the gold standard in climate science for capturing decadal cycles)
+baseline_length <- 30 
 
 # -------------------------------------------------------------------
 # 1. Output directories
@@ -47,70 +51,46 @@ indicator_df <- readRDS(indicator_file)
 
 
 # -------------------------------------------------------------------
-# 3. Calculate Z-Scores (True Expanding Window Hindcast)
+# 3. Calculate Fixed Baseline Z-Scores
 # -------------------------------------------------------------------
 
-message("Calculating expanding window hindcast scores...")
+message("Calculating fixed baseline (", baseline_length, "-year) Z-scores...")
 
 risk_scores <- indicator_df |>
   drop_na(perc_within_hist) |>
   arrange(species, year) |>
   group_by(species) |>
-  group_modify(~{
+  mutate(
+    # Identify the baseline years dynamically per species 
+    is_baseline = year < (min(year) + baseline_length),
     
-    df_sp <- .x
+    # Calculate fixed mean and SD only from the baseline years
+    baseline_mean = mean(perc_within_hist[is_baseline], na.rm = TRUE),
+    baseline_sd   = sd(perc_within_hist[is_baseline], na.rm = TRUE),
     
-    # Loop over every year in the species' time series
-    map_dfr(df_sp$year, function(eval_year) {
-      
-      # Filter to only the data available up to the evaluation year
-      df_sub <- df_sp |> filter(year <= eval_year)
-      
-      current_val <- df_sub$perc_within_hist[nrow(df_sub)]
-      
-      # We need a minimum number of years (e.g., 5) to calculate a stable 
-      # standard deviation. Before that, default to neutral (0).
-      if (nrow(df_sub) < 5) {
-        return(tibble(
-          year             = eval_year,
-          perc_within_hist = current_val,
-          z_score          = NA_real_,
-          risk_score       = 0
-        ))
-      }
-      
-      hist_mean <- mean(df_sub$perc_within_hist)
-      hist_sd   <- sd(df_sub$perc_within_hist)
-      
-      # Calculate Z-score safely
-      if (is.na(hist_sd) || hist_sd == 0) {
-        z <- 0
-      } else {
-        z <- (current_val - hist_mean) / hist_sd
-      }
-      
-      # Map to -4 to +4 scale
-      risk <- case_when(
-        z >=  2.0 ~ -4,
-        z >=  1.5 ~ -3,
-        z >=  1.0 ~ -2,
-        z >=  0.5 ~ -1,
-        z >  -0.5 ~  0,
-        z >  -1.0 ~  1,
-        z >  -1.5 ~  2,
-        z >  -2.0 ~  3,
-        TRUE      ~  4
-      )
-      
-      tibble(
-        year             = eval_year,
-        perc_within_hist = current_val,
-        z_score          = z,
-        risk_score       = risk
-      )
-    })
-  }) |>
+    # Apply the fixed mean and SD to the entire time series
+    z_score = if_else(
+      is.na(baseline_sd) | baseline_sd == 0, 
+      0, 
+      (perc_within_hist - baseline_mean) / baseline_sd
+    ),
+    
+    # Map to the -4 to +4 Risk Policy framework
+    risk_score = case_when(
+      z_score >=  2.0 ~ -4,
+      z_score >=  1.5 ~ -3,
+      z_score >=  1.0 ~ -2,
+      z_score >=  0.5 ~ -1,
+      z_score >  -0.5 ~  0,
+      z_score >  -1.0 ~  1,
+      z_score >  -1.5 ~  2,
+      z_score >  -2.0 ~  3,
+      TRUE            ~  4
+    )
+  ) |>
   ungroup() |>
+  # Drop the helper columns to keep the dataframe clean
+  select(-is_baseline, -baseline_mean, -baseline_sd) |>
   arrange(species, year)
 
 
@@ -128,8 +108,8 @@ terminal_scores <- risk_scores |>
 # 5. Save Outputs
 # -------------------------------------------------------------------
 
-saveRDS(risk_scores, file.path(dir_scoring, "risk_scores_hindcast_V6.rds"))
-saveRDS(terminal_scores, file.path(dir_scoring, "risk_scores_terminal_V6.rds"))
+saveRDS(risk_scores, file.path(dir_scoring, "risk_scores_hindcast_V6_30yr_baseline.rds"))
+saveRDS(terminal_scores, file.path(dir_scoring, "risk_scores_terminal_V6_30yr_baseline.rds"))
 
 message("Risk scores saved to: ", dir_scoring)
 
@@ -139,7 +119,7 @@ message("Risk scores saved to: ", dir_scoring)
 # -------------------------------------------------------------------
 
 p_skew <- ggplot(risk_scores, aes(x = as.factor(risk_score))) +
-  geom_bar(fill = "steelblue", color = "black", alpha = 0.8) +
+  geom_bar(fill = "darkcyan", color = "black", alpha = 0.8) + # Swapped to darkcyan for visual distinction
   
   geom_text(
     stat = "count", 
@@ -150,8 +130,8 @@ p_skew <- ggplot(risk_scores, aes(x = as.factor(risk_score))) +
   
   scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
   labs(
-    title = "Distribution of Thermal Habitat Risk Scores (V6 - All Species, All Years)",
-    subtitle = "Checking for systemic scoring skew. A balanced, normal distribution centered on 0 is ideal.",
+    title = paste0("Thermal Habitat Risk Scores (V6 - Fixed ", baseline_length, "-Year Baseline)"),
+    subtitle = paste0("Z-scores calculated relative to the first ", baseline_length, " years of data to capture decadal cycles."),
     x = "Risk Score (-4 to +4)",
     y = "Frequency (Number of Species-Years)",
     caption = "Negative scores = Less Risk Averse (Favorable Habitat)\nPositive scores = More Risk Averse (Stressful Habitat)"
@@ -162,11 +142,11 @@ p_skew <- ggplot(risk_scores, aes(x = as.factor(risk_score))) +
     plot.title = element_text(face = "bold")
   )
 
-file_skew_plot <- file.path(dir_images, "score_distribution_check_V6.png")
+file_skew_plot <- file.path(dir_images, "score_distribution_check_V6_30yr_baseline.png")
 ggsave(file_skew_plot, plot = p_skew, width = 8, height = 5, dpi = 300)
 
 message("Skew check visualization saved to: ", file_skew_plot)
 
 # Print a quick console summary of the terminal year
-message("\n--- Terminal Year Score Distribution ---")
+message("\n--- Terminal Year Score Distribution (30-Year Baseline) ---")
 print(table(terminal_scores$risk_score))
