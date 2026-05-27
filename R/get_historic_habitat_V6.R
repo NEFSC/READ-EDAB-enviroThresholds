@@ -7,8 +7,9 @@
 #   V5    — Strict empirical buffering: 10km dissolved buffers around points.
 #   V6    — Strata-based envelope: Historic habitat is defined as the dissolved
 #           union of all NEFSC bottom trawl survey strata in which the species
-#           has been observed 3 or more times. This aligns habitat definition
-#           with standard assessment boundaries.
+#           has been observed 3 or more times IN A SINGLE YEAR. Strata meeting
+#           this threshold in any year are additively combined to form the 
+#           final historic footprint.
 #
 # Output:
 #   RDS  : data/historic_habitat_V6/historic_habitat_V6.rds
@@ -77,7 +78,8 @@ land <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf") |>
 
 habitat_params <- list(
   # Minimum number of unique observation events (stations) required 
-  # within a single stratum for that stratum to be classified as habitat.
+  # within a single stratum IN A SINGLE YEAR for that stratum to be 
+  # permanently added to the overall historic habitat envelope.
   min_observations = 3
 )
 
@@ -91,9 +93,11 @@ strata_path <- "~/Maxwell.Grezlik/Rprojects/READ-PDB-StockEff/gis_files/survey_s
 Sys.setenv(SHAPE_RESTORE_SHX = "YES")
 
 strata <- sf::st_read(strata_path, quiet = TRUE) |>
-  sf::st_set_crs(4269) |>       
+  sf::st_set_crs(4269) |>        
   sf::st_transform(4326) |>
-  sf::st_make_valid()
+  sf::st_make_valid() |>
+  # Add a unique ID for grouping during spatial joins
+  mutate(strata_uid = row_number())
 
 Sys.unsetenv("SHAPE_RESTORE_SHX")
 
@@ -116,12 +120,6 @@ crs(bathy) <- "EPSG:4326"
 # -------------------------------------------------------------------
 # 6. Core habitat polygon function
 # -------------------------------------------------------------------
-# Steps:
-#   a. Filter to presence records with valid coordinates.
-#   b. Count how many presence points fall inside each stratum polygon.
-#   c. Filter to strata containing >= min_observations.
-#   d. Dissolve qualifying strata into a single habitat envelope.
-#   e. Subtract land to ensure purely marine boundaries.
 
 get_species_habitat <- function(species_name,
                                 survdat_mgmt,
@@ -131,17 +129,16 @@ get_species_habitat <- function(species_name,
   message("Building habitat polygon: ", species_name)
   
   # --- a. Presence records ---
-  # Retain unique survey events (CRUISE + STATION) to prevent multiple 
-  # catches in the same tow from counting as multiple observations.
   pts_filtered <- survdat_mgmt |>
     filter(
       COMNAME   == species_name,
       ABUNDANCE >  0,
       !is.na(LAT),
-      !is.na(LON)
+      !is.na(LON),
+      !is.na(YEAR)
     ) |>
-    mutate(LAT = as.numeric(LAT), LON = as.numeric(LON)) |>
-    distinct(CRUISE6, STATION, LAT, LON)
+    mutate(LAT = as.numeric(LAT), LON = as.numeric(LON), YEAR = as.numeric(YEAR)) |>
+    distinct(YEAR, CRUISE6, STATION, LAT, LON)
   
   if (nrow(pts_filtered) == 0) {
     message("  No presence records — skipping.")
@@ -152,21 +149,33 @@ get_species_habitat <- function(species_name,
   pts_sf <- pts_filtered |>
     sf::st_as_sf(coords = c("LON", "LAT"), crs = 4326)
   
-  # --- b. Count observations per stratum ---
-  # st_intersects returns a list indicating which points fall in which stratum
-  strata_intersections <- sf::st_intersects(strata, pts_sf)
-  strata_obs_counts <- lengths(strata_intersections)
+  # --- b. Count observations per stratum PER YEAR ---
+  # Spatially join points to strata to get the strata_uid for each point
+  pts_with_strata <- sf::st_join(pts_sf, strata)
+  
+  strata_year_counts <- pts_with_strata |>
+    sf::st_drop_geometry() |>
+    filter(!is.na(strata_uid)) |>
+    group_by(strata_uid, YEAR) |>
+    # Count unique stations per stratum per year
+    summarise(n_stations = n_distinct(paste(CRUISE6, STATION)), .groups = "drop")
   
   # --- c. Filter strata ---
-  # Keep only strata that meet the minimum observation threshold
-  valid_strata <- strata[strata_obs_counts >= params$min_observations, ]
+  # Identify any stratum that hit the threshold in ANY given year
+  qualifying_strata_uids <- strata_year_counts |>
+    filter(n_stations >= params$min_observations) |>
+    pull(strata_uid) |>
+    unique()
+  
+  valid_strata <- strata |> 
+    filter(strata_uid %in% qualifying_strata_uids)
   
   if (nrow(valid_strata) == 0) {
-    message("  No strata met the minimum observation threshold (", params$min_observations, ") — skipping.")
+    message("  No strata met the minimum annual observation threshold (", params$min_observations, "/year) — skipping.")
     return(NULL)
   }
   
-  message("  Included ", nrow(valid_strata), " strata based on threshold.")
+  message("  Included ", nrow(valid_strata), " strata based on annual threshold.")
   
   # --- d. Dissolve valid strata ---
   habitat_sf <- valid_strata |>
@@ -191,14 +200,13 @@ get_species_habitat <- function(species_name,
   }
   
   # --- f. Metadata ---
-  # Convert back to an sf dataframe to attach metadata attributes
   habitat_marine <- sf::st_as_sf(habitat_marine) |> 
     rename(geometry = x) |>
     mutate(
       COMNAME          = species_name,
       n_stations_total = nrow(pts_filtered),
       n_strata         = nrow(valid_strata),
-      min_observations = params$min_observations
+      min_obs_per_year = params$min_observations
     )
   
   return(habitat_marine)
@@ -332,12 +340,12 @@ map_historic_habitat_v6 <- function(species_name,
       subtitle = paste0(
         "Total Stations: ", poly$n_stations_total,
         "  |  Strata Included: ", poly$n_strata,
-        "  |  Threshold: \u2265 ", params$min_observations, " obs/stratum"
+        "  |  Threshold: \u2265 ", params$min_observations, " obs/stratum/year"
       ),
       x       = NULL,
       y       = NULL,
       caption = paste0(
-        "Blue: Union of NEFSC survey strata containing \u2265 ", params$min_observations, " unique presence stations. ",
+        "Blue: Union of NEFSC survey strata containing \u2265 ", params$min_observations, " unique presence stations in ANY single year. ",
         "Orange outlines: Full NEFSC bottom trawl survey grid. Bathymetry gradient capped at -2000 m."
       )
     ) +
@@ -389,7 +397,7 @@ habitat_summary <- map_dfr(
       species          = .x,
       n_stations_total = poly$n_stations_total,
       n_strata         = poly$n_strata,
-      min_observations = poly$min_observations,
+      min_obs_per_year = poly$min_obs_per_year,
       area_km2         = as.numeric(
         sf::st_area(sf::st_transform(poly, 5070))
       ) / 1e6
