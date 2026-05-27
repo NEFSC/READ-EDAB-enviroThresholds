@@ -7,7 +7,7 @@
 # Output:
 #   Plots : images/habitat_timeseries/<species>_habitat_timeseries.png
 #
-# Dependencies: tidyverse, sf, terra, marmap, rnaturalearth, scales, here
+# Dependencies: tidyverse, sf, rnaturalearth, scales, here
 
 # -------------------------------------------------------------------
 # 0. Packages
@@ -15,8 +15,6 @@
 
 library(tidyverse)
 library(sf)
-library(terra)
-library(marmap)
 library(rnaturalearth)
 library(scales) 
 library(here)
@@ -29,20 +27,13 @@ dir_images <- here::here("images/habitat_timeseries")
 if (!dir.exists(dir_images)) dir.create(dir_images, recursive = TRUE)
 
 # -------------------------------------------------------------------
-# 2. Load Spatial Context Data (Land, Bathy, Strata)
+# 2. Load Spatial Context Data (Land, Strata)
 # -------------------------------------------------------------------
 
-message("Loading spatial basemaps and calculating contours...")
+message("Loading spatial basemaps...")
 
 land <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf") |>
   sf::st_transform(4326)
-
-bathy_marmap <- marmap::getNOAA.bathy(lon1 = -82, lon2 = -60, lat1 = 34, lat2 = 48, resolution = 2, keep = TRUE)
-bathy_rast <- terra::rast(marmap::as.raster(bathy_marmap))
-terra::crs(bathy_rast) <- "EPSG:4326"
-
-bathy_contours <- terra::as.contour(bathy_rast, levels = c(-100, -200, -500, -1000)) |> 
-  sf::st_as_sf()
 
 strata_path <- "~/Maxwell.Grezlik/Rprojects/READ-PDB-StockEff/gis_files/survey_strata.shp"
 Sys.setenv(SHAPE_RESTORE_SHX = "YES")
@@ -152,25 +143,22 @@ walk(species_list, function(sp) {
   # --- Build the Plot ---
   p_timeseries <- ggplot() +
     
-    # 1. Bathymetry Contours
-    geom_sf(data = bathy_contours, color = "cadetblue", linewidth = 0.3, alpha = 0.6) +
-    
-    # 2. Land (Green overlay)
+    # 1. Land (Green overlay)
     geom_sf(data = land, fill = "darkseagreen", color = "darkolivegreen", linewidth = 0.2) +
     
-    # 3. Base Strata Outline
+    # 2. Base Strata Outline
     geom_sf(data = strata_sf, fill = NA, color = "black", linewidth = 0.1, alpha = 0.4) +
     
-    # 4. Annual Identified Habitat (Steelblue fill) - MOVED DOWN
+    # 3. Annual Identified Habitat (Steelblue fill)
     geom_sf(data = annual_habitat_sf, fill = "steelblue", alpha = 0.5, color = NA) +
     
-    # 5. Survey Observations - REDUCED SIZE AND ALPHA
+    # 4. Survey Observations
     geom_sf(data = sp_obs, color = "darkblue", size = 0.1, alpha = 0.3, shape = 16) +
     
-    # 6. Historic V6 Footprint (Red outline) - MOVED TO TOP SO IT IS NEVER OBSCURED
-    geom_sf(data = historic_poly, fill = NA, color = "firebrick", linewidth = 0.8) +
+    # 5. Historic V6 Footprint (Red outline)
+    geom_sf(data = historic_poly, fill = NA, color = "firebrick", linewidth = 0.4) +
     
-    # 7. Annual Area Text Label
+    # 6. Annual Area Text Label
     geom_text(
       data = annual_area_labels,
       aes(x = x_pos, y = y_pos, label = label),
@@ -184,7 +172,7 @@ walk(species_list, function(sp) {
     labs(
       title = paste0(tools::toTitleCase(tolower(sp)), " - Annual vs. Historic Habitat Footprint"),
       subtitle = paste0("Red Outline: Long-term Historic V6 Habitat (Total Area: ", v6_area_fmt, " km\u00b2).\nSteelblue Fill: Strata with \u2265 3 observations in that specific year (Area in bottom right).\nDark Blue Points: Survey observations."),
-      caption = "Data: NEFSC Bottom Trawl Survey | Contours: 100, 200, 500, 1000m"
+      caption = "Data: NEFSC Bottom Trawl Survey"
     ) +
     
     theme_void(base_size = 12) +
