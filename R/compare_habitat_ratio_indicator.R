@@ -8,8 +8,8 @@
 #          2. Calculate annual realized area (strata with >= 3 obs/year).
 #          3. Calculate empirical ratio = Annual Area / Total Historic Area.
 #          4. Merge with perc_suitable_thermal_habitat.
-#          5. Calculate correlation stats and generate a 1:1 scatterplot.
-#          6. Generate a dual-line time series plot for temporal comparison.
+#          5. Calculate correlation stats and generate a 1:1 scatterplot (0-100 axes).
+#          6. Generate a dual-line time series plot for temporal comparison (0-100 y-axis).
 #
 # Output:
 #   CSV   : data/validation/habitat_vs_temperature_correlation.csv
@@ -181,7 +181,9 @@ p_scatter <- ggplot(comparison_df, aes(x = perc_within_hist, y = empirical_habit
     size = 3.5, fontface = "bold", color = "black",
     check_overlap = TRUE
   ) +
-  facet_wrap(~species, scales = "free_y", ncol = 6) +
+  facet_wrap(~species, ncol = 6) +
+  scale_x_continuous(limits = c(0, 100)) + 
+  scale_y_continuous(limits = c(0, 100)) + 
   labs(
     title = "Validation: Thermal Suitability vs. Empirical Habitat Area",
     subtitle = "Assessing if bottom temperature (% suitable habitat) correlates with realized spatial distribution (% historic area occupied).",
@@ -225,8 +227,9 @@ ts_df <- comparison_df |>
 
 p_timeseries <- ggplot(ts_df, aes(x = year, y = value, color = metric)) +
   geom_line(linewidth = 0.8, alpha = 0.8) +
-  geom_point(size = 0.8, alpha = 0.6) + # Add small points to anchor the lines to specific years
-  facet_wrap(~species, scales = "free_y", ncol = 6) +
+  geom_point(size = 0.8, alpha = 0.6) + 
+  facet_wrap(~species, ncol = 6) + # Removed scales = "free_y"
+  scale_y_continuous(limits = c(0, 100)) + # Standardized y-axis to strict 0-100%
   scale_color_manual(
     values = c(
       "Thermal Suitability (%)" = "firebrick",
