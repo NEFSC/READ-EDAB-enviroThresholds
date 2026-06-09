@@ -30,8 +30,13 @@ library(here)
 # 1. Output directories
 # -------------------------------------------------------------------
 
+# Directory for data objects
 dir_output <- here::here("data/indicators")
 if (!dir.exists(dir_output)) dir.create(dir_output, recursive = TRUE)
+
+# Directory for plot outputs
+dir_images <- here::here("images")
+if (!dir.exists(dir_images)) dir.create(dir_images, recursive = TRUE)
 
 
 # -------------------------------------------------------------------
@@ -229,7 +234,8 @@ significant_trends <- plot_data_long |>
 plot_data_significant <- plot_data_long |>
   inner_join(significant_trends, by = c("species", "Exclusion_Type"))
 
-pdf_path <- file.path(dir_output, "unsuitable_thermal_habitat_plots.pdf")
+# Save the PDF to the images directory
+pdf_path <- file.path(dir_images, "unsuitable_thermal_habitat_plots.pdf")
 pdf(pdf_path, width = 10, height = 8)
 
 species_list <- unique(indicator_results_df$species)
