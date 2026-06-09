@@ -192,10 +192,42 @@ message("Tabular data saved to: ", csv_out)
 
 
 # -------------------------------------------------------------------
-# 7. Generate Visualizations
+# 7. Generate Visualizations (with Significant Trend Lines)
 # -------------------------------------------------------------------
 
-message("Generating comparison plots...")
+message("Evaluating statistical significance of trends and generating plots...")
+
+# Convert to long format for easier ggplot processing
+plot_data_long <- indicator_results_df |>
+  pivot_longer(
+    cols = c(perc_too_hot, perc_too_cold),
+    names_to = "Exclusion_Type",
+    values_to = "Percent_Excluded"
+  ) |>
+  mutate(
+    Exclusion_Type = case_when(
+      Exclusion_Type == "perc_too_hot"  ~ "Too Hot (> tmax)",
+      Exclusion_Type == "perc_too_cold" ~ "Too Cold (< tmin)"
+    )
+  )
+
+# Calculate linear models and extract p-values to find significant trends (p < 0.05)
+significant_trends <- plot_data_long |>
+  group_by(species, Exclusion_Type) |>
+  # Ensure there is enough variance/data to run a model safely
+  filter(sum(!is.na(Percent_Excluded)) > 2) |>
+  summarise(
+    p_val = tryCatch({
+      mod <- lm(Percent_Excluded ~ year)
+      summary(mod)$coefficients[2,4] # Extract the p-value for the 'year' coefficient
+    }, error = function(e) NA_real_),
+    .groups = "drop"
+  ) |>
+  filter(!is.na(p_val) & p_val < 0.05)
+
+# Join the significant flag back to the data so we can selectively draw lines
+plot_data_significant <- plot_data_long |>
+  inner_join(significant_trends, by = c("species", "Exclusion_Type"))
 
 pdf_path <- file.path(dir_output, "unsuitable_thermal_habitat_plots.pdf")
 pdf(pdf_path, width = 10, height = 8)
@@ -206,29 +238,27 @@ chunk_size <- 6
 for (i in seq(1, length(species_list), by = chunk_size)) {
   target_spp <- species_list[i:min((i + chunk_size - 1), length(species_list))]
   
-  p <- indicator_results_df |>
-    filter(species %in% target_spp) |>
-    pivot_longer(
-      cols = c(perc_too_hot, perc_too_cold),
-      names_to = "Exclusion_Type",
-      values_to = "Percent_Excluded"
-    ) |>
-    mutate(
-      Exclusion_Type = case_when(
-        Exclusion_Type == "perc_too_hot"  ~ "Too Hot (> tmax)",
-        Exclusion_Type == "perc_too_cold" ~ "Too Cold (< tmin)"
-      )
-    ) |>
-    ggplot(aes(x = year, y = Percent_Excluded, color = Exclusion_Type, fill = Exclusion_Type)) +
-    geom_line(linewidth = 1) +
-    geom_point(size = 1.5, alpha = 0.7) +
-    # Use intuitive thermal colors: Red for Hot, Blue for Cold
+  # Base dataset for the chunk
+  chunk_data <- plot_data_long |> filter(species %in% target_spp)
+  
+  # Significant data only for the trend lines in this chunk
+  chunk_sig_data <- plot_data_significant |> filter(species %in% target_spp)
+  
+  p <- ggplot() +
+    # The actual data lines and points
+    geom_line(data = chunk_data, aes(x = year, y = Percent_Excluded, color = Exclusion_Type), linewidth = 1) +
+    geom_point(data = chunk_data, aes(x = year, y = Percent_Excluded, color = Exclusion_Type), size = 1.5, alpha = 0.7) +
+    
+    # Overlay the linear trend line ONLY for species/types with p < 0.05
+    geom_smooth(data = chunk_sig_data, aes(x = year, y = Percent_Excluded, color = Exclusion_Type),
+                method = "lm", se = FALSE, linetype = "dashed", linewidth = 0.8, alpha = 0.8) +
+    
     scale_color_manual(values = c("Too Hot (> tmax)" = "#d73027", "Too Cold (< tmin)" = "#4575b4")) +
     facet_wrap(~species, scales = "free_y", ncol = 2) +
     theme_minimal() +
     labs(
       title = "Thermal Habitat Exclusion Trends",
-      subtitle = "Percentage of historic footprint excluded due to exceeding thermal bounds",
+      subtitle = "Dashed lines represent statistically significant linear trends (p < 0.05)",
       x = "Year",
       y = "% Habitat Excluded",
       color = "Exclusion Type"
