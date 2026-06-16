@@ -2,7 +2,7 @@
 #
 # Purpose: Derive two new risk indicators for NEFMC-managed species:
 #          1. Thermal Constraint Inversion Year (Intersection of Hot and Cold lines)
-#          2. Year of 100% Thermal Exclusion (Extrapolation of the "Too Hot" line)
+#          2. Year of 50% Thermal Exclusion (Extrapolation of the "Too Hot" line)
 #
 # Input:   data/indicators/unsuitable_thermal_habitat.rds
 #
@@ -65,10 +65,10 @@ risk_indicators <- data_raw |>
     Inversion_Year = (b_cold - b_hot) / (m_hot - m_cold),
     Inversion_Year = round(Inversion_Year, 1),
     
-    # 2. Year of 100% Habitat Exclusion
-    # m_hot*Year + b_hot = 100  ==>  Year = (100 - b_hot) / m_hot
-    Year_100_Percent_Exclusion = (100 - b_hot) / m_hot,
-    Year_100_Percent_Exclusion = round(Year_100_Percent_Exclusion, 1),
+    # 2. Year of 50% Habitat Exclusion
+    # m_hot*Year + b_hot = 50  ==>  Year = (50 - b_hot) / m_hot
+    Year_50_Percent_Exclusion = (50 - b_hot) / m_hot,
+    Year_50_Percent_Exclusion = round(Year_50_Percent_Exclusion, 1),
     
     # Add an indicator of current trajectory steepness (% increase in hot exclusion per decade)
     Hot_Exclusion_Rate_Per_Decade = round(m_hot * 10, 2)
@@ -78,11 +78,11 @@ risk_indicators <- data_raw |>
     species, 
     Hot_Exclusion_Rate_Per_Decade, 
     Inversion_Year, 
-    Year_100_Percent_Exclusion,
+    Year_50_Percent_Exclusion,
     p_val_too_hot = p_hot,
     p_val_too_cold = p_cold
   ) |>
-  arrange(Year_100_Percent_Exclusion)
+  arrange(Year_50_Percent_Exclusion)
 
 # -------------------------------------------------------------------
 # 3. Save Tabular Results
@@ -98,35 +98,38 @@ message("Tabular risk metrics successfully saved to: ", csv_out)
 
 message("Generating climate vulnerability ranking visualization...")
 
-
 plot_data <- risk_indicators |>
-  # Exclude mathematical errors (negative slopes), but cap distant futures at 2250
-  filter(Year_100_Percent_Exclusion > 2000) |>
+  # Exclude mathematical errors (e.g., negative slopes that project into the past)
+  filter(Year_50_Percent_Exclusion > 1950) |>
   mutate(
-    Year_100_Percent_Exclusion = if_else(Year_100_Percent_Exclusion > 2250, 2250, Year_100_Percent_Exclusion),
+    # Cap the maximum year at 2250 so the plot remains readable
+    Year_50_Percent_Exclusion = if_else(Year_50_Percent_Exclusion > 2250, 2250, Year_50_Percent_Exclusion),
     species = str_to_title(species),
-    # Add a visual flag for capped species
-    Is_Capped = if_else(Year_100_Percent_Exclusion == 2250, "Projected Beyond 2250", "Within 200 Years")
+    # Add a visual flag for species that hit the 2250 cap
+    Is_Capped = if_else(Year_50_Percent_Exclusion == 2250, "Projected Beyond 2250", "Within 200 Years")
   )
 
-ranking_plot <- ggplot(plot_data, aes(x = reorder(species, -Year_100_Percent_Exclusion), y = Year_100_Percent_Exclusion)) +
+ranking_plot <- ggplot(plot_data, aes(x = reorder(species, -Year_50_Percent_Exclusion), y = Year_50_Percent_Exclusion)) +
   geom_segment(aes(xend = species, yend = 2026), color = "grey70", linewidth = 1) +
-  geom_point(aes(size = Hot_Exclusion_Rate_Per_Decade), color = "#d73027", alpha = 0.9) +
+  geom_point(aes(size = Hot_Exclusion_Rate_Per_Decade, color = Is_Capped), alpha = 0.9) +
+  scale_color_manual(values = c("Within 200 Years" = "#d73027", "Projected Beyond 2250" = "grey50")) +
   geom_hline(yintercept = 2026, linetype = "solid", color = "darkblue", linewidth = 0.8) +
   annotate("text", x = 1.5, y = 2030, label = "Current Year (2026)", color = "darkblue", hjust = 0, fontface = "italic") +
   coord_flip() +
   theme_minimal() +
   labs(
-    title = "Species Vulnerability: Projected Horizon to 100% Thermal Exclusion",
+    title = "Species Vulnerability: Projected Horizon to 50% Thermal Exclusion",
     subtitle = "Based on linear extrapolation of daily baseline habitat loss trends (1959-2025)",
     x = "",
-    y = "Projected Year of Complete Historical Footprint Exclusion",
-    size = "% Lost Per Decade"
+    y = "Projected Year of 50% Historical Footprint Exclusion",
+    size = "% Lost Per Decade",
+    color = "Projection Timeline"
   ) +
   theme(
     plot.title = element_text(face = "bold", size = 14),
     axis.text.y = element_text(face = "bold", size = 10),
-    panel.grid.minor = element_blank()
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom"
   )
 
 png_out <- file.path(dir_images, "species_climate_vulnerability_ranking.png")
