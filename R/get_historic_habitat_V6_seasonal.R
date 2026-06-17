@@ -427,3 +427,106 @@ habitat_summary <- map_dfr(
 )
 
 print(habitat_summary, n = Inf)
+
+# -------------------------------------------------------------------
+# 12. Tabular Comparison: Spring vs. Fall
+# -------------------------------------------------------------------
+
+message("Generating tabular comparison...")
+
+habitat_comparison <- habitat_summary |>
+  select(species, season, n_stations_total, n_strata, area_km2) |>
+  pivot_wider(
+    names_from  = season,
+    values_from = c(n_stations_total, n_strata, area_km2),
+    names_glue  = "{.value}_{season}"
+  ) |>
+  # Handle cases where a species might be missing in one season entirely
+  mutate(across(everything(), ~replace_na(.x, 0))) |>
+  mutate(
+    area_diff_km2 = area_km2_SPRING - area_km2_FALL,
+    larger_season = case_when(
+      area_diff_km2 > 0 ~ "SPRING",
+      area_diff_km2 < 0 ~ "FALL",
+      TRUE ~ "EQUAL"
+    )
+  )
+
+out_csv <- file.path(dir_data, "habitat_comparison_spring_vs_fall.csv")
+write_csv(habitat_comparison, out_csv)
+message("Tabular comparison saved to: ", out_csv)
+
+
+# -------------------------------------------------------------------
+# 13. Map Comparison: Side-by-Side Plots
+# -------------------------------------------------------------------
+
+library(patchwork)
+
+dir_comp_images <- file.path(dir_images, "comparisons")
+if (!dir.exists(dir_comp_images)) dir.create(dir_comp_images, recursive = TRUE)
+
+message("Generating side-by-side comparison maps...")
+
+# Helper function to generate a simplified map for the patchwork grid
+build_comp_map <- function(poly, season_name, strata_bg, land_bg) {
+  if (is.null(poly)) {
+    # Return an empty plot indicating no habitat met the threshold
+    return(
+      ggplot() + 
+        theme_void() + 
+        annotate("text", x = 0, y = 0, label = paste("No qualifying", season_name, "habitat"))
+    )
+  }
+  
+  bbox <- sf::st_bbox(poly)
+  xpad <- max(2, diff(c(bbox["xmin"], bbox["xmax"])) * 0.15)
+  ypad <- max(2, diff(c(bbox["ymin"], bbox["ymax"])) * 0.15)
+  
+  ggplot() +
+    geom_sf(data = strata_bg, fill = NA, color = "grey80", linewidth = 0.2) +
+    geom_sf(data = poly, fill = "steelblue", color = "steelblue4", alpha = 0.6, linewidth = 0.5) +
+    geom_sf(data = land_bg, fill = "grey50", color = NA) +
+    coord_sf(
+      xlim = c(bbox["xmin"] - xpad, bbox["xmax"] + xpad), 
+      ylim = c(bbox["ymin"] - ypad, bbox["ymax"] + ypad), 
+      expand = FALSE
+    ) +
+    labs(
+      title = tools::toTitleCase(tolower(season_name)),
+      subtitle = paste0("Area: ", scales::comma(round(as.numeric(sf::st_area(sf::st_transform(poly, 5070))) / 1e6)), " km\u00b2")
+    ) +
+    theme_minimal(base_size = 10) +
+    theme(
+      plot.title = element_text(face = "bold", hjust = 0.5),
+      plot.subtitle = element_text(hjust = 0.5, color = "grey30"),
+      panel.border = element_rect(color = "black", fill = NA, linewidth = 0.5)
+    )
+}
+
+# Iterate through species to build and save the stitched plots
+walk(unique(habitat_summary$species), function(sp) {
+  
+  poly_spring <- historic_habitat_seasonal[[paste0(sp, "_SPRING")]]
+  poly_fall   <- historic_habitat_seasonal[[paste0(sp, "_FALL")]]
+  
+  # Skip if species lacks habitat in both seasons
+  if (is.null(poly_spring) && is.null(poly_fall)) return(NULL)
+  
+  p_spring <- build_comp_map(poly_spring, "SPRING", strata, land)
+  p_fall   <- build_comp_map(poly_fall, "FALL", strata, land)
+  
+  # Stitch together using patchwork
+  comp_plot <- p_spring + p_fall + 
+    plot_annotation(
+      title = paste0(tools::toTitleCase(tolower(sp)), " - Seasonal Habitat Comparison (V6)"),
+      theme = theme(plot.title = element_text(face = "bold", size = 16, hjust = 0.5))
+    )
+  
+  file_name <- file.path(dir_comp_images, paste0(gsub(" ", "_", sp), "_seasonal_comparison.png"))
+  
+  ggsave(file_name, plot = comp_plot, width = 12, height = 6, dpi = 300, bg = "white")
+  message("  Saved comparison: ", sp)
+})
+
+message("All side-by-side maps saved to: ", dir_comp_images)
