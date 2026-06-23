@@ -6,8 +6,10 @@
 #          temperatures in a given year, split by Winter, Spring, Summer, and Fall.
 #
 # Output:
-#   Individual Plots : images/indicators/perc_within_hist_seasonally/<species>.png
-#   Faceted Summary  : images/indicators/perc_within_hist_seasonally/all_species_summary.png
+#   Faceted Sp. Plots : images/indicators/perc_within_hist_seasonally/<species>_perc_within_hist_seasonally_faceted.png
+#   Overlay Sp. Plots : images/indicators/perc_within_hist_seasonally/<species>_perc_within_hist_seasonally_overlay.png
+#   Faceted Summary   : images/indicators/perc_within_hist_seasonally/ALL_SPECIES_perc_within_hist_seasonally_summary.png
+#   Summary Table     : data/indicators/lowest_seasonal_suitability_table.csv
 #
 # Dependencies: tidyverse, here
 
@@ -26,6 +28,8 @@ library(here)
 dir_images <- here::here("images/indicators/perc_within_hist_seasonally")
 if (!dir.exists(dir_images)) dir.create(dir_images, recursive = TRUE)
 
+dir_data <- here::here("data/indicators")
+if (!dir.exists(dir_data)) dir.create(dir_data, recursive = TRUE)
 
 # -------------------------------------------------------------------
 # 2. Load Data
@@ -51,12 +55,12 @@ season_colors <- c(
 
 
 # -------------------------------------------------------------------
-# 3. Generate Individual Plots
+# 3. Generate Individual Plots (Faceted & Overlaid)
 # -------------------------------------------------------------------
 
 species_list <- unique(indicators$species)
 
-message("Generating individual seasonal time series plots for ", length(species_list), " species...")
+message("Generating individual seasonal time series plots (faceted and overlaid) for ", length(species_list), " species...")
 
 walk(species_list, function(sp) {
   
@@ -69,23 +73,17 @@ walk(species_list, function(sp) {
   tmin <- unique(df_sp$tmin_used)[1]
   tmax <- unique(df_sp$tmax_used)[1]
   
-  p <- ggplot(df_sp, aes(x = year, y = perc_within_hist, color = season)) +
-    # Add a subtle trend line to help visually smooth year-to-year noise
+  # --- Plot A: 2x2 Faceted Plot ---
+  p_faceted <- ggplot(df_sp, aes(x = year, y = perc_within_hist, color = season)) +
     geom_smooth(method = "loess", se = FALSE, alpha = 0.5, linewidth = 1.2, span = 0.3) +
-    # Main time series line and points
     geom_line(linewidth = 0.6, alpha = 0.8) +
     geom_point(size = 1.2) +
-    
-    # Use 2x2 facet to prevent overlap and make trends clear
     facet_wrap(~season, ncol = 2) +
-    
     scale_color_manual(values = season_colors) +
-    # Lock y-axis to 0-100 since it is a true percentage
     scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 20)) +
     scale_x_continuous(breaks = seq(min(df_sp$year, na.rm=TRUE), max(df_sp$year, na.rm=TRUE), by = 10)) +
-    
     labs(
-      title = paste0(tools::toTitleCase(tolower(sp)), " \u2014 Seasonal Thermal Suitability"),
+      title = paste0(tools::toTitleCase(tolower(sp)), " \u2014 Seasonal Thermal Suitability (Faceted)"),
       subtitle = paste0("Thermal Niche: ", round(tmin, 1), "\u00B0C to ", round(tmax, 1), "\u00B0C"),
       x = "Year",
       y = "Suitable Historic Habitat (%)",
@@ -96,19 +94,48 @@ walk(species_list, function(sp) {
       plot.title = element_text(face = "bold"),
       plot.subtitle = element_text(color = "grey40", size = 10),
       strip.text = element_text(face = "bold", size = 11),
-      legend.position = "none", # Legend is redundant due to facet titles
+      legend.position = "none", # Redundant due to facet titles
       panel.grid.minor = element_blank(),
       panel.grid.major = element_line(color = "grey90"),
       panel.border = element_rect(color = "grey80", fill = NA, linewidth = 0.5)
     )
   
-  # Format filename (replace spaces with underscores)
-  file_name <- file.path(dir_images, paste0(gsub(" ", "_", sp), "_perc_within_hist_seasonally.png"))
+  # --- Plot B: Single Panel Overlay Plot ---
+  p_overlay <- ggplot(df_sp, aes(x = year, y = perc_within_hist, color = season)) +
+    geom_line(linewidth = 0.8, alpha = 0.9) +
+    geom_point(size = 1.5) +
+    scale_color_manual(values = season_colors, name = "Season") +
+    scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 20)) +
+    scale_x_continuous(breaks = seq(min(df_sp$year, na.rm=TRUE), max(df_sp$year, na.rm=TRUE), by = 10)) +
+    labs(
+      title = paste0(tools::toTitleCase(tolower(sp)), " \u2014 Seasonal Thermal Suitability (Overlay)"),
+      subtitle = paste0("Thermal Niche: ", round(tmin, 1), "\u00B0C to ", round(tmax, 1), "\u00B0C"),
+      x = "Year",
+      y = "Suitable Historic Habitat (%)",
+      caption = "Percentage of available habitat-days within the fixed seasonal V6 historic envelopes."
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      plot.title = element_text(face = "bold"),
+      plot.subtitle = element_text(color = "grey40", size = 10),
+      legend.position = "bottom", # Keep legend since they share a panel
+      legend.title = element_text(face = "bold"),
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_line(color = "grey90"),
+      panel.border = element_rect(color = "grey80", fill = NA, linewidth = 0.5)
+    )
   
-  ggsave(file_name, plot = p, width = 8, height = 6, dpi = 300)
+  # --- Save Both Plots ---
+  safe_name <- str_replace_all(sp, "[^A-Za-z0-9]+", "_")
+  
+  file_name_faceted <- file.path(dir_images, paste0(safe_name, "_perc_within_hist_seasonally_faceted.png"))
+  ggsave(file_name_faceted, plot = p_faceted, width = 8, height = 6, dpi = 300, bg = "white")
+  
+  file_name_overlay <- file.path(dir_images, paste0(safe_name, "_perc_within_hist_seasonally_overlay.png"))
+  ggsave(file_name_overlay, plot = p_overlay, width = 8, height = 6, dpi = 300, bg = "white")
 })
 
-message("Individual seasonal plots saved to: ", dir_images)
+message("Individual seasonal plots (faceted and overlaid) saved to: ", dir_images)
 
 
 # -------------------------------------------------------------------
@@ -149,6 +176,35 @@ p_facet <- ggplot(indicators, aes(x = year, y = perc_within_hist, color = season
 
 # Save large facet plot (adjust width/height depending on number of species)
 facet_file <- file.path(dir_images, "ALL_SPECIES_perc_within_hist_seasonally_summary.png")
-ggsave(facet_file, plot = p_facet, width = 15, height = 12, dpi = 300)
+ggsave(facet_file, plot = p_facet, width = 15, height = 12, dpi = 300, bg = "white")
 
 message("Faceted summary plot saved to: ", facet_file)
+
+
+# -------------------------------------------------------------------
+# 5. Generate Table of Lowest Suitability Season per Year
+# -------------------------------------------------------------------
+
+message("Generating table mapping the most restrictive season (thermal bottleneck) per year...")
+
+lowest_season_table <- indicators |>
+  # Drop missing values to ensure accurate minimums
+  filter(!is.na(perc_within_hist)) |>
+  group_by(species, year) |>
+  # Extract the single row with the lowest percentage for that species/year combo
+  slice_min(order_by = perc_within_hist, n = 1, with_ties = FALSE) |>
+  ungroup() |>
+  select(species, year, season) |>
+  # Pivot to wide format: Rows = Years, Columns = Species, Values = Season Name
+  pivot_wider(
+    names_from = species,
+    values_from = season
+  ) |>
+  arrange(year)
+
+# Save the tabular output
+table_file <- file.path(dir_data, "lowest_seasonal_suitability_table.csv")
+write_csv(lowest_season_table, table_file)
+
+message("Lowest suitability season table saved to: ", table_file)
+message("Script complete.")
