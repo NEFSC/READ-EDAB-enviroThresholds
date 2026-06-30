@@ -5,21 +5,29 @@ This repository contains the workflow for generating, evaluating, and scoring th
 
 The pipeline defines historic habitat footprints based on NEFSC bottom trawl survey strata, calculates the percentage of that habitat that is thermally suitable in a given year, and translates that timeseries into a discrete -4 to +4 risk score.
 
-## Workflow & Key Scripts
-The repository is structured to run sequentially:
+## Methodology: "The Greatest Change Season"
+During the development of this indicator, we tested several methodologies (now documented in the `/archive` folder). We determined that calculating an annual average of seasonal habitat suitability masked critical thermal bottlenecks (e.g., a total collapse of summer habitat could be hidden by a stable winter). 
 
-1. **Habitat Footprint Generation**
-   * `sensitivity_strata_obs.R`: Evaluates absolute and cumulative percentage observation thresholds to define core habitat.
-   * `get_historic_habitat_V6.R`: Builds the spatial footprint (V6) based on survey strata containing $\ge$ 3 historical observations.
-   * `get_historic_habitat_V6_90perc.R`: Builds an alternative dynamic footprint retaining 90% of a species' historical observations.
-2. **Indicator Calculation**
-   * `get_perc_suitable_thermal_habitat.R`: Intersects the habitat footprints with daily bottom temperatures to calculate the annual `% suitable thermal habitat`.
-3. **Risk Policy Scoring (-4 to +4)**
-   * `thermal_suitability_z_scoring.R`: Calculates scores using a true expanding-window Z-score (Standard Deviation) method.
-   * `thermal_suitability_scoring_V6.R`: Calculates scores using a discrete State + Trend matrix method.
-   * `R/scoring_functions_V6.R`: Helper functions for trend calculation and significance testing.
-4. **Visualization**
-   * `plot_risk_score_heatmap.R`: Generates summary heatmap tables of species' risk scores over time.
+To maximize the sensitivity and protective nature of the indicator, the final V6 methodology:
+1. Calculates the percentage of historic thermal habitat available in a given year.
+2. Isolates the **single season** exhibiting the greatest linear change for each species.
+3. Calculates a discrete Risk Score based on a fixed **30-year climatological baseline**.
+
+## Workflow & Key Scripts
+The production pipeline is housed in the `R/` directory and is designed to be run sequentially:
+
+1. **`00_get_historic_habitat_V6_seasonal.R`**: Builds the spatial footprint (V6) based on survey strata containing >= 3 historical observations.
+2. **`01_get_perc_suitable_thermal_habitat_seasonally.R`**: Intersects the habitat footprints with GLORYS daily bottom temperatures to calculate the annual percentage of suitable thermal habitat.
+3. **`02_plot_perc_suitable_thermal_habitat_one_season.R`**: Identifies the "Greatest Change Season" per species and generates visual time series.
+4. **`03_thermal_suitability_z_scoring_30yr_baseline_V6_one_season.R`**: Converts the raw percentages into Z-scores relative to the 30-year fixed baseline, scaling them to the -4 to +4 Risk Policy framework.
+5. **`04_plot_risk_score_heatmaps_V6_one_season.R`**: Generates the final all-species summary heatmap tables.
+
+*(Note: Essential data-pulling and mathematical functions are prefixed with `utils_` in the `R/` folder).*
+
+## Final Output
+The primary output of this pipeline is the All-Species Risk Score Heatmap, showing the thermal risk trajectory of each species driven by its most volatile season.
+
+![Risk Score Heatmap](images/scoring/risk_score_heatmap_V6_one_season_30yr_baseline.png)
 
 ## Data Access: Bottom Temperature NetCDF
 Due to file size constraints, the historical bottom temperature dataset (1959-2021) is **not** hosted in this repository. To run the indicator scripts, you must download the data locally.
