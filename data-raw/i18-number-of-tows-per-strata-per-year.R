@@ -142,13 +142,13 @@ strata_summary <- strata_yearly_counts |>
 strata_map_data <- strata |>
   left_join(strata_summary, by = "strata_uid")
 
-# Define the custom color palette (Green for perfect, light red to dark red for failures)
+# Define the custom color palette (Color-blind friendly Okabe-Ito palette)
 custom_colors <- c(
-  "0 Years (Always \u2265 3 Tows)" = "#27ae60", # Green
-  "1 - 5 Years < 3 Tows"           = "#fcae91", # Lightest Red
-  "6 - 15 Years < 3 Tows"          = "#fb6a4a", # Light Red
-  "16 - 30 Years < 3 Tows"         = "#de2d26", # Medium Red
-  "> 30 Years < 3 Tows"            = "#a50f15"  # Darkest Red
+  "0 Years (Always \u2265 3 Tows)" = "#0072B2", # Dark Blue (Most Reliable)
+  "1 - 5 Years < 3 Tows"           = "#56B4E9", # Sky Blue
+  "6 - 15 Years < 3 Tows"          = "#F0E442", # Yellow
+  "16 - 30 Years < 3 Tows"         = "#E69F00", # Orange
+  "> 30 Years < 3 Tows"            = "#D55E00"  # Vermillion (Least Reliable)
 )
 
 # -------------------------------------------------------------------
@@ -176,7 +176,7 @@ p_map <- ggplot() +
   labs(
     title = "Survey Strata Reliability (V6 Threshold Check)",
     subtitle = "Evaluating how often strata fail to achieve \u2265 3 tows in a single year.",
-    caption = "Dark red strata are structurally biased against inclusion in the V6 historic habitat method."
+    caption = "Strata with high failure rates (Orange/Vermillion) are structurally biased against inclusion in the V6 method."
   ) +
   
   theme_minimal(base_size = 12) +
