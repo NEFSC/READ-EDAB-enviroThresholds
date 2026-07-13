@@ -85,21 +85,19 @@ habitat_params <- list(
 
 
 # -------------------------------------------------------------------
-# 4. Survey strata
+# 4. Survey strata (Reproducible NOAA ArcGIS Hub Source)
 # -------------------------------------------------------------------
 
-strata_path <- "~/Maxwell.Grezlik/Rprojects/READ-PDB-StockEff/gis_files/survey_strata.shp"
+message("Downloading NEFSC survey strata from NOAA ArcGIS Hub...")
 
-Sys.setenv(SHAPE_RESTORE_SHX = "YES")
+# NOAA Bottom Trawl Survey Strata GeoJSON API Endpoint
+arcgis_url <- "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/Bottom_Trawl_Survey/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
 
-strata <- sf::st_read(strata_path, quiet = TRUE) |>
-  sf::st_set_crs(4269) |>        
+strata <- sf::st_read(arcgis_url, quiet = TRUE) |>
   sf::st_transform(4326) |>
   sf::st_make_valid() |>
   # Add a unique ID for grouping during spatial joins
   mutate(strata_uid = row_number())
-
-Sys.unsetenv("SHAPE_RESTORE_SHX")
 
 
 # -------------------------------------------------------------------
