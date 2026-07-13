@@ -1,12 +1,12 @@
-# get_perc_suitable_thermal_habitat_seasonally.R
+# 01_get_perc_suitable_thermal_habitat_seasonally.R
 #
 # Purpose: Calculate the `perc_within_hist` seasonal indicators for NEFMC-managed species.
 #          This script takes the seasonal historic habitat envelopes (V6) and calculates 
 #          the percentage of available "habitat-days" within that footprint that fell 
 #          within the species' thermal niche.
 #
-# Logic:   - SPRING and WINTER indicators use the SPRING historic habitat footprint.
-#          - FALL and SUMMER indicators use the FALL historic habitat footprint.
+# Logic:   - SPRING evaluates only the core survey months (Mar-May) against the SPRING footprint.
+#          - FALL evaluates only the core survey months (Sep-Nov) against the FALL footprint.
 #          - Processes historical data (1959-2021) and recent GLORYS data (2022+).
 #
 # Output:
@@ -58,12 +58,10 @@ process_year_suitability_seasonally <- function(bt_daily, current_year) {
   layer_dates <- terra::time(bt_daily)
   layer_months <- as.numeric(format(layer_dates, "%m"))
   
-  # Define season month groupings (Standard Quarters)
+  # Define season month groupings to strictly match the NEFSC survey timing
   seasons <- list(
-    WINTER = c(1, 2, 3),   # Jan, Feb, Mar
-    SPRING = c(4, 5, 6),   # Apr, May, Jun
-    SUMMER = c(7, 8, 9),   # Jul, Aug, Sep
-    FALL   = c(10, 11, 12) # Oct, Nov, Dec
+    SPRING = c(3, 4, 5),     # March, April, May
+    FALL   = c(9, 10, 11)    # September, October, November
   )
   
   # Extract unique species names from the seasonal habitat keys (e.g., "ATLANTIC COD_SPRING")
@@ -80,8 +78,8 @@ process_year_suitability_seasonally <- function(bt_daily, current_year) {
     
     map_dfr(names(seasons), function(season_name) {
       
-      # Map the current season to the correct historic habitat footprint
-      habitat_season <- if (season_name %in% c("SPRING", "WINTER")) "SPRING" else "FALL"
+      # The habitat_season strictly matches the season_name
+      habitat_season <- season_name 
       poly_key <- paste0(sp, "_", habitat_season)
       
       poly <- habitat_v6_seasonal[[poly_key]]
@@ -91,7 +89,7 @@ process_year_suitability_seasonally <- function(bt_daily, current_year) {
         poly <- sf::st_transform(poly, 4326)
       }
       
-      # Subset the raster to just the days falling in this season
+      # Subset the raster to just the days falling in these specific survey months
       season_months <- seasons[[season_name]]
       season_indices <- which(layer_months %in% season_months)
       
@@ -130,7 +128,7 @@ process_year_suitability_seasonally <- function(bt_daily, current_year) {
         species          = sp,
         year             = current_year,
         season           = season_name,
-        habitat_used     = habitat_season, # Track which footprint was used
+        habitat_used     = habitat_season, 
         perc_within_hist = perc_within_hist,
         tmin_used        = tmin,
         tmax_used        = tmax
