@@ -3,15 +3,10 @@
 # Purpose: Generate Risk Policy scores (-4 to +4) from the V6 thermal 
 #          suitability indicator ACROSS MULTIPLE THERMAL NICHE SCENARIOS.
 #
-# Logic:   1. Loads the combined anomaly data generated in the previous step.
-#          2. Identifies the first 30 years of the time series for each scenario.
-#          3. Calculates the mean and SD strictly from that fixed baseline period.
-#          4. Calculates the Z-score for EVERY year relative to that baseline.
-#          5. Maps the Z-score directly to the -4 to +4 scale.
-#
 # Output:
-#   RDS   : archive/compare_thermal_niches/data/scoring/annual_risk_scores_hindcast.rds
-#   RDS   : archive/compare_thermal_niches/data/scoring/annual_risk_scores_terminal.rds
+#   RDS   : archive/compare_thermal_niches/data/scoring/annual_risk_scores_hindcast...
+#   RDS   : archive/compare_thermal_niches/data/scoring/annual_risk_scores_terminal...
+#   CSV   : archive/compare_thermal_niches/data/scoring/baseline_statistics.csv
 #   Plots : archive/compare_thermal_niches/images/scoring/score_distribution_check.png
 #
 # Dependencies: tidyverse, here
@@ -77,8 +72,6 @@ annual_risk_scores <- indicator_df |>
     ),
     
     # Map to the -4 to +4 Risk Policy framework
-    # Note: Higher anomaly = positive Z-score = negative risk score (Good)
-    #       Lower anomaly = negative Z-score = positive risk score (Bad)
     annual_risk_score = case_when(
       z_score >=  2.0 ~ -4,
       z_score >=  1.5 ~ -3,
@@ -92,8 +85,8 @@ annual_risk_scores <- indicator_df |>
     )
   ) |>
   ungroup() |>
-  # Keep relevant metadata for downstream plotting
-  select(species, scenario_id, source, year, annual_anomaly, z_score, annual_risk_score) |>
+  # Keep relevant metadata AND baseline stats for downstream plotting/saving
+  select(species, scenario_id, source, year, annual_anomaly, baseline_mean, baseline_sd, z_score, annual_risk_score) |>
   arrange(species, scenario_id, year)
 
 
@@ -111,8 +104,25 @@ terminal_scores <- annual_risk_scores |>
 # 5. Save Outputs
 # -------------------------------------------------------------------
 
-saveRDS(annual_risk_scores, file.path(dir_scoring, "annual_risk_scores_hindcast_V6_anomaly_30yr_baseline.rds"))
-saveRDS(terminal_scores, file.path(dir_scoring, "annual_risk_scores_terminal_V6_anomaly_30yr_baseline.rds"))
+# 1. Save the baseline statistics (Mean & SD) to CSV for discussion
+baseline_stats <- annual_risk_scores |>
+  dplyr::distinct(species, scenario_id, source, baseline_mean, baseline_sd) |>
+  dplyr::arrange(species, source)
+
+file_baseline_stats <- file.path(dir_scoring, "baseline_statistics.csv")
+write_csv(baseline_stats, file_baseline_stats)
+message("Baseline statistics (Mean & SD) saved to: ", file_baseline_stats)
+
+# 2. Drop the baseline columns before saving the final RDS files so it matches your normal pipeline
+annual_risk_scores_clean <- annual_risk_scores |>
+  dplyr::select(-baseline_mean, -baseline_sd)
+
+terminal_scores_clean <- terminal_scores |>
+  dplyr::select(-baseline_mean, -baseline_sd)
+
+# 3. Save the main scoring outputs
+saveRDS(annual_risk_scores_clean, file.path(dir_scoring, "annual_risk_scores_hindcast_V6_anomaly_30yr_baseline.rds"))
+saveRDS(terminal_scores_clean, file.path(dir_scoring, "annual_risk_scores_terminal_V6_anomaly_30yr_baseline.rds"))
 
 message("Risk scores saved to: ", dir_scoring)
 
@@ -124,10 +134,10 @@ message("Risk scores saved to: ", dir_scoring)
 message("Generating score distribution skew check...")
 
 # Reorder factor so Survey_10_90 is the first facet
-annual_risk_scores <- annual_risk_scores |>
+annual_risk_scores_clean <- annual_risk_scores_clean |>
   mutate(source = forcats::fct_relevel(source, "Survey_10_90"))
 
-p_skew <- ggplot(annual_risk_scores, aes(x = as.factor(annual_risk_score))) +
+p_skew <- ggplot(annual_risk_scores_clean, aes(x = as.factor(annual_risk_score))) +
   geom_bar(aes(fill = source == "Survey_10_90", y = after_stat(prop), group = 1), 
            color = "black", alpha = 0.8) +
   
