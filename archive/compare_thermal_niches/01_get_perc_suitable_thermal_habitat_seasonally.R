@@ -209,3 +209,54 @@ message("Time series span: ", min(indicator_results_df$year), " - ", max(indicat
 out_file <- file.path(dir_output, "perc_suitable_thermal_habitat_seasonally.rds")
 saveRDS(indicator_results_df, out_file)
 message("Results saved to: ", out_file)
+
+# -------------------------------------------------------------------
+# 7. Visualize Time-Series Comparisons
+# -------------------------------------------------------------------
+
+message("\n--- Generating comparison time-series plots ---")
+
+dir_plots <- here::here("archive/compare_thermal_niches/images")
+if (!dir.exists(dir_plots)) dir.create(dir_plots, recursive = TRUE)
+
+# Get list of unique species in the results
+species_list_results <- unique(indicator_results_df$species)
+
+purrr::walk(species_list_results, function(sp) {
+  
+  # Filter data for the specific species
+  df_sp <- indicator_results_df |>
+    dplyr::filter(species == sp, !is.na(perc_within_hist))
+  
+  if (nrow(df_sp) == 0) return(NULL)
+  
+  p <- ggplot(df_sp, aes(x = year, y = perc_within_hist, color = source, group = scenario_id)) +
+    # Make the Survey 10-90th line thicker to stand out against the literature scenarios
+    geom_line(aes(linewidth = source == "Survey_10_90"), alpha = 0.8) +
+    scale_linewidth_manual(values = c("TRUE" = 1.2, "FALSE" = 0.5), guide = "none") +
+    
+    facet_wrap(~ season, ncol = 1) +
+    
+    labs(
+      title = paste0(tools::toTitleCase(tolower(sp)), " - Thermal Habitat Suitability"),
+      subtitle = "Sensitivity of suitability index to candidate thermal niche thresholds",
+      x = "Year",
+      y = "Percent of Historic Habitat Suitable (%)",
+      color = "Thermal Niche Source"
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      plot.title = element_text(face = "bold"),
+      legend.position = "bottom",
+      legend.title = element_text(face = "bold"),
+      strip.text = element_text(face = "bold", size = 11)
+    )
+  
+  # Save the plot
+  safe_name <- stringr::str_replace_all(sp, "[^A-Za-z0-9]+", "_")
+  file_name <- file.path(dir_plots, paste0(safe_name, "_suitability_comparison.png"))
+  
+  ggsave(file_name, plot = p, width = 10, height = 7, dpi = 300, bg = "white")
+})
+
+message("All comparison time-series plots saved to: ", dir_plots)
