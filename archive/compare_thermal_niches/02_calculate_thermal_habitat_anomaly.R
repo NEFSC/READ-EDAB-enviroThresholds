@@ -102,13 +102,15 @@ message("Saved combined anomaly data to: ", data_out_file)
 species_list <- unique(annual_anomalies$species)
 message("Generating individual anomaly comparison plots for ", length(species_list), " species...")
 
-# Determine global y-axis limits to keep plots consistent
-max_anom <- max(abs(annual_anomalies$annual_anomaly), na.rm = TRUE)
-y_limits <- c(-max_anom * 1.1, max_anom * 1.1)
-
 walk(species_list, function(sp) {
   
   df_annual <- annual_anomalies |> filter(species == sp) |> arrange(year)
+  
+  # Determine SPECIES-SPECIFIC y-axis limits to keep 0 centered
+  max_anom <- max(abs(df_annual$annual_anomaly), na.rm = TRUE)
+  # Fallback just in case max_anom is 0 or NA
+  if (is.na(max_anom) || max_anom == 0) max_anom <- 1 
+  y_limits <- c(-max_anom * 1.1, max_anom * 1.1)
   
   # Ensure Survey_10_90 is plotted on top by making it a factor
   df_annual <- df_annual |>
@@ -123,6 +125,7 @@ walk(species_list, function(sp) {
     scale_linewidth_manual(values = c("TRUE" = 1.2, "FALSE" = 0.5), guide = "none") +
     scale_alpha_manual(values = c("TRUE" = 1.0, "FALSE" = 0.6), guide = "none") +
     
+    # Now this uses the dynamic, species-specific limits!
     scale_y_continuous(limits = y_limits) +
     scale_x_continuous(breaks = seq(min(df_annual$year, na.rm=TRUE), max(df_annual$year, na.rm=TRUE), by = 10)) +
     
