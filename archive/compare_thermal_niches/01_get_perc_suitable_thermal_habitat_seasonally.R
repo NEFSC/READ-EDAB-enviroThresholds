@@ -1,13 +1,13 @@
 # archive/compare_thermal_niches/01_get_perc_suitable_thermal_habitat_seasonally.R
 #
-# Purpose: Calculate the `perc_within_hist` seasonal indicators for NEFMC-managed species
+# Purpose: Calculate the `perc_within_hist` seasonal indicators for ALL managed species
 #          ACROSS MULTIPLE THERMAL NICHE SCENARIOS (Survey vs Literature).
 #          This script takes the seasonal historic habitat envelopes (V6) and calculates 
 #          the percentage of available "habitat-days" within that footprint that fell 
 #          within the candidate thermal limits.
 #
-# Output:
-#   RDS : archive/compare_thermal_niches/indicators/perc_suitable_thermal_habitat_seasonally.rds
+# Outputs: 1. archive/compare_thermal_niches/indicators/perc_suitable_thermal_habitat_seasonally.rds
+#          2. data/indicators/perc_suitable_thermal_habitat_seasonally.rds (Clean 10-90th only)
 #
 # Dependencies: tidyverse, sf, terra, exactextractr, here
 
@@ -26,15 +26,18 @@ library(here)
 # 1. Output directories
 # -------------------------------------------------------------------
 
-dir_output <- here::here("archive/compare_thermal_niches/indicators")
-if (!dir.exists(dir_output)) dir.create(dir_output, recursive = TRUE)
+dir_output_archive <- here::here("archive/compare_thermal_niches/indicators")
+dir_output_main    <- here::here("data/indicators")
+
+if (!dir.exists(dir_output_archive)) dir.create(dir_output_archive, recursive = TRUE)
+if (!dir.exists(dir_output_main))    dir.create(dir_output_main, recursive = TRUE)
 
 
 # -------------------------------------------------------------------
 # 2. Load Inputs
 # -------------------------------------------------------------------
 
-# Load V6 Seasonal Historic Habitat
+# Load V6 Seasonal Historic Habitat (now contains all managed species)
 habitat_v6_seasonal <- readRDS(here::here("data/historic_habitat_V6_seasonal/historic_habitat_V6_seasonal.rds"))
 
 # Load the comprehensive candidate thermal niches
@@ -193,7 +196,7 @@ for (f in nc_files_recent) {
 
 
 # -------------------------------------------------------------------
-# 6. Finalize and Save
+# 6. Finalize and Save Dual Outputs
 # -------------------------------------------------------------------
 
 # Concatenate and bind vertically
@@ -206,9 +209,23 @@ message("\nSuccessfully calculated seasonal historic thermal habitat percentage 
         length(unique(indicator_results_df$species)), " species.")
 message("Time series span: ", min(indicator_results_df$year), " - ", max(indicator_results_df$year))
 
-out_file <- file.path(dir_output, "perc_suitable_thermal_habitat_seasonally.rds")
-saveRDS(indicator_results_df, out_file)
-message("Results saved to: ", out_file)
+
+# --- Output A: Full Archive Comparison Dataset ---
+out_file_archive <- file.path(dir_output_archive, "perc_suitable_thermal_habitat_seasonally.rds")
+saveRDS(indicator_results_df, out_file_archive)
+message("Saved full comparison dataset to: ", out_file_archive)
+
+
+# --- Output B: Clean Main Production Dataset (Survey 10-90th ONLY) ---
+indicator_results_clean <- indicator_results_df |>
+  dplyr::filter(source == "Survey_10_90") |>
+  dplyr::select(species, year, season, habitat_used, perc_within_hist, tmin_used, tmax_used) |>
+  dplyr::arrange(species, year, season)
+
+out_file_main <- file.path(dir_output_main, "perc_suitable_thermal_habitat_seasonally.rds")
+saveRDS(indicator_results_clean, out_file_main)
+message("Saved clean preferred dataset (Survey 10-90th) to: ", out_file_main)
+
 
 # -------------------------------------------------------------------
 # 7. Visualize Time-Series Comparisons
