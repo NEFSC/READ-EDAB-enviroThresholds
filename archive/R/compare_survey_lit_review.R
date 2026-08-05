@@ -1,10 +1,10 @@
 # archive/R/compare_survey_lit_review.R
 #
 # Purpose: Compare thermal niches generated from survey data (middle 80th percentile)
-#          to those from the literature review. Filtered to only evaluate Adult
-#          literature values. Generates histograms of raw observed bottom 
-#          temperatures to visually evaluate the impact of using empirical 
-#          percentiles vs. the spread of available literature values.
+#          to those from the literature review FOR ALL MANAGED SPECIES (NEFMC, MAFMC, JOINT, ASMFC).
+#          Filtered to only evaluate Adult literature values. Generates histograms 
+#          of raw observed bottom temperatures to visually evaluate the impact of 
+#          using empirical percentiles vs. the spread of available literature values.
 
 library(tidyverse)
 library(here)
@@ -16,28 +16,71 @@ library(here)
 dir_plots <- here::here("images/thermal_niche_explorations")
 if (!dir.exists(dir_plots)) dir.create(dir_plots, recursive = TRUE)
 
-# -------------------------------------------------------------------
-# 2. Load and prep thermal niche data
-# -------------------------------------------------------------------
 
-# Call in data from survey
-survey <- readRDS(here::here('data-raw', 'survey_thermal_niche.rds')) |> 
-  dplyr::rename(common.name = COMNAME) |> 
-  dplyr::mutate(
-    tmin = as.numeric(tmin),
-    tmax = as.numeric(tmax)
-  )
+# -------------------------------------------------------------------
+# 2. Load Raw Survey Data & Define Managed Species
+# -------------------------------------------------------------------
+message("Loading raw survey data and defining managed species list...")
 
-# Call in data from lit review
+survdat_raw <- readRDS("~/EDAB_Datasets/Workflows/surveyNoLengthsData.rds")$survdat
+inshore_raw <- readRDS("~/EDAB_Datasets/Workflows/massInshoreData.rds")$survdat
+
+survdat <- dplyr::full_join(survdat_raw, inshore_raw, by = dplyr::join_by(
+  CRUISE6, STATION, STRATUM, TOW, YEAR, SEASON, LAT, LON, DEPTH, 
+  SURFTEMP, BOTTEMP, SVSPP, CATCHSEX, ABUNDANCE, BIOMASS
+))
+
+species_raw <- readRDS("~/EDAB_Datasets/Workflows/SOE_species_list_24.rds") |>
+  dplyr::mutate(Fed.Managed = ifelse(COMNAME == "WINDOWPANE", "NEFMC", Fed.Managed))
+
+asmfc_species <- c(
+  "STRIPED BASS", "ATLANTIC MENHADEN", "TAUTOG", "WEAKFISH",
+  "ATLANTIC CROAKER", "SPOT", "AMERICAN EEL", "ATLANTIC STURGEON",
+  "HORSESHOE CRAB", "AMERICAN SHAD", "ALEWIFE", "BLUEBACK HERRING"
+)
+
+managed_species <- species_raw |>
+  dplyr::mutate(State.Managed = ifelse(COMNAME %in% asmfc_species, "ASMFC", NA_character_)) |>
+  dplyr::filter(Fed.Managed %in% c("NEFMC", "MAFMC", "JOINT") | State.Managed == "ASMFC") |>
+  dplyr::distinct(SVSPP, .keep_all = TRUE) |>
+  dplyr::select(SVSPP, COMNAME)
+
+# Filter raw data for positive catches with valid bottom temperatures
+survdat_mgmt <- survdat |>
+  dplyr::inner_join(managed_species, by = "SVSPP") |>
+  dplyr::filter(ABUNDANCE > 0, !is.na(BOTTEMP)) |>
+  dplyr::mutate(BOTTEMP = as.numeric(BOTTEMP))
+
+
+# -------------------------------------------------------------------
+# 3. Calculate Empirical Thermal Niches (Survey 10-90th)
+# -------------------------------------------------------------------
+message("Calculating Survey 10-90th percentiles for all managed species...")
+
+survey <- survdat_mgmt |>
+  dplyr::group_by(COMNAME) |>
+  dplyr::summarize(
+    tmin = quantile(BOTTEMP, probs = 0.10, na.rm = TRUE),
+    tmax = quantile(BOTTEMP, probs = 0.90, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  dplyr::rename(common.name = COMNAME)
+
+
+# -------------------------------------------------------------------
+# 4. Load and prep Literature Data
+# -------------------------------------------------------------------
+message("Loading Literature data...")
+
 lit <- read_csv(here::here('data', 'MS_screening_analysis_cleaned.csv'), show_col_types = FALSE) |> 
   dplyr::mutate(
     common.name = stringr::str_to_upper(common.name),
-    # Ensure all temperature columns are numeric
+    # Ensure all temperature columns are numeric, suppressing coercion warnings for text like "NA"
     dplyr::across(
       c(opt.temp.min, opt.temp.mean, opt.temp.max,
         stress.temp.min, stress.temp.max,
         lethal.temp.min, lethal.temp.max),
-      ~ as.numeric(.x)
+      ~ suppressWarnings(as.numeric(.x))
     )
   )
 
@@ -47,8 +90,9 @@ lit_adults <- lit |>
 
 
 # -------------------------------------------------------------------
-# 3. Create Comparison Table (Survey vs. Adult Literature)
+# 5. Create Comparison Table (Survey vs. Adult Literature)
 # -------------------------------------------------------------------
+message("Building comparison table...")
 
 comparison_tbl <- survey |> 
   dplyr::inner_join(
@@ -91,34 +135,7 @@ write_csv(
 
 
 # -------------------------------------------------------------------
-# 4. Load Raw Survey Data for Visualization
-# -------------------------------------------------------------------
-
-message("Loading raw survey data for temperature histograms...")
-
-survdat_raw <- readRDS("~/EDAB_Datasets/Workflows/surveyNoLengthsData.rds")$survdat
-inshore_raw <- readRDS("~/EDAB_Datasets/Workflows/massInshoreData.rds")$survdat
-
-survdat <- dplyr::full_join(survdat_raw, inshore_raw, by = dplyr::join_by(
-  CRUISE6, STATION, STRATUM, TOW, YEAR, SEASON, LAT, LON, DEPTH, 
-  SURFTEMP, BOTTEMP, SVSPP, CATCHSEX, ABUNDANCE, BIOMASS
-))
-
-# Get species mapping to link SVSPP to COMNAME
-species_list <- readRDS("~/EDAB_Datasets/Workflows/SOE_species_list_24.rds") |>
-  dplyr::mutate(Fed.Managed = ifelse(COMNAME == "WINDOWPANE", "NEFMC", Fed.Managed)) |>
-  dplyr::filter(!is.na(Fed.Managed), Fed.Managed == "NEFMC") |>
-  dplyr::distinct(SVSPP, .keep_all = TRUE) |>
-  dplyr::select(SVSPP, COMNAME)
-
-# Filter raw data for positive catches with valid bottom temperatures
-survdat_mgmt <- survdat |>
-  dplyr::inner_join(species_list, by = "SVSPP") |>
-  dplyr::filter(ABUNDANCE > 0, !is.na(BOTTEMP))
-
-
-# -------------------------------------------------------------------
-# 5. Generate Histograms
+# 6. Generate Histograms
 # -------------------------------------------------------------------
 
 message("Generating histograms for ", length(unique(comparison_tbl$common.name)), " species...")
@@ -127,8 +144,7 @@ purrr::walk(unique(comparison_tbl$common.name), function(sp) {
   
   # Filter raw data for the specific species
   df_sp <- survdat_mgmt |> 
-    dplyr::filter(COMNAME == sp) |> 
-    dplyr::mutate(BOTTEMP = as.numeric(BOTTEMP))
+    dplyr::filter(COMNAME == sp) 
   
   if(nrow(df_sp) == 0) return(NULL)
   
@@ -167,7 +183,7 @@ purrr::walk(unique(comparison_tbl$common.name), function(sp) {
     labs(
       title = paste0(tools::toTitleCase(tolower(sp)), " - Observed Bottom Temperatures"),
       subtitle = paste0("Total positive tows: ", nrow(df_sp), "\nLiterature estimates plotted: ", nrow(sp_limits)),
-      x = "Bottom Temperature (°C)",
+      x = "Bottom Temperature (\u00B0C)",
       y = "Frequency (Number of Tows)"
     ) +
     theme_minimal(base_size = 12) +
@@ -187,10 +203,11 @@ message("Histograms saved to: ", dir_plots)
 
 
 # -------------------------------------------------------------------
-# 6. Create Final Thermal Niche Table for the Pipeline
+# 7. Create Final Thermal Niche Table for the Pipeline
 # -------------------------------------------------------------------
+message("Saving final thermal niche values...")
 
-# Exclusively use survey 10-90th percentiles for all species
+# Exclusively use survey 10-90th percentiles for all managed species
 final_thermal_niche <- survey |> 
   dplyr::mutate(source = "Survey") |> 
   dplyr::select(
@@ -213,3 +230,4 @@ saveRDS(
   here::here("data-raw", "thermal_niche.rds")
 )
 
+message("Script complete.")
