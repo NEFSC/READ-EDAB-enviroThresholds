@@ -3,11 +3,9 @@
 # Purpose: Generate Risk Policy scores (-4 to +4) from the V6 thermal 
 #          suitability indicator ACROSS MULTIPLE THERMAL NICHE SCENARIOS.
 #
-# Output:
-#   RDS   : archive/compare_thermal_niches/data/scoring/annual_risk_scores_hindcast...
-#   RDS   : archive/compare_thermal_niches/data/scoring/annual_risk_scores_terminal...
-#   CSV   : archive/compare_thermal_niches/data/scoring/baseline_statistics.csv
-#   Plots : archive/compare_thermal_niches/images/scoring/score_distribution_check.png
+# Outputs: 
+#   Archive (Comparison) : data/scoring & images/scoring (All Scenarios & Baseline Stats)
+#   Main (Production)    : data/scoring & images/scoring (Survey 10-90th ONLY)
 #
 # Dependencies: tidyverse, here
 
@@ -22,18 +20,24 @@ library(here)
 baseline_length <- 30 
 
 # -------------------------------------------------------------------
-# 1. Output directories
+# 1. Output directories (Dual Routing)
 # -------------------------------------------------------------------
 
-dir_scoring <- here::here("archive/compare_thermal_niches/data/scoring")
-dir_images  <- here::here("archive/compare_thermal_niches/images/scoring")
+# Archive Directories
+dir_scoring_archive <- here::here("archive/compare_thermal_niches/data/scoring")
+dir_images_archive  <- here::here("archive/compare_thermal_niches/images/scoring")
+if (!dir.exists(dir_scoring_archive)) dir.create(dir_scoring_archive, recursive = TRUE)
+if (!dir.exists(dir_images_archive))  dir.create(dir_images_archive, recursive = TRUE)
 
-if (!dir.exists(dir_scoring)) dir.create(dir_scoring, recursive = TRUE)
-if (!dir.exists(dir_images))  dir.create(dir_images, recursive = TRUE)
+# Main Production Directories
+dir_scoring_main <- here::here("data/scoring")
+dir_images_main  <- here::here("images/scoring")
+if (!dir.exists(dir_scoring_main)) dir.create(dir_scoring_main, recursive = TRUE)
+if (!dir.exists(dir_images_main))  dir.create(dir_images_main, recursive = TRUE)
 
 
 # -------------------------------------------------------------------
-# 2. Load Anomaly Indicator Data
+# 2. Load Anomaly Indicator Data (From Archive)
 # -------------------------------------------------------------------
 
 indicator_file <- here::here("archive/compare_thermal_niches/indicators/combined_spring_fall_anomaly.csv")
@@ -101,51 +105,56 @@ terminal_scores <- annual_risk_scores |>
 
 
 # -------------------------------------------------------------------
-# 5. Save Outputs
+# 5. Save Dual Outputs (Data)
 # -------------------------------------------------------------------
 
-# 1. Save the baseline statistics (Mean & SD) to CSV for discussion
+# --- Output A: Archive (All Scenarios & Baseline Stats) ---
 baseline_stats <- annual_risk_scores |>
   dplyr::distinct(species, scenario_id, source, baseline_mean, baseline_sd) |>
   dplyr::arrange(species, source)
 
-file_baseline_stats <- file.path(dir_scoring, "baseline_statistics.csv")
+file_baseline_stats <- file.path(dir_scoring_archive, "baseline_statistics.csv")
 write_csv(baseline_stats, file_baseline_stats)
-message("Baseline statistics (Mean & SD) saved to: ", file_baseline_stats)
+message("Saved baseline statistics to archive.")
 
-# 2. Drop the baseline columns before saving the final RDS files so it matches your normal pipeline
-annual_risk_scores_clean <- annual_risk_scores |>
-  dplyr::select(-baseline_mean, -baseline_sd)
+annual_risk_scores_clean <- annual_risk_scores |> dplyr::select(-baseline_mean, -baseline_sd)
+terminal_scores_clean    <- terminal_scores |> dplyr::select(-baseline_mean, -baseline_sd)
 
-terminal_scores_clean <- terminal_scores |>
-  dplyr::select(-baseline_mean, -baseline_sd)
+saveRDS(annual_risk_scores_clean, file.path(dir_scoring_archive, "annual_risk_scores_hindcast_V6_anomaly_30yr_baseline.rds"))
+saveRDS(terminal_scores_clean, file.path(dir_scoring_archive, "annual_risk_scores_terminal_V6_anomaly_30yr_baseline.rds"))
+message("Saved full comparison risk scores to archive.")
 
-# 3. Save the main scoring outputs
-saveRDS(annual_risk_scores_clean, file.path(dir_scoring, "annual_risk_scores_hindcast_V6_anomaly_30yr_baseline.rds"))
-saveRDS(terminal_scores_clean, file.path(dir_scoring, "annual_risk_scores_terminal_V6_anomaly_30yr_baseline.rds"))
 
-message("Risk scores saved to: ", dir_scoring)
+# --- Output B: Main Production (Survey 10-90th ONLY) ---
+# Strip scenario columns so it identically matches the standard pipeline schema
+annual_risk_scores_main <- annual_risk_scores_clean |>
+  dplyr::filter(source == "Survey_10_90") |>
+  dplyr::select(species, year, annual_anomaly, z_score, annual_risk_score)
+
+terminal_scores_main <- terminal_scores_clean |>
+  dplyr::filter(source == "Survey_10_90") |>
+  dplyr::select(species, year, annual_anomaly, z_score, annual_risk_score)
+
+saveRDS(annual_risk_scores_main, file.path(dir_scoring_main, "annual_risk_scores_hindcast_V6_anomaly_30yr_baseline.rds"))
+saveRDS(terminal_scores_main, file.path(dir_scoring_main, "annual_risk_scores_terminal_V6_anomaly_30yr_baseline.rds"))
+message("Saved clean production risk scores to main data directory.")
 
 
 # -------------------------------------------------------------------
-# 6. Skew Check Visualization (Faceted by Niche Source)
+# 6. Generate Archive Skew Check (Faceted by Niche Source)
 # -------------------------------------------------------------------
 
-message("Generating score distribution skew check...")
+message("\nGenerating ARCHIVE score distribution skew check...")
 
-# Reorder factor so Survey_10_90 is the first facet
 annual_risk_scores_clean <- annual_risk_scores_clean |>
   mutate(source = forcats::fct_relevel(source, "Survey_10_90"))
 
-p_skew <- ggplot(annual_risk_scores_clean, aes(x = as.factor(annual_risk_score))) +
+p_skew_archive <- ggplot(annual_risk_scores_clean, aes(x = as.factor(annual_risk_score))) +
   geom_bar(aes(fill = source == "Survey_10_90", y = after_stat(prop), group = 1), 
            color = "black", alpha = 0.8) +
-  
   scale_fill_manual(values = c("TRUE" = "darkcyan", "FALSE" = "grey50"), guide = "none") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.15))) +
-  
   facet_wrap(~source, scales = "free_y") +
-  
   labs(
     title = paste0("Thermal Anomaly Risk Scores (V6 - Fixed ", baseline_length, "-Year Baseline)"),
     subtitle = "Comparing score distributions across all candidate thermal niches.",
@@ -154,14 +163,39 @@ p_skew <- ggplot(annual_risk_scores_clean, aes(x = as.factor(annual_risk_score))
     caption = "Negative scores = Less Risk Averse (Favorable)\nPositive scores = More Risk Averse (Stressful)"
   ) +
   theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    plot.title = element_text(face = "bold"),
-    strip.text = element_text(face = "bold", size = 10),
-    panel.border = element_rect(color = "grey80", fill = NA)
-  )
+  theme(panel.grid.major.x = element_blank(), plot.title = element_text(face = "bold"), 
+        strip.text = element_text(face = "bold", size = 10), panel.border = element_rect(color = "grey80", fill = NA))
 
-file_skew_plot <- file.path(dir_images, "score_distribution_check_V6_anomaly_30yr_baseline.png")
-ggsave(file_skew_plot, plot = p_skew, width = 12, height = 8, dpi = 300, bg = "white")
+ggsave(file.path(dir_images_archive, "score_distribution_check_V6_anomaly_30yr_baseline.png"), 
+       plot = p_skew_archive, width = 12, height = 8, dpi = 300, bg = "white")
 
-message("Skew check visualization saved to: ", file_skew_plot)
+
+# -------------------------------------------------------------------
+# 7. Generate Main Production Skew Check (Survey 10-90th ONLY)
+# -------------------------------------------------------------------
+
+message("Generating MAIN production score distribution skew check...")
+
+p_skew_main <- ggplot(annual_risk_scores_main, aes(x = as.factor(annual_risk_score))) +
+  geom_bar(fill = "darkcyan", color = "black", alpha = 0.8) +
+  geom_text(
+    stat = "count", 
+    aes(label = scales::percent(after_stat(count) / sum(after_stat(count)), accuracy = 1)),
+    vjust = -0.5, 
+    size = 3.5
+  ) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
+  labs(
+    title = paste0("Thermal Anomaly Risk Scores (V6 - Fixed ", baseline_length, "-Year Baseline)"),
+    subtitle = "Scores derived from the combined Spring & Fall habitat anomaly (Survey 10-90th).",
+    x = "Annual Risk Score (-4 to +4)",
+    y = "Frequency (Number of Species-Years)",
+    caption = "Negative scores = Less Risk Averse (Favorable Habitat)\nPositive scores = More Risk Averse (Stressful Habitat)"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.major.x = element_blank(), plot.title = element_text(face = "bold"))
+
+ggsave(file.path(dir_images_main, "score_distribution_check_V6_anomaly_30yr_baseline.png"), 
+       plot = p_skew_main, width = 8, height = 5, dpi = 300, bg = "white")
+
+message("\nScript complete. Dual outputs routed successfully.")
