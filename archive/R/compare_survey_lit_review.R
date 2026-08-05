@@ -22,8 +22,8 @@ if (!dir.exists(dir_plots)) dir.create(dir_plots, recursive = TRUE)
 # -------------------------------------------------------------------
 message("Loading raw survey data and defining managed species list...")
 
-survdat_raw <- readRDS("~/EDAB_Datasets/Workflows/surveyNoLengthsData.rds")$survdat
-inshore_raw <- readRDS("~/EDAB_Datasets/Workflows/massInshoreData.rds")$survdat
+survdat_raw <- readRDS("~/EDAB_Datasets/Workflows/delete_brandon/surveyNoLengthsData.rds")$survdat
+inshore_raw <- readRDS("~/EDAB_Datasets/Workflows/delete_brandon/massInshoreData.rds")$survdat
 
 survdat <- dplyr::full_join(survdat_raw, inshore_raw, by = dplyr::join_by(
   CRUISE6, STATION, STRATUM, TOW, YEAR, SEASON, LAT, LON, DEPTH, 
