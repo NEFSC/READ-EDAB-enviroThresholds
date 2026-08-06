@@ -1,6 +1,7 @@
-# get_historic_habitat_V6_seasonal.R
+# R/00_get_historic_habitat_V6_seasonal.R
 #
-# Purpose: Define and visualize seasonal historic habitat for NEFMC-managed species.
+# Purpose: Define and visualize seasonal historic habitat for managed species
+#          (NEFMC, MAFMC, JOINT, and ASMFC).
 #          Habitat is defined as the dissolved union of all NEFSC bottom trawl 
 #          survey strata in which the species has been observed 3 or more times 
 #          IN A SINGLE YEAR, processed separately for SPRING and FALL.
@@ -39,10 +40,10 @@ if (!dir.exists(dir_images)) dir.create(dir_images, recursive = TRUE)
 # 2. Load survey data
 # -------------------------------------------------------------------
 
-survdat <- readRDS("~/EDAB_Datasets/Workflows/surveyNoLengthsData.rds")
+survdat <- readRDS("~/EDAB_Datasets/Workflows/delete_brandon/surveyNoLengthsData.rds")
 survdat <- survdat$survdat
 
-inshore <- readRDS("~/EDAB_Datasets/Workflows/massInshoreData.rds")
+inshore <- readRDS("~/EDAB_Datasets/Workflows/delete_brandon/massInshoreData.rds")
 inshore <- inshore$survdat
 
 survdat <- dplyr::full_join(survdat, inshore, by = join_by(
@@ -56,13 +57,26 @@ species <- readRDS("~/EDAB_Datasets/Workflows/SOE_species_list_24.rds")
 species <- species |>
   dplyr::mutate(Fed.Managed = ifelse(COMNAME == "WINDOWPANE", "NEFMC", Fed.Managed))
 
-ne_species <- species |>
-  filter(!is.na(Fed.Managed), Fed.Managed == "NEFMC") |>
+# Define ASMFC managed species likely found in the survey
+asmfc_species <- c(
+  "STRIPED BASS", "ATLANTIC MENHADEN", "TAUTOG", "WEAKFISH",
+  "ATLANTIC CROAKER", "SPOT", "AMERICAN EEL", "ATLANTIC STURGEON",
+  "HORSESHOE CRAB", "AMERICAN SHAD", "ALEWIFE", "BLUEBACK HERRING"
+)
+
+# Add State.Managed column and identify managed species
+managed_species <- species |>
+  dplyr::mutate(
+    State.Managed = ifelse(COMNAME %in% asmfc_species, "ASMFC", NA_character_)
+  ) |>
+  filter(
+    Fed.Managed %in% c("NEFMC", "MAFMC", "JOINT") | State.Managed == "ASMFC"
+  ) |>
   distinct(SVSPP, .keep_all = TRUE) |>
-  select(SVSPP, COMNAME, SCINAME, Fed.Managed)
+  select(SVSPP, COMNAME, SCINAME, Fed.Managed, State.Managed)
 
 survdat_mgmt <- survdat |>
-  inner_join(ne_species, by = "SVSPP") |>
+  inner_join(managed_species, by = "SVSPP") |>
   # Standardize season names just in case
   mutate(SEASON = toupper(SEASON)) |>
   filter(SEASON %in% c("SPRING", "FALL"))
@@ -217,12 +231,12 @@ get_seasonal_habitat <- function(species_name,
 
 
 # -------------------------------------------------------------------
-# 7. Build habitat polygons for all NEFMC species (Seasonal)
+# 7. Build habitat polygons for all managed species (Seasonal)
 # -------------------------------------------------------------------
 
-# Create a grid of every species and both seasons
+# Create a grid of every managed species and both seasons
 run_grid <- expand_grid(
-  species = unique(ne_species$COMNAME),
+  species = unique(managed_species$COMNAME),
   season  = c("SPRING", "FALL")
 )
 
