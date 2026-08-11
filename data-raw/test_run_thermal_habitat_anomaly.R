@@ -85,7 +85,7 @@ dat_ma_diff <- dat_ma |>
   dplyr::summarize(mean_abs_diff = mean(abs(Value - Mean_Value), na.rm = TRUE), .groups = "drop") |>
   dplyr::arrange(dplyr::desc(mean_abs_diff))
 
-top_outliers_ma <- head(dat_ma_diff$Var, 4)
+top_outliers_ma <- head(dat_ma_diff$Var, 2)
 dat_ma_bg <- dat_ma |> dplyr::filter(!Var %in% top_outliers_ma)
 dat_ma_outliers <- dat_ma |> dplyr::filter(Var %in% top_outliers_ma)
 
@@ -152,7 +152,7 @@ dat_ne_diff <- dat_ne |>
   dplyr::summarize(mean_abs_diff = mean(abs(Value - Mean_Value), na.rm = TRUE), .groups = "drop") |>
   dplyr::arrange(dplyr::desc(mean_abs_diff))
 
-top_outliers_ne <- head(dat_ne_diff$Var, 4)
+top_outliers_ne <- head(dat_ne_diff$Var, 2)
 dat_ne_bg <- dat_ne |> dplyr::filter(!Var %in% top_outliers_ne)
 dat_ne_outliers <- dat_ne |> dplyr::filter(Var %in% top_outliers_ne)
 
