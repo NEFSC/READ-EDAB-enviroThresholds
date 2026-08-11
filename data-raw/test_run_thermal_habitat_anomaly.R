@@ -74,26 +74,42 @@ p_ma_heatmap <- dat_ma |>
   ecodata::theme_ts() +
   ecodata::theme_title()
 
-# --- MA Spaghetti ---
+# --- MA Spaghetti (With Outliers) ---
 dat_ma_mean <- dat_ma |>
   dplyr::group_by(Time) |>
   dplyr::summarize(Mean_Value = mean(Value, na.rm = TRUE), .groups = "drop")
+
+dat_ma_diff <- dat_ma |>
+  dplyr::left_join(dat_ma_mean, by = "Time") |>
+  dplyr::group_by(Var) |>
+  dplyr::summarize(mean_abs_diff = mean(abs(Value - Mean_Value), na.rm = TRUE), .groups = "drop") |>
+  dplyr::arrange(dplyr::desc(mean_abs_diff))
+
+top_outliers_ma <- head(dat_ma_diff$Var, 4)
+dat_ma_bg <- dat_ma |> dplyr::filter(!Var %in% top_outliers_ma)
+dat_ma_outliers <- dat_ma |> dplyr::filter(Var %in% top_outliers_ma)
 
 p_ma_spag <- ggplot() +
   annotate("rect", fill = setup_ma$shade.fill, alpha = setup_ma$shade.alpha,
            xmin = setup_ma$x.shade.min, xmax = setup_ma$x.shade.max,
            ymin = -Inf, ymax = Inf) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", linewidth = 0.5) +
-  geom_line(data = dat_ma, aes(x = Time, y = Value, group = Var),
-            color = "grey50", alpha = 0.4, linewidth = 0.5) +
+  geom_line(data = dat_ma_bg, aes(x = Time, y = Value, group = Var),
+            color = "grey60", alpha = 0.3, linewidth = 0.5) +
+  geom_line(data = dat_ma_outliers, aes(x = Time, y = Value, color = Var),
+            alpha = 0.8, linewidth = 0.8) +
   geom_line(data = dat_ma_mean, aes(x = Time, y = Mean_Value),
             color = "black", linewidth = 1.2) +
   scale_x_continuous(breaks = round(seq(min(dat_ma$Time, na.rm=T), max(dat_ma$Time, na.rm=T), by = 5)), expand = c(0.01, 0.01)) +
+  scale_color_viridis_d(name = "Highest Deviations:", option = "viridis", end = 0.9) +
   labs(y = "Fall Habitat Anomaly (%)", x = NULL) +
   theme_bw() +
   ggtitle("Fall Thermal Habitat Anomaly (Spaghetti) \u2014 MidAtlantic Managed Species") +
   ecodata::theme_ts() +
-  ecodata::theme_title()
+  ecodata::theme_title() +
+  theme(legend.position = "bottom", 
+        legend.title = element_text(size = 9, face = "bold"),
+        legend.text = element_text(size = 8))
 
 
 # ===================================================================
@@ -125,26 +141,42 @@ p_ne_heatmap <- dat_ne |>
   ecodata::theme_ts() +
   ecodata::theme_title()
 
-# --- NE Spaghetti ---
+# --- NE Spaghetti (With Outliers) ---
 dat_ne_mean <- dat_ne |>
   dplyr::group_by(Time) |>
   dplyr::summarize(Mean_Value = mean(Value, na.rm = TRUE), .groups = "drop")
+
+dat_ne_diff <- dat_ne |>
+  dplyr::left_join(dat_ne_mean, by = "Time") |>
+  dplyr::group_by(Var) |>
+  dplyr::summarize(mean_abs_diff = mean(abs(Value - Mean_Value), na.rm = TRUE), .groups = "drop") |>
+  dplyr::arrange(dplyr::desc(mean_abs_diff))
+
+top_outliers_ne <- head(dat_ne_diff$Var, 4)
+dat_ne_bg <- dat_ne |> dplyr::filter(!Var %in% top_outliers_ne)
+dat_ne_outliers <- dat_ne |> dplyr::filter(Var %in% top_outliers_ne)
 
 p_ne_spag <- ggplot() +
   annotate("rect", fill = setup_ne$shade.fill, alpha = setup_ne$shade.alpha,
            xmin = setup_ne$x.shade.min, xmax = setup_ne$x.shade.max,
            ymin = -Inf, ymax = Inf) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black", linewidth = 0.5) +
-  geom_line(data = dat_ne, aes(x = Time, y = Value, group = Var),
-            color = "grey50", alpha = 0.4, linewidth = 0.5) +
+  geom_line(data = dat_ne_bg, aes(x = Time, y = Value, group = Var),
+            color = "grey60", alpha = 0.3, linewidth = 0.5) +
+  geom_line(data = dat_ne_outliers, aes(x = Time, y = Value, color = Var),
+            alpha = 0.8, linewidth = 0.8) +
   geom_line(data = dat_ne_mean, aes(x = Time, y = Mean_Value),
             color = "black", linewidth = 1.2) +
   scale_x_continuous(breaks = round(seq(min(dat_ne$Time, na.rm=T), max(dat_ne$Time, na.rm=T), by = 5)), expand = c(0.01, 0.01)) +
+  scale_color_viridis_d(name = "Highest Deviations:", option = "viridis", end = 0.9) +
   labs(y = "Fall Habitat Anomaly (%)", x = NULL) +
   theme_bw() +
   ggtitle("Fall Thermal Habitat Anomaly (Spaghetti) \u2014 NewEngland Managed Species") +
   ecodata::theme_ts() +
-  ecodata::theme_title()
+  ecodata::theme_title() +
+  theme(legend.position = "bottom", 
+        legend.title = element_text(size = 9, face = "bold"),
+        legend.text = element_text(size = 8))
 
 
 # -------------------------------------------------------------------
@@ -157,10 +189,10 @@ print(p_ma_spag)
 print(p_ne_heatmap)
 print(p_ne_spag)
 
-# Save the plots to share with the team
+# Save the plots
 ggsave(file.path(dir_out, "SOE_Mockup_MA_Heatmap.png"), plot = p_ma_heatmap, width = 10, height = 7, dpi = 300, bg = "white")
 ggsave(file.path(dir_out, "SOE_Mockup_MA_Spaghetti.png"), plot = p_ma_spag, width = 8, height = 5, dpi = 300, bg = "white")
 ggsave(file.path(dir_out, "SOE_Mockup_NE_Heatmap.png"), plot = p_ne_heatmap, width = 10, height = 7, dpi = 300, bg = "white")
 ggsave(file.path(dir_out, "SOE_Mockup_NE_Spaghetti.png"), plot = p_ne_spag, width = 8, height = 5, dpi = 300, bg = "white")
 
-message("\nTest complete! Plots saved to images/SOE_mockups/ for team review.")
+message("\nTest complete! Plots saved to images/SOE_mockups/ for review.")
