@@ -1,7 +1,8 @@
 # data-raw/test_thermal_habitat_anomaly.R
 # 
 # Purpose: Test the automated workflow for the thermal habitat anomaly indicator 
-#          and verify the resulting data structure visually.
+#          and verify the resulting data structure visually. Compares the 
+#          heatmap and spaghetti visualization styles.
 
 library(tidyverse)
 library(here)
@@ -13,6 +14,8 @@ library(ecodata)
 # -------------------------------------------------------------------
 
 dir.create(here::here("data-raw/temp"), showWarnings = FALSE)
+dir_out <- here::here("images/SOE_mockups")
+if (!dir.exists(dir_out)) dir.create(dir_out, recursive = TRUE)
 
 indicator_path <- here::here("data/indicators/perc_suitable_thermal_habitat_seasonally.rds")
 species_path   <- "~/EDAB_Datasets/Workflows/SOE_species_list_24.rds"
@@ -35,20 +38,20 @@ print(head(new_thermal_data))
 
 
 # -------------------------------------------------------------------
-# 2. Test Visualizations (Mocking the ecodata plot script)
+# 2. Test Visualizations (Mocking the ecodata plot scripts)
 # -------------------------------------------------------------------
-# Since this data isn't in the ecodata package yet, we will test the 
-# plotting logic directly against our `new_thermal_data` object.
-
-message("Generating test plots...")
+message("Generating test plots (Heatmap vs. Spaghetti)...")
 
 # Define test variables
-recent_years <- 2013:2022
+recent_years <- c(2013, 2022)
 
-# --- Mid-Atlantic Test Plot ---
+# ===================================================================
+# MID-ATLANTIC PLOTS
+# ===================================================================
 setup_ma <- ecodata::plot_setup(shadedRegion = recent_years, report = "MidAtlantic")
-
 dat_ma <- new_thermal_data |> dplyr::filter(EPU == "MA")
+
+# --- MA Heatmap ---
 sort_ma <- dat_ma |> 
   dplyr::group_by(Var) |> 
   dplyr::summarize(mean_anom = mean(Value, na.rm = TRUE), .groups = "drop") |> 
@@ -56,7 +59,7 @@ sort_ma <- dat_ma |>
   dplyr::pull(Var)
 dat_ma$Var <- factor(dat_ma$Var, levels = sort_ma)
 
-p_ma <- dat_ma |>
+p_ma_heatmap <- dat_ma |>
   ggplot(aes(x = Time, y = forcats::fct_rev(Var), fill = Value)) +
   geom_tile(color = "white", linewidth = 0.2) +
   annotate("rect", fill = setup_ma$shade.fill, alpha = setup_ma$shade.alpha,
@@ -67,15 +70,39 @@ p_ma <- dat_ma |>
   labs(x = NULL, y = NULL) +
   theme_bw() +
   theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1)) +
-  ggtitle("Fall Thermal Habitat Anomaly \u2014 MidAtlantic Managed Species") +
+  ggtitle("Fall Thermal Habitat Anomaly (Heatmap) \u2014 MidAtlantic Managed Species") +
+  ecodata::theme_ts() +
+  ecodata::theme_title()
+
+# --- MA Spaghetti ---
+dat_ma_mean <- dat_ma |>
+  dplyr::group_by(Time) |>
+  dplyr::summarize(Mean_Value = mean(Value, na.rm = TRUE), .groups = "drop")
+
+p_ma_spag <- ggplot() +
+  annotate("rect", fill = setup_ma$shade.fill, alpha = setup_ma$shade.alpha,
+           xmin = setup_ma$x.shade.min, xmax = setup_ma$x.shade.max,
+           ymin = -Inf, ymax = Inf) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black", linewidth = 0.5) +
+  geom_line(data = dat_ma, aes(x = Time, y = Value, group = Var),
+            color = "grey50", alpha = 0.4, linewidth = 0.5) +
+  geom_line(data = dat_ma_mean, aes(x = Time, y = Mean_Value),
+            color = "black", linewidth = 1.2) +
+  scale_x_continuous(breaks = round(seq(min(dat_ma$Time, na.rm=T), max(dat_ma$Time, na.rm=T), by = 5)), expand = c(0.01, 0.01)) +
+  labs(y = "Fall Habitat Anomaly (%)", x = NULL) +
+  theme_bw() +
+  ggtitle("Fall Thermal Habitat Anomaly (Spaghetti) \u2014 MidAtlantic Managed Species") +
   ecodata::theme_ts() +
   ecodata::theme_title()
 
 
-# --- New England Test Plot ---
+# ===================================================================
+# NEW ENGLAND PLOTS
+# ===================================================================
 setup_ne <- ecodata::plot_setup(shadedRegion = recent_years, report = "NewEngland")
-
 dat_ne <- new_thermal_data |> dplyr::filter(EPU == "NE")
+
+# --- NE Heatmap ---
 sort_ne <- dat_ne |> 
   dplyr::group_by(Var) |> 
   dplyr::summarize(mean_anom = mean(Value, na.rm = TRUE), .groups = "drop") |> 
@@ -83,7 +110,7 @@ sort_ne <- dat_ne |>
   dplyr::pull(Var)
 dat_ne$Var <- factor(dat_ne$Var, levels = sort_ne)
 
-p_ne <- dat_ne |>
+p_ne_heatmap <- dat_ne |>
   ggplot(aes(x = Time, y = forcats::fct_rev(Var), fill = Value)) +
   geom_tile(color = "white", linewidth = 0.2) +
   annotate("rect", fill = setup_ne$shade.fill, alpha = setup_ne$shade.alpha,
@@ -94,17 +121,46 @@ p_ne <- dat_ne |>
   labs(x = NULL, y = NULL) +
   theme_bw() +
   theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1)) +
-  ggtitle("Fall Thermal Habitat Anomaly \u2014 NewEngland Managed Species") +
+  ggtitle("Fall Thermal Habitat Anomaly (Heatmap) \u2014 NewEngland Managed Species") +
+  ecodata::theme_ts() +
+  ecodata::theme_title()
+
+# --- NE Spaghetti ---
+dat_ne_mean <- dat_ne |>
+  dplyr::group_by(Time) |>
+  dplyr::summarize(Mean_Value = mean(Value, na.rm = TRUE), .groups = "drop")
+
+p_ne_spag <- ggplot() +
+  annotate("rect", fill = setup_ne$shade.fill, alpha = setup_ne$shade.alpha,
+           xmin = setup_ne$x.shade.min, xmax = setup_ne$x.shade.max,
+           ymin = -Inf, ymax = Inf) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black", linewidth = 0.5) +
+  geom_line(data = dat_ne, aes(x = Time, y = Value, group = Var),
+            color = "grey50", alpha = 0.4, linewidth = 0.5) +
+  geom_line(data = dat_ne_mean, aes(x = Time, y = Mean_Value),
+            color = "black", linewidth = 1.2) +
+  scale_x_continuous(breaks = round(seq(min(dat_ne$Time, na.rm=T), max(dat_ne$Time, na.rm=T), by = 5)), expand = c(0.01, 0.01)) +
+  labs(y = "Fall Habitat Anomaly (%)", x = NULL) +
+  theme_bw() +
+  ggtitle("Fall Thermal Habitat Anomaly (Spaghetti) \u2014 NewEngland Managed Species") +
   ecodata::theme_ts() +
   ecodata::theme_title()
 
 
 # -------------------------------------------------------------------
-# 3. View Results
+# 3. View and Save Results
 # -------------------------------------------------------------------
 
 # Display the plots
-print(p_ma)
-print(p_ne)
+print(p_ma_heatmap)
+print(p_ma_spag)
+print(p_ne_heatmap)
+print(p_ne_spag)
 
-message("\nTest complete! The data structure is compatible with ecodata.")
+# Save the plots to share with the team
+ggsave(file.path(dir_out, "SOE_Mockup_MA_Heatmap.png"), plot = p_ma_heatmap, width = 10, height = 7, dpi = 300, bg = "white")
+ggsave(file.path(dir_out, "SOE_Mockup_MA_Spaghetti.png"), plot = p_ma_spag, width = 8, height = 5, dpi = 300, bg = "white")
+ggsave(file.path(dir_out, "SOE_Mockup_NE_Heatmap.png"), plot = p_ne_heatmap, width = 10, height = 7, dpi = 300, bg = "white")
+ggsave(file.path(dir_out, "SOE_Mockup_NE_Spaghetti.png"), plot = p_ne_spag, width = 8, height = 5, dpi = 300, bg = "white")
+
+message("\nTest complete! Plots saved to images/SOE_mockups/ for team review.")
