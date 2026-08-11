@@ -43,7 +43,7 @@ print(head(new_thermal_data))
 message("Generating test plots (Heatmap vs. Spaghetti)...")
 
 # Define test variables
-recent_years <- c(2013, 2022)
+recent_years <- c(2015, 2024)
 
 # ===================================================================
 # MID-ATLANTIC PLOTS
