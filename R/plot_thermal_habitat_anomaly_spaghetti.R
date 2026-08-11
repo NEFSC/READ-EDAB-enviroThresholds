@@ -2,9 +2,11 @@
 #'
 #' Plots the Fall thermal habitat anomaly data set as a line plot for the State of the Ecosystem report.
 #' Individual species are shown as faint background lines, with the aggregate average shown as a thick solid line.
+#' The species whose trends deviate the most from the average are highlighted in color.
 #'
 #' @param shadedRegion Numeric vector. Years denoting the shaded region of the plot (most recent 10)
 #' @param report Character string. Which SOE report ("MidAtlantic", "NewEngland")
+#' @param n_outliers Numeric. The number of outlier species to highlight in color (default is 4).
 #'
 #' @return ggplot object
 #'
@@ -13,7 +15,8 @@
 
 plot_thermal_habitat_anomaly_spaghetti <- function(
     shadedRegion = NULL,
-    report = "MidAtlantic"
+    report = "MidAtlantic",
+    n_outliers = 4
 ) {
   # generate plot setup list (same for all plot functions)
   setup <- ecodata::plot_setup(shadedRegion = shadedRegion, report = report)
@@ -35,6 +38,24 @@ plot_thermal_habitat_anomaly_spaghetti <- function(
   dat_mean <- dat |>
     dplyr::group_by(Time) |>
     dplyr::summarize(Mean_Value = mean(Value, na.rm = TRUE), .groups = "drop")
+  
+  # Identify the species that deviate the most from the average trend.
+  # We do this by measuring the mean absolute difference between the species 
+  # anomaly and the regional average anomaly across the time series.
+  dat_diff <- dat |>
+    dplyr::left_join(dat_mean, by = "Time") |>
+    dplyr::group_by(Var) |>
+    dplyr::summarize(
+      mean_abs_diff = mean(abs(Value - Mean_Value), na.rm = TRUE), 
+      .groups = "drop"
+    ) |>
+    dplyr::arrange(dplyr::desc(mean_abs_diff))
+  
+  top_outliers <- head(dat_diff$Var, n_outliers)
+  
+  # Split the data into background lines (grey) and outlier lines (colored)
+  dat_bg <- dat |> dplyr::filter(!Var %in% top_outliers)
+  dat_outliers <- dat |> dplyr::filter(Var %in% top_outliers)
   
   # Code for generating plot object p
   # ensure that setup list objects are called as setup$...
@@ -60,13 +81,21 @@ plot_thermal_habitat_anomaly_spaghetti <- function(
       linewidth = 0.5
     ) +
     
-    # Faint individual species lines ("spaghetti")
+    # Faint individual species lines ("spaghetti") - Non-outliers
     ggplot2::geom_line(
-      data = dat,
+      data = dat_bg,
       ggplot2::aes(x = Time, y = Value, group = Var),
-      color = "grey50", 
-      alpha = 0.4, 
+      color = "grey60", 
+      alpha = 0.3, 
       linewidth = 0.5
+    ) +
+    
+    # Colored outlier lines (thicker than background, thinner than mean)
+    ggplot2::geom_line(
+      data = dat_outliers,
+      ggplot2::aes(x = Time, y = Value, color = Var),
+      alpha = 0.8,
+      linewidth = 0.8
     ) +
     
     # Thick aggregate mean line
@@ -82,6 +111,13 @@ plot_thermal_habitat_anomaly_spaghetti <- function(
       expand = c(0.01, 0.01)
     ) +
     
+    # Apply a colorblind safe palette (end = 0.9 prevents colors from being too light/yellow)
+    ggplot2::scale_color_viridis_d(
+      name = "Highest Deviations:",
+      option = "viridis",
+      end = 0.9 
+    ) +
+    
     ggplot2::labs(
       y = "Fall Habitat Anomaly (%)",
       x = ggplot2::element_blank()
@@ -90,7 +126,12 @@ plot_thermal_habitat_anomaly_spaghetti <- function(
     # Apply standard ecodata themes and titles
     ggplot2::ggtitle(paste0("Fall Thermal Habitat Anomaly \u2014 ", report, " Managed Species")) +
     ecodata::theme_ts() +
-    ecodata::theme_title()
+    ecodata::theme_title() +
+    ggplot2::theme(
+      legend.position = "bottom",
+      legend.title = ggplot2::element_text(size = 9, face = "bold"),
+      legend.text = ggplot2::element_text(size = 8)
+    )
   
   return(p)
 }
