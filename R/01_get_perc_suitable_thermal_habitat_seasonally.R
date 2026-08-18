@@ -182,8 +182,8 @@ results_recent <- list()
 for (f in nc_files_recent) {
   year <- as.numeric(stringr::str_extract(basename(f), "\\d{4}"))
   
-  # Only process files from 2022 onward
-  if (year < 2022) next 
+  # Only process files from 2021 onward
+  if (year < 2021) next 
   
   message("  Processing year: ", year, " (", basename(f), ")")
   
