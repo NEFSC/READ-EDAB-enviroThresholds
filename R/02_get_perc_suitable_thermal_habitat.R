@@ -44,8 +44,38 @@ species_list <- sort(intersect(adequate, niche$COMNAME))
 message("Calculating fall thermal suitability for ", length(species_list), " species (",
         length(footprints) - length(adequate), " excluded for inadequate footprints).")
 
-# Footprints as terra vectors once, for cropping
-footprint_ext <- map(footprints[species_list], function(p) terra::ext(terra::vect(p)))
+# Common spatial domain: cells where the ERDDAP product has temperature.
+# GLORYS covers more nearshore area; clipping to the ERDDAP domain keeps the
+# area identical across sources so the source switch can't change S.
+erddap_first <- terra::rast(paths$bt_erddap, lyrs = 1)
+
+erddap_domain <- terra::ifel(is.na(erddap_first), NA, 1) |>
+  terra::as.polygons() |>
+  sf::st_as_sf() |>
+  sf::st_union() |>
+  sf::st_make_valid()
+
+footprints_scored <- imap(footprints[species_list], function(p, sp) {
+  clipped <- suppressWarnings(sf::st_intersection(sf::st_geometry(p), erddap_domain))
+  sf::st_sf(geometry = sf::st_union(clipped))
+})
+
+domain_coverage <- tibble(
+  species        = species_list,
+  footprint_km2  = map_dbl(footprints[species_list], ~ .x$area_km2),
+  in_domain_km2  = map_dbl(footprints_scored, ~ as.numeric(sf::st_area(.x)) / 1e6)
+) |>
+  mutate(pct_in_domain = 100 * in_domain_km2 / footprint_km2) |>
+  arrange(pct_in_domain)
+
+write_csv(domain_coverage, file.path(dirname(paths$indicator), "footprint_temperature_domain.csv"))
+message("Footprint area covered by both temperature products: median ",
+        round(median(domain_coverage$pct_in_domain)), "% (min ",
+        round(min(domain_coverage$pct_in_domain)), "%, ",
+        domain_coverage$species[1], ")")
+
+# Footprints as terra extents once, for cropping
+footprint_ext <- map(footprints_scored, function(p) terra::ext(terra::vect(p)))
 
 
 # -------------------------------------------------------------------
@@ -65,7 +95,7 @@ calc_fall_suitability <- function(bt_fall, year, bt_source) {
   map_dfr(species_list, function(sp) {
     
     th   <- niche[niche$COMNAME == sp, ]
-    poly <- footprints[[sp]]
+    poly <- footprints_scored[[sp]]
     
     bt_crop <- terra::crop(bt_fall, footprint_ext[[sp]], snap = "out")
     
