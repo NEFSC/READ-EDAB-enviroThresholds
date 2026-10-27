@@ -1,10 +1,12 @@
 # R/00_get_thermal_niches.R
 #
-# Purpose: Define each species' thermal niche from fall survey observations
+# Purpose: Define each species' thermal niche from survey observations
+#          across all seasons and the full time series
 #          (manuscript Section 2.1.2).
 #
-# Logic:   1. Positive FALL tows (NEFSC + MassDMF) with an in situ bottom
-#             temperature, one row per tow x species, pooled across years.
+# Logic:   1. Positive tows (NEFSC + MassDMF) from params$niche_seasons
+#             (NULL = all seasons) with an in situ bottom temperature,
+#             one row per tow x species, pooled across all years.
 #          2. Niche = 10th-90th percentile of bottom temperature at those tows.
 #             No literature overrides: every niche comes from the survey.
 #          3. Bootstrap: how stable are the percentiles at small sample sizes?
@@ -13,6 +15,9 @@
 #             (e.g., Atlantic salmon).
 #          5. Literature comparison table (adult, Northeast US, field studies)
 #             for Figure 1 / supplementary table. Does NOT change the niches.
+#
+#          The niche is applied to FALL bottom temperatures in 02; footprints
+#          (01) use fall tows only.
 #
 # Output:
 #   RDS : data-raw/thermal_niche.rds               (used by the pipeline)
@@ -35,18 +40,24 @@ set.seed(27)
 dir_data   <- ensure_dir(paths$niche_dir)
 dir_images <- ensure_dir(paths$images_dir, "thermal_niche")
 
+niche_season_label <- if (is.null(params$niche_seasons)) "all seasons" else
+  paste(tolower(params$niche_seasons), collapse = " + ")
+
 
 # -------------------------------------------------------------------
-# 1. Fall positive tows with bottom temperature
+# 1. Positive tows with bottom temperature (niche seasons, all years)
 # -------------------------------------------------------------------
 
-message("Loading fall survey data...")
+message("Loading survey data (niche seasons: ", niche_season_label, ")...")
 
-tows <- load_fall_positive_tows(paths, params) |>
+tows <- load_positive_tows(paths, params, seasons = params$niche_seasons) |>
   filter(!is.na(BOTTEMP))
 
+season_counts <- table(tows$SEASON)
 message("  ", nrow(tows), " positive tow-species records with bottom temperature (",
         n_distinct(tows$COMNAME), " species).")
+message("  Records by season: ",
+        paste0(names(season_counts), " ", season_counts, collapse = ", "))
 
 
 # -------------------------------------------------------------------
@@ -57,6 +68,7 @@ niche <- tows |>
   group_by(COMNAME, SCINAME, manager) |>
   summarise(
     n_tows         = n(),
+    n_tows_fall    = sum(SEASON == params$season),
     n_tows_nefsc   = sum(SURVEY == "NEFSC"),
     n_tows_massdmf = sum(SURVEY == "MassDMF"),
     n_years        = n_distinct(YEAR),
@@ -116,14 +128,14 @@ p_boot <- ggplot(boot_summary, aes(n, median_width, colour = bound)) +
   geom_vline(xintercept = params$min_positive_tows, linetype = "dotted", colour = "grey40") +
   geom_line(linewidth = 0.8) +
   geom_point() +
-  scale_colour_manual(values = c(width_tmin = "#3182bd", width_tmax = "#e6550d"),
+  scale_colour_manual(values = c(width_tmin = "#2166AC", width_tmax = "#E08214"),
                       labels = c(width_tmin = "10th percentile", width_tmax = "90th percentile"),
                       name = NULL) +
   labs(
     title = "Precision of survey-derived niche bounds vs. number of positive tows",
-    subtitle = paste0("Median across ", length(ref_species),
+    subtitle = paste0("Tows from ", niche_season_label, "; median across ", length(ref_species),
                       " reference species; dotted = minimum used"),
-    x = "Positive fall tows sampled", y = "Width of 90% bootstrap interval (°C)"
+    x = "Positive tows sampled", y = "Width of 90% bootstrap interval (\u00B0C)"
   ) +
   theme_minimal(base_size = 12) +
   theme(legend.position = "bottom")
@@ -138,7 +150,7 @@ ggsave(file.path(dir_images, "niche_bootstrap.png"), p_boot, width = 8, height =
 niche <- niche |>
   mutate(
     included = n_tows >= params$min_positive_tows,
-    source   = "Survey (fall, 10th-90th percentile)"
+    source   = paste0("Survey (", niche_season_label, ", 10th-90th percentile)")
   ) |>
   arrange(COMNAME)
 
@@ -220,13 +232,13 @@ p_hist <- ggplot(hist_df, aes(BOTTEMP)) +
   geom_vline(data = niche_df, aes(xintercept = tmax), linewidth = 0.6) +
   geom_vline(data = lit_df, aes(xintercept = temp, colour = limit),
              linetype = "dashed", linewidth = 0.4) +
-  scale_colour_manual(values = c(Optimal = "#1b9e77", Stress = "#d95f02", Lethal = "#7570b3"),
+  scale_colour_manual(values = c(Optimal = "#2166AC", Stress = "#E08214", Lethal = "black"),
                       name = "Literature limit", drop = FALSE) +
   facet_wrap(~label, scales = "free_y", ncol = 5) +
   labs(
-    title = "Fall bottom temperature at positive tows",
+    title = paste0("Bottom temperature at positive tows (", niche_season_label, ", all years)"),
     subtitle = "Solid lines: survey niche (10th-90th percentile). Dashed: literature values (adult, Northeast US, field studies).",
-    x = "Bottom temperature (°C)", y = "Positive tows"
+    x = "Bottom temperature (\u00B0C)", y = "Positive tows"
   ) +
   theme_minimal(base_size = 10) +
   theme(strip.text = element_text(face = "bold", size = 8), legend.position = "bottom")

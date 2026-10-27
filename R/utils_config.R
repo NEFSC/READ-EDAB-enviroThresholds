@@ -21,14 +21,15 @@ params <- list(
   managers = c("NEFMC", "MAFMC", "JOINT", "ASMFC"),
   
   # --- Thermal niche (2.1.2) ------------------------------------------
+  # Seasons whose positive tows define the niche. NULL = all seasons, full
+  # time series (NEFSC spring, fall, and winter/summer where present; MassDMF
+  # spring and fall). Set to "FALL" for the fall-only sensitivity run.
+  niche_seasons     = NULL,
   niche_probs       = c(0.10, 0.90),
-  # Minimum number of positive fall tows (with bottom temperature) required
-  # to estimate a niche. At 50 tows the median 90% bootstrap interval is
-  # ~1.6 deg C (10th pct) and ~2.3 deg C (90th pct); no species has 31-93 tows.
+  # Minimum number of positive tows (all niche seasons, with bottom
+  # temperature) required to estimate a niche. Confirm against the bootstrap
+  # output of 00_get_thermal_niches.R after rerunning on all seasons.
   min_positive_tows = 50,
-  niche_boot_reps      = 500,
-  niche_boot_n         = c(5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500, 750, 1000),
-  niche_boot_ref_min_n = 1000,   # references well above the largest n tested
   
   # --- Historic footprint (2.2) ---------------------------------------
   min_stations_per_stratum_year = 3,

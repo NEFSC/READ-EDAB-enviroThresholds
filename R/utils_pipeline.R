@@ -30,11 +30,14 @@ load_managed_species <- function(paths, params) {
     dplyr::select(SVSPP, COMNAME, SCINAME, manager)
 }
 
-#' Positive fall tows for managed species, one row per tow x species
+#' Positive tows for managed species, one row per tow x species
 #'
-#' Combines the NEFSC and MassDMF surveys, keeps the configured season,
-#' and collapses CATCHSEX rows so each tow counts once per species.
-load_fall_positive_tows <- function(paths, params) {
+#' Combines the NEFSC and MassDMF surveys and collapses CATCHSEX rows so each
+#' tow counts once per species.
+#'
+#' @param seasons Character vector of seasons to keep (e.g. "FALL"), or NULL
+#'   for all seasons.
+load_positive_tows <- function(paths, params, seasons = params$season) {
   
   standardize <- function(df, survey) {
     df |>
@@ -61,14 +64,21 @@ load_fall_positive_tows <- function(paths, params) {
   
   managed <- load_managed_species(paths, params)
   
-  dplyr::bind_rows(nefsc, massdmf) |>
-    dplyr::filter(SEASON == params$season, ABUNDANCE > 0,
-                  !is.na(LAT), !is.na(LON), !is.na(YEAR)) |>
+  tows <- dplyr::bind_rows(nefsc, massdmf)
+  if (!is.null(seasons)) tows <- dplyr::filter(tows, SEASON %in% toupper(seasons))
+  
+  tows |>
+    dplyr::filter(ABUNDANCE > 0, !is.na(LAT), !is.na(LON), !is.na(YEAR)) |>
     dplyr::inner_join(managed, by = "SVSPP") |>
     dplyr::mutate(tow_id = paste(SURVEY, CRUISE6, STATION, TOW, sep = "_")) |>
     # CATCHSEX splits some species into several rows per tow
     dplyr::distinct(tow_id, SVSPP, .keep_all = TRUE) |>
     dplyr::select(-ABUNDANCE)
+}
+
+#' Positive tows in the indicator season (fall); used for footprints
+load_fall_positive_tows <- function(paths, params) {
+  load_positive_tows(paths, params, seasons = params$season)
 }
 
 # -------------------------------------------------------------------
@@ -163,6 +173,15 @@ z_to_risk_score <- function(z) {
     TRUE       ~  4
   )
 }
+
+#' Colour-blind-safe diverging palette for Risk Policy scores (-4..+4)
+#' Blue = less risk averse (more suitable habitat); orange = more risk averse.
+#' Blue arm from ColorBrewer RdBu, orange arm from PuOr.
+risk_palette <- setNames(
+  c("#2166AC", "#4393C3", "#92C5DE", "#D1E5F0", "#F7F7F7",
+    "#FEE0B6", "#FDB863", "#E08214", "#B35806"),
+  -4:4
+)
 
 # -------------------------------------------------------------------
 # Misc

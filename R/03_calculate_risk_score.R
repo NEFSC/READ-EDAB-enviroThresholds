@@ -192,7 +192,7 @@ plot_suitability <- function(df, band_df) {
     geom_line(linewidth = 0.5) +
     geom_point(aes(colour = factor(risk_score, levels = -4:4)), size = 1.2) +
     scale_colour_manual(
-      values = setNames(colorRampPalette(c("#27ae60", "grey60", "#c0392b"))(9), -4:4),
+      values = replace(risk_palette, "0", "grey50"),   # near-white "0" is invisible as a point
       name = "Risk score", drop = FALSE, na.value = "black"
     ) +
     coord_cartesian(ylim = c(0, 100)) +

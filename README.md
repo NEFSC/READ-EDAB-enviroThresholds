@@ -15,7 +15,7 @@ For each species, the indicator is the percentage of its fall historic habitat f
 
 ## Methodology
 
-1.  **Thermal nice** 10th-90th percentile of bottom temperature at positive fall tows (NEFSC bottom trawl survey + MassDMF inshore survey), pooled across years. All niches come from survey observations; literature values are compared but never substituted. Species with fewer than `params$min_positive_tows` positive tows are excluded (e.g., Atlantic salmon).
+1.  **Thermal nice** 10th-90th percentile of bottom temperature at positive tows from all survey seasons and the full time series (NEFSC bottom trawl survey + MassDMF inshore survey). All niches come from survey observations; literature values are compared but never substituted. Species with fewer than `params$min_positive_tows` positive tows are excluded. The niche is applied to fall bottom temperatures; the 1982–2011 baseline is used only to set the mean and SD for scoring.
 2.  **Historic footprint** Union of NEFSC survey strata where the species was caught at 3 or more stations in a single fall survey, in any year. Species whose footprint contains less than 75% of their positive fall tows are poorly sampled by the survey and are not scored.
 3.  **Indicator** Area-weighted percentage of footprint cell-days (Sep-Nov) within the niche. Bottom temperature: du Pontavice bias-corrected ROMS/GLORYS product (ERDDAP) through 2020, daily GLORYS from 2021.
 4.  **Risk score** z-score against the 1982-2011 baseline mean and SD, binned at 0.5 SD to -4..+4. Lower suitability gives a positive (more precautionary) score.
