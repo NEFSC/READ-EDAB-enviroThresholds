@@ -50,8 +50,9 @@ params <- list(
   
   # --- Scoring (2.4) --------------------------------------------------
   baseline_years  = 1982:2011,
-  min_baseline_sd = 0,           # floor on baseline SD (percentage points); 0 = none
-  low_sd_flag     = 1,           # flag species whose baseline SD is below this
+  min_baseline_sd = 3,           # floor on baseline SD (percentage points); applies to
+  # near-ceiling species whose baseline SD is compressed
+  low_sd_flag     = 3,           # flag species whose baseline SD is below this
   
   # --- Output ---------------------------------------------------------
   make_maps = TRUE
