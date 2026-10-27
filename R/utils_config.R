@@ -29,7 +29,10 @@ params <- list(
   # Minimum number of positive tows (all niche seasons, with bottom
   # temperature) required to estimate a niche. Confirm against the bootstrap
   # output of 00_get_thermal_niches.R after rerunning on all seasons.
-  min_positive_tows = 50,
+  min_positive_tows    = 50,
+  niche_boot_reps      = 500,
+  niche_boot_n         = c(5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500, 750, 1000),
+  niche_boot_ref_min_n = 1000,   # references well above the largest n tested
   
   # --- Historic footprint (2.2) ---------------------------------------
   min_stations_per_stratum_year = 3,
