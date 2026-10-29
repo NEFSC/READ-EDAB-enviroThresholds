@@ -54,6 +54,12 @@ params <- list(
   # near-ceiling species whose baseline SD is compressed
   low_sd_flag     = 3,           # flag species whose baseline SD is below this
   
+  # --- SOE export (issue #25) -----------------------------------------
+  # Report assignment by manager (whole-footprint S; JOINT in both reports)
+  soe_reports    = list(NE = c("NEFMC", "JOINT"), MA = c("MAFMC", "JOINT")),
+  soe_mean_label = "Managed species mean",
+  soe_var_sep    = " - ",
+  
   # --- Output ---------------------------------------------------------
   make_maps = TRUE
 )
@@ -70,6 +76,7 @@ paths <- list(
   literature    = here::here("data/MS_screening_analysis_cleaned.csv"),
   bt_erddap     = here::here("data-raw/duPontavice_bottom_temp.nc"),
   bt_glorys_dir = here::here("data-raw"),
+  soe_dir      = here::here("data/soe"),
   
   # Pipeline outputs
   niche        = here::here("data-raw/thermal_niche.rds"),

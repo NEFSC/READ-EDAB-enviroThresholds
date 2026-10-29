@@ -1,0 +1,10 @@
+Run date: 2026-10-27
+Years: 1959 - 2023
+Baseline for anomalies: 1982 - 2011
+Niche seasons: all
+Minimum positive tows: 50
+Minimum % of tows in footprint: 75
+Dropped incomplete falls: 2024
+
+MA (10 species): Atlantic Mackerel, Black Sea Bass, Bluefish, Butterfish, Goosefish, Longfin Squid, Northern Shortfin Squid, Scup, Spiny Dogfish, Summer Flounder
+NE (24 species): Acadian Redfish, American Plaice, Atlantic Cod, Atlantic Herring, Barndoor Skate, Clearnose Skate, Goosefish, Haddock, Little Skate, Ocean Pout, Pollock, Red Hake, Rosette Skate, Sea Scallop, Silver Hake, Smooth Skate, Spiny Dogfish, Thorny Skate, White Hake, Windowpane, Winter Flounder, Winter Skate, Witch Flounder, Yellowtail Flounder
