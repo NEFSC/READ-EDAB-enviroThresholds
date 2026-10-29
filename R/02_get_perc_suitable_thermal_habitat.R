@@ -9,7 +9,7 @@
 #            footprint x cell area, so boundary cells count by overlap and
 #            cells are weighted by their true area, not equally.
 #          - Bottom temperature: du Pontavice ERDDAP product through
-#            params$erddap_last_year; daily GLORYS files for later years.
+#            params$erddap_last_year; GLORYS12v1 daily files (EDAB_Datasets) for later years.
 #          - Reports the number of daily layers per year; warns if a fall is
 #            incomplete or a year is missing.
 #
@@ -156,28 +156,35 @@ results_erddap <- map(erddap_yrs, function(yr) {
 
 
 # -------------------------------------------------------------------
-# 4. Daily GLORYS files (after params$erddap_last_year)
+# 4. GLORYS (after params$erddap_last_year)
 # -------------------------------------------------------------------
+# One daily file per date; dates are read from file names.
 
-glorys_files <- list.files(paths$bt_glorys_dir, pattern = "^GLORYS_daily_BottomTemp_\\d{4}\\.nc$",
-                           full.names = TRUE)
-glorys_yrs   <- as.integer(str_extract(basename(glorys_files), "\\d{4}"))
-keep         <- glorys_yrs > params$erddap_last_year
-glorys_files <- glorys_files[keep]
-glorys_yrs   <- glorys_yrs[keep]
+glorys_index <- index_glorys(paths$bt_glorys_dir, params$glorys_pattern) |>
+  mutate(year  = as.integer(format(date, "%Y")),
+         month = as.integer(format(date, "%m"))) |>
+  filter(year > params$erddap_last_year, month %in% params$season_months)
 
-message("--- GLORYS: ", if (length(glorys_yrs)) paste(range(glorys_yrs), collapse = "-") else "none", " ---")
+glorys_yrs <- sort(unique(glorys_index$year))
 
-results_glorys <- map2(glorys_files, glorys_yrs, function(f, yr) {
-  bt_fall <- fall_layers(terra::rast(f), yr)
-  if (is.null(bt_fall)) {
-    warning(basename(f), ": no fall layers found.")
-    return(NULL)
+message("--- GLORYS: ", if (length(glorys_yrs)) paste(range(glorys_yrs), collapse = "-") else "none",
+        " (", n_distinct(glorys_index$file), " files) ---")
+
+results_glorys <- map(glorys_yrs, function(yr) {
+  files   <- unique(glorys_index$file[glorys_index$year == yr])
+  bt_fall <- fall_layers(read_glorys(files, params$glorys_var), yr)
+  if (is.null(bt_fall)) return(NULL)
+  
+  # Guard against the same day appearing in two files
+  dup <- duplicated(terra::time(bt_fall))
+  if (any(dup)) {
+    warning(yr, ": ", sum(dup), " duplicated dates dropped.")
+    bt_fall <- bt_fall[[which(!dup)]]
   }
+  
   message("  ", yr)
   calc_fall_suitability(bt_fall, yr, "GLORYS")
 })
-
 
 # -------------------------------------------------------------------
 # 5. Combine, check, save

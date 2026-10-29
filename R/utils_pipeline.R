@@ -195,3 +195,27 @@ ensure_dir <- function(...) {
   if (!dir.exists(d)) dir.create(d, recursive = TRUE)
   invisible(d)
 }
+
+# -------------------------------------------------------------------
+# GLORYS bottom temperature
+# -------------------------------------------------------------------
+
+read_glorys <- function(files, var = NULL) {
+  if (is.null(var)) terra::rast(files) else terra::rast(files, subds = var)
+}
+
+#' Index of daily GLORYS files: one row per file, date from the file name
+#' (e.g. GLORYS_REANALYSIS-DAILY-BOTTOMT-19930101.nc)
+index_glorys <- function(dir, pattern = "BOTTOMT-\\d{8}\\.nc$") {
+  
+  files <- list.files(path.expand(dir), pattern = pattern, recursive = TRUE, full.names = TRUE)
+  if (length(files) == 0) stop("No GLORYS files matching '", pattern, "' found in ", dir)
+  
+  idx <- tibble::tibble(
+    file = files,
+    date = as.Date(stringr::str_extract(basename(files), "\\d{8}(?=\\.nc$)"), "%Y%m%d")
+  )
+  
+  if (anyNA(idx$date)) stop("Could not read a date from ", sum(is.na(idx$date)), " file name(s).")
+  idx
+}

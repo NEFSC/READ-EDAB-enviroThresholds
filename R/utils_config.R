@@ -8,6 +8,8 @@
 # Parameters
 # -------------------------------------------------------------------
 
+on_windows <- .Platform$OS.type == "windows"
+
 params <- list(
   
   # --- Season (2.1) ---------------------------------------------------
@@ -46,7 +48,10 @@ params <- list(
   
   # --- Bottom temperature (2.1.3, 2.3) --------------------------------
   erddap_last_year = 2020,       # du Pontavice ERDDAP product through this year;
-  # daily GLORYS files for every later year
+  # GLORYS daily files: file name pattern (date taken from the name) and the
+  # variable name if files hold more than one variable (NULL = single variable)
+  glorys_pattern   = "BOTTOMT-\\d{8}\\.nc$",
+  glorys_var       = NULL,
   
   # --- Scoring (2.4) --------------------------------------------------
   baseline_years  = 1982:2011,
@@ -75,7 +80,11 @@ paths <- list(
   strata        = "~/Maxwell.Grezlik/Rprojects/READ-PDB-StockEff/gis_files/survey_strata.shp",
   literature    = here::here("data/MS_screening_analysis_cleaned.csv"),
   bt_erddap     = here::here("data-raw/duPontavice_bottom_temp.nc"),
-  bt_glorys_dir = here::here("data-raw"),
+  bt_glorys_dir = if (on_windows) {
+    "//nefscdata/EDAB_Datasets/GLORYS/V12/SOURCE/NES_9KM_DAILY/GLOBAL_MULTIYEAR_PHY_001_030/BOTTOMT"
+  } else {
+    "~/EDAB_Datasets/GLORYS/V12/SOURCE/NES_9KM_DAILY/GLOBAL_MULTIYEAR_PHY_001_030/BOTTOMT"
+  },
   soe_dir      = here::here("data/soe"),
   
   # Pipeline outputs
