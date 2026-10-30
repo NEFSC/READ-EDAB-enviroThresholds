@@ -64,6 +64,8 @@ Time,Var,Value,EPU,Units
 2021,Atlantic Mackerel - Anomaly,-19.470605585282243,MA,percentage points
 2022,Atlantic Mackerel - Anomaly,-8.695336441280148,MA,percentage points
 2023,Atlantic Mackerel - Anomaly,5.4930342967310395,MA,percentage points
+2024,Atlantic Mackerel - Anomaly,4.706576606154044,MA,percentage points
+2025,Atlantic Mackerel - Anomaly,7.524013031193633,MA,percentage points
 1959,Atlantic Mackerel - Percent suitable,84.47577210907971,MA,percent
 1960,Atlantic Mackerel - Percent suitable,72.54399827913741,MA,percent
 1961,Atlantic Mackerel - Percent suitable,78.42149886502912,MA,percent
@@ -129,6 +131,8 @@ Time,Var,Value,EPU,Units
 2021,Atlantic Mackerel - Percent suitable,63.607317215981965,MA,percent
 2022,Atlantic Mackerel - Percent suitable,74.38258635998406,MA,percent
 2023,Atlantic Mackerel - Percent suitable,88.57095709799525,MA,percent
+2024,Atlantic Mackerel - Percent suitable,87.78449940741825,MA,percent
+2025,Atlantic Mackerel - Percent suitable,90.60193583245784,MA,percent
 1959,Black Sea Bass - Anomaly,-3.7615138959739767,MA,percentage points
 1960,Black Sea Bass - Anomaly,-1.573105690759803,MA,percentage points
 1961,Black Sea Bass - Anomaly,0.04579863427437658,MA,percentage points
@@ -194,6 +198,8 @@ Time,Var,Value,EPU,Units
 2021,Black Sea Bass - Anomaly,2.264369041627546,MA,percentage points
 2022,Black Sea Bass - Anomaly,1.5422406380247082,MA,percentage points
 2023,Black Sea Bass - Anomaly,0.3603675355623466,MA,percentage points
+2024,Black Sea Bass - Anomaly,-2.428769608358806,MA,percentage points
+2025,Black Sea Bass - Anomaly,-2.1787001914734248,MA,percentage points
 1959,Black Sea Bass - Percent suitable,89.16434163641959,MA,percent
 1960,Black Sea Bass - Percent suitable,91.35274984163377,MA,percent
 1961,Black Sea Bass - Percent suitable,92.97165416666795,MA,percent
@@ -259,6 +265,8 @@ Time,Var,Value,EPU,Units
 2021,Black Sea Bass - Percent suitable,95.19022457402112,MA,percent
 2022,Black Sea Bass - Percent suitable,94.46809617041828,MA,percent
 2023,Black Sea Bass - Percent suitable,93.28622306795592,MA,percent
+2024,Black Sea Bass - Percent suitable,90.49708592403476,MA,percent
+2025,Black Sea Bass - Percent suitable,90.74715534092014,MA,percent
 1959,Bluefish - Anomaly,-6.826516330439581,MA,percentage points
 1960,Bluefish - Anomaly,-3.978129682698743,MA,percentage points
 1961,Bluefish - Anomaly,-5.89070997063849,MA,percentage points
@@ -324,6 +332,8 @@ Time,Var,Value,EPU,Units
 2021,Bluefish - Anomaly,27.063116985129945,MA,percentage points
 2022,Bluefish - Anomaly,18.733927600750583,MA,percentage points
 2023,Bluefish - Anomaly,-0.40953436999467385,MA,percentage points
+2024,Bluefish - Anomaly,-2.0718973051407303,MA,percentage points
+2025,Bluefish - Anomaly,-1.1460136165364645,MA,percentage points
 1959,Bluefish - Percent suitable,45.275573599678495,MA,percent
 1960,Bluefish - Percent suitable,48.12396024741933,MA,percent
 1961,Bluefish - Percent suitable,46.211379959479586,MA,percent
@@ -389,6 +399,8 @@ Time,Var,Value,EPU,Units
 2021,Bluefish - Percent suitable,79.16520691524802,MA,percent
 2022,Bluefish - Percent suitable,70.83601753086866,MA,percent
 2023,Bluefish - Percent suitable,51.6925555601234,MA,percent
+2024,Bluefish - Percent suitable,50.030192624977346,MA,percent
+2025,Bluefish - Percent suitable,50.95607631358161,MA,percent
 1959,Butterfish - Anomaly,-8.653485994765234,MA,percentage points
 1960,Butterfish - Anomaly,-11.116592492820487,MA,percentage points
 1961,Butterfish - Anomaly,-11.786835851889684,MA,percentage points
@@ -454,6 +466,8 @@ Time,Var,Value,EPU,Units
 2021,Butterfish - Anomaly,21.610045767494185,MA,percentage points
 2022,Butterfish - Anomaly,22.75140835628993,MA,percentage points
 2023,Butterfish - Anomaly,19.318299764929463,MA,percentage points
+2024,Butterfish - Anomaly,-3.032936905224105,MA,percentage points
+2025,Butterfish - Anomaly,-9.670142606413776,MA,percentage points
 1959,Butterfish - Percent suitable,64.79497594732874,MA,percent
 1960,Butterfish - Percent suitable,62.33186944927348,MA,percent
 1961,Butterfish - Percent suitable,61.66162609020429,MA,percent
@@ -519,6 +533,8 @@ Time,Var,Value,EPU,Units
 2021,Butterfish - Percent suitable,95.05850770958816,MA,percent
 2022,Butterfish - Percent suitable,96.1998702983839,MA,percent
 2023,Butterfish - Percent suitable,92.76676170702343,MA,percent
+2024,Butterfish - Percent suitable,70.41552503686987,MA,percent
+2025,Butterfish - Percent suitable,63.778319335680195,MA,percent
 1959,Goosefish - Anomaly,3.4913407451427645,MA,percentage points
 1960,Goosefish - Anomaly,-8.223990009130269,MA,percentage points
 1961,Goosefish - Anomaly,-2.9234707771176147,MA,percentage points
@@ -584,6 +600,8 @@ Time,Var,Value,EPU,Units
 2021,Goosefish - Anomaly,-18.476915203173128,MA,percentage points
 2022,Goosefish - Anomaly,-12.968286425886909,MA,percentage points
 2023,Goosefish - Anomaly,2.217912723596399,MA,percentage points
+2024,Goosefish - Anomaly,5.92596905035515,MA,percentage points
+2025,Goosefish - Anomaly,5.577136777170992,MA,percentage points
 1959,Goosefish - Percent suitable,74.69112504680831,MA,percent
 1960,Goosefish - Percent suitable,62.97579429253528,MA,percent
 1961,Goosefish - Percent suitable,68.27631352454793,MA,percent
@@ -649,6 +667,8 @@ Time,Var,Value,EPU,Units
 2021,Goosefish - Percent suitable,52.72286909849242,MA,percent
 2022,Goosefish - Percent suitable,58.231497875778636,MA,percent
 2023,Goosefish - Percent suitable,73.41769702526194,MA,percent
+2024,Goosefish - Percent suitable,77.1257533520207,MA,percent
+2025,Goosefish - Percent suitable,76.77692107883654,MA,percent
 1959,Longfin Squid - Anomaly,-6.072349056180187,MA,percentage points
 1960,Longfin Squid - Anomaly,-8.16279102815352,MA,percentage points
 1961,Longfin Squid - Anomaly,-9.124849038505218,MA,percentage points
@@ -714,6 +734,8 @@ Time,Var,Value,EPU,Units
 2021,Longfin Squid - Anomaly,18.622557507041265,MA,percentage points
 2022,Longfin Squid - Anomaly,19.458664415892542,MA,percentage points
 2023,Longfin Squid - Anomaly,16.912975199851502,MA,percentage points
+2024,Longfin Squid - Anomaly,1.8571131751871803,MA,percentage points
+2025,Longfin Squid - Anomaly,-6.429084549393465,MA,percentage points
 1959,Longfin Squid - Percent suitable,70.86063008248165,MA,percent
 1960,Longfin Squid - Percent suitable,68.77018811050831,MA,percent
 1961,Longfin Squid - Percent suitable,67.80813010015662,MA,percent
@@ -779,6 +801,8 @@ Time,Var,Value,EPU,Units
 2021,Longfin Squid - Percent suitable,95.5555366457031,MA,percent
 2022,Longfin Squid - Percent suitable,96.39164355455438,MA,percent
 2023,Longfin Squid - Percent suitable,93.84595433851334,MA,percent
+2024,Longfin Squid - Percent suitable,78.79009231384902,MA,percent
+2025,Longfin Squid - Percent suitable,70.50389458926837,MA,percent
 1959,Managed species mean - Anomaly,-3.1837248840637544,MA,percentage points
 1960,Managed species mean - Anomaly,-6.7136691179323424,MA,percentage points
 1961,Managed species mean - Anomaly,-6.476164327251022,MA,percentage points
@@ -844,6 +868,8 @@ Time,Var,Value,EPU,Units
 2021,Managed species mean - Anomaly,1.6707737450328977,MA,percentage points
 2022,Managed species mean - Anomaly,4.285070884473933,MA,percentage points
 2023,Managed species mean - Anomaly,5.065203982386547,MA,percentage points
+2024,Managed species mean - Anomaly,0.22929945762917825,MA,percentage points
+2025,Managed species mean - Anomaly,-1.2733326126947062,MA,percentage points
 1959,Northern Shortfin Squid - Anomaly,-8.644599777610686,MA,percentage points
 1960,Northern Shortfin Squid - Anomaly,-14.76277121056102,MA,percentage points
 1961,Northern Shortfin Squid - Anomaly,-19.105165756774994,MA,percentage points
@@ -909,6 +935,8 @@ Time,Var,Value,EPU,Units
 2021,Northern Shortfin Squid - Anomaly,-7.1343940821038245,MA,percentage points
 2022,Northern Shortfin Squid - Anomaly,1.886578106578014,MA,percentage points
 2023,Northern Shortfin Squid - Anomaly,7.40052890843269,MA,percentage points
+2024,Northern Shortfin Squid - Anomaly,7.771452703138351,MA,percentage points
+2025,Northern Shortfin Squid - Anomaly,1.8862007833209873,MA,percentage points
 1959,Northern Shortfin Squid - Percent suitable,63.8468876223888,MA,percent
 1960,Northern Shortfin Squid - Percent suitable,57.728716189438465,MA,percent
 1961,Northern Shortfin Squid - Percent suitable,53.38632164322449,MA,percent
@@ -974,6 +1002,8 @@ Time,Var,Value,EPU,Units
 2021,Northern Shortfin Squid - Percent suitable,65.35709331789566,MA,percent
 2022,Northern Shortfin Squid - Percent suitable,74.3780655065775,MA,percent
 2023,Northern Shortfin Squid - Percent suitable,79.89201630843218,MA,percent
+2024,Northern Shortfin Squid - Percent suitable,80.26294010313784,MA,percent
+2025,Northern Shortfin Squid - Percent suitable,74.37768818332047,MA,percent
 1959,Scup - Anomaly,-7.331882629802607,MA,percentage points
 1960,Scup - Anomaly,-3.4199604465409124,MA,percentage points
 1961,Scup - Anomaly,-6.465351972982532,MA,percentage points
@@ -1039,6 +1069,8 @@ Time,Var,Value,EPU,Units
 2021,Scup - Anomaly,12.537088653126801,MA,percentage points
 2022,Scup - Anomaly,11.311190265114917,MA,percentage points
 2023,Scup - Anomaly,2.777288840122992,MA,percentage points
+2024,Scup - Anomaly,-7.407876857620792,MA,percentage points
+2025,Scup - Anomaly,-3.9497867267616016,MA,percentage points
 1959,Scup - Percent suitable,74.540031466987,MA,percent
 1960,Scup - Percent suitable,78.4519536502487,MA,percent
 1961,Scup - Percent suitable,75.40656212380708,MA,percent
@@ -1104,6 +1136,8 @@ Time,Var,Value,EPU,Units
 2021,Scup - Percent suitable,94.40900274991641,MA,percent
 2022,Scup - Percent suitable,93.18310436190453,MA,percent
 2023,Scup - Percent suitable,84.6492029369126,MA,percent
+2024,Scup - Percent suitable,74.46403723916882,MA,percent
+2025,Scup - Percent suitable,77.92212737002801,MA,percent
 1959,Spiny Dogfish - Anomaly,2.3208912456485677,MA,percentage points
 1960,Spiny Dogfish - Anomaly,-7.48146661405157,MA,percentage points
 1961,Spiny Dogfish - Anomaly,-6.136424553019538,MA,percentage points
@@ -1169,6 +1203,8 @@ Time,Var,Value,EPU,Units
 2021,Spiny Dogfish - Anomaly,-19.337322044176204,MA,percentage points
 2022,Spiny Dogfish - Anomaly,-10.172999795204163,MA,percentage points
 2023,Spiny Dogfish - Anomaly,-1.5158754156900045,MA,percentage points
+2024,Spiny Dogfish - Anomaly,-0.426592971896568,MA,percentage points
+2025,Spiny Dogfish - Anomaly,-0.32969562546225006,MA,percentage points
 1959,Spiny Dogfish - Percent suitable,80.99299933226217,MA,percent
 1960,Spiny Dogfish - Percent suitable,71.19064147256204,MA,percent
 1961,Spiny Dogfish - Percent suitable,72.53568353359407,MA,percent
@@ -1234,6 +1270,8 @@ Time,Var,Value,EPU,Units
 2021,Spiny Dogfish - Percent suitable,59.3347860424374,MA,percent
 2022,Spiny Dogfish - Percent suitable,68.49910829140944,MA,percent
 2023,Spiny Dogfish - Percent suitable,77.1562326709236,MA,percent
+2024,Spiny Dogfish - Percent suitable,78.24551511471704,MA,percent
+2025,Spiny Dogfish - Percent suitable,78.34241246115135,MA,percent
 1959,Summer Flounder - Anomaly,2.2430175455278913,MA,percentage points
 1960,Summer Flounder - Anomaly,2.116040517519693,MA,percentage points
 1961,Summer Flounder - Anomaly,1.2817899503785668,MA,percentage points
@@ -1299,6 +1337,8 @@ Time,Var,Value,EPU,Units
 2021,Summer Flounder - Anomaly,-0.9702035893553642,MA,percentage points
 2022,Summer Flounder - Anomaly,-0.9966778755401435,MA,percentage points
 2023,Summer Flounder - Anomaly,-1.9029576596762894,MA,percentage points
+2024,Summer Flounder - Anomaly,-2.600043310301942,MA,percentage points
+2025,Summer Flounder - Anomaly,-4.017253402591692,MA,percentage points
 1959,Summer Flounder - Percent suitable,99.1546163017481,MA,percent
 1960,Summer Flounder - Percent suitable,99.02763927373991,MA,percent
 1961,Summer Flounder - Percent suitable,98.19338870659878,MA,percent
@@ -1364,6 +1404,8 @@ Time,Var,Value,EPU,Units
 2021,Summer Flounder - Percent suitable,95.94139516686485,MA,percent
 2022,Summer Flounder - Percent suitable,95.91492088068007,MA,percent
 2023,Summer Flounder - Percent suitable,95.00864109654393,MA,percent
+2024,Summer Flounder - Percent suitable,94.31155544591827,MA,percent
+2025,Summer Flounder - Percent suitable,92.89434535362852,MA,percent
 1959,Acadian Redfish - Anomaly,5.186017890562255,NE,percentage points
 1960,Acadian Redfish - Anomaly,1.5180983785605804,NE,percentage points
 1961,Acadian Redfish - Anomaly,7.0865856557129945,NE,percentage points
@@ -1429,6 +1471,8 @@ Time,Var,Value,EPU,Units
 2021,Acadian Redfish - Anomaly,-26.225637816800926,NE,percentage points
 2022,Acadian Redfish - Anomaly,-17.217701192112074,NE,percentage points
 2023,Acadian Redfish - Anomaly,-5.126446190074859,NE,percentage points
+2024,Acadian Redfish - Anomaly,9.32836318650132,NE,percentage points
+2025,Acadian Redfish - Anomaly,5.3846773052861465,NE,percentage points
 1959,Acadian Redfish - Percent suitable,90.83505923910829,NE,percent
 1960,Acadian Redfish - Percent suitable,87.16713972710662,NE,percent
 1961,Acadian Redfish - Percent suitable,92.73562700425903,NE,percent
@@ -1494,6 +1538,8 @@ Time,Var,Value,EPU,Units
 2021,Acadian Redfish - Percent suitable,59.42340353174511,NE,percent
 2022,Acadian Redfish - Percent suitable,68.43134015643396,NE,percent
 2023,Acadian Redfish - Percent suitable,80.52259515847118,NE,percent
+2024,Acadian Redfish - Percent suitable,94.97740453504736,NE,percent
+2025,Acadian Redfish - Percent suitable,91.03371865383218,NE,percent
 1959,American Plaice - Anomaly,8.423515633493423,NE,percentage points
 1960,American Plaice - Anomaly,5.497108426790248,NE,percentage points
 1961,American Plaice - Anomaly,11.217851137791385,NE,percentage points
@@ -1559,6 +1605,8 @@ Time,Var,Value,EPU,Units
 2021,American Plaice - Anomaly,-23.809815576504356,NE,percentage points
 2022,American Plaice - Anomaly,-17.05062167428651,NE,percentage points
 2023,American Plaice - Anomaly,-6.3491080615351905,NE,percentage points
+2024,American Plaice - Anomaly,11.620125606458217,NE,percentage points
+2025,American Plaice - Anomaly,8.727074049071575,NE,percentage points
 1959,American Plaice - Percent suitable,72.14844797736421,NE,percent
 1960,American Plaice - Percent suitable,69.22204077066104,NE,percent
 1961,American Plaice - Percent suitable,74.94278348166218,NE,percent
@@ -1624,6 +1672,8 @@ Time,Var,Value,EPU,Units
 2021,American Plaice - Percent suitable,39.915116767366435,NE,percent
 2022,American Plaice - Percent suitable,46.67431066958428,NE,percent
 2023,American Plaice - Percent suitable,57.3758242823356,NE,percent
+2024,American Plaice - Percent suitable,75.34505795032901,NE,percent
+2025,American Plaice - Percent suitable,72.45200639294237,NE,percent
 1959,Atlantic Cod - Anomaly,3.784463595363988,NE,percentage points
 1960,Atlantic Cod - Anomaly,1.8941250310224405,NE,percentage points
 1961,Atlantic Cod - Anomaly,6.446985260610816,NE,percentage points
@@ -1686,9 +1736,11 @@ Time,Var,Value,EPU,Units
 2018,Atlantic Cod - Anomaly,-2.6761909658846434,NE,percentage points
 2019,Atlantic Cod - Anomaly,-4.129226070146984,NE,percentage points
 2020,Atlantic Cod - Anomaly,-6.384989865028075,NE,percentage points
-2021,Atlantic Cod - Anomaly,-12.656675376999281,NE,percentage points
-2022,Atlantic Cod - Anomaly,-11.593926705366925,NE,percentage points
-2023,Atlantic Cod - Anomaly,1.871279717808875,NE,percentage points
+2021,Atlantic Cod - Anomaly,-12.656675376999068,NE,percentage points
+2022,Atlantic Cod - Anomaly,-11.593926705366691,NE,percentage points
+2023,Atlantic Cod - Anomaly,1.8712797178090455,NE,percentage points
+2024,Atlantic Cod - Anomaly,3.878005815880215,NE,percentage points
+2025,Atlantic Cod - Anomaly,3.7424982112280247,NE,percentage points
 1959,Atlantic Cod - Percent suitable,79.11376975704427,NE,percent
 1960,Atlantic Cod - Percent suitable,77.22343119270272,NE,percent
 1961,Atlantic Cod - Percent suitable,81.7762914222911,NE,percent
@@ -1751,9 +1803,11 @@ Time,Var,Value,EPU,Units
 2018,Atlantic Cod - Percent suitable,72.65311519579564,NE,percent
 2019,Atlantic Cod - Percent suitable,71.2000800915333,NE,percent
 2020,Atlantic Cod - Percent suitable,68.9443162966522,NE,percent
-2021,Atlantic Cod - Percent suitable,62.672630784681,NE,percent
-2022,Atlantic Cod - Percent suitable,63.73537945631335,NE,percent
-2023,Atlantic Cod - Percent suitable,77.20058587948915,NE,percent
+2021,Atlantic Cod - Percent suitable,62.67263078468121,NE,percent
+2022,Atlantic Cod - Percent suitable,63.73537945631359,NE,percent
+2023,Atlantic Cod - Percent suitable,77.20058587948932,NE,percent
+2024,Atlantic Cod - Percent suitable,79.2073119775605,NE,percent
+2025,Atlantic Cod - Percent suitable,79.0718043729083,NE,percent
 1959,Atlantic Herring - Anomaly,7.7750428390048825,NE,percentage points
 1960,Atlantic Herring - Anomaly,3.698379748152803,NE,percentage points
 1961,Atlantic Herring - Anomaly,11.328507161276875,NE,percentage points
@@ -1819,6 +1873,8 @@ Time,Var,Value,EPU,Units
 2021,Atlantic Herring - Anomaly,-13.479024851968802,NE,percentage points
 2022,Atlantic Herring - Anomaly,-10.959594972137978,NE,percentage points
 2023,Atlantic Herring - Anomaly,3.85888909871548,NE,percentage points
+2024,Atlantic Herring - Anomaly,9.078043631245507,NE,percentage points
+2025,Atlantic Herring - Anomaly,9.220523169214147,NE,percentage points
 1959,Atlantic Herring - Percent suitable,73.90260638412225,NE,percent
 1960,Atlantic Herring - Percent suitable,69.82594329327017,NE,percent
 1961,Atlantic Herring - Percent suitable,77.45607070639424,NE,percent
@@ -1884,6 +1940,8 @@ Time,Var,Value,EPU,Units
 2021,Atlantic Herring - Percent suitable,52.648538693148566,NE,percent
 2022,Atlantic Herring - Percent suitable,55.16796857297939,NE,percent
 2023,Atlantic Herring - Percent suitable,69.98645264383285,NE,percent
+2024,Atlantic Herring - Percent suitable,75.20560717636288,NE,percent
+2025,Atlantic Herring - Percent suitable,75.34808671433152,NE,percent
 1959,Barndoor Skate - Anomaly,1.625652625712945,NE,percentage points
 1960,Barndoor Skate - Anomaly,-5.9930899467474745,NE,percentage points
 1961,Barndoor Skate - Anomaly,-4.999591541303545,NE,percentage points
@@ -1949,6 +2007,8 @@ Time,Var,Value,EPU,Units
 2021,Barndoor Skate - Anomaly,-29.39680988905677,NE,percentage points
 2022,Barndoor Skate - Anomaly,-8.151703794514077,NE,percentage points
 2023,Barndoor Skate - Anomaly,6.841553964953036,NE,percentage points
+2024,Barndoor Skate - Anomaly,4.643497334690949,NE,percentage points
+2025,Barndoor Skate - Anomaly,6.580405498416226,NE,percentage points
 1959,Barndoor Skate - Percent suitable,86.10595320867992,NE,percent
 1960,Barndoor Skate - Percent suitable,78.4872106362195,NE,percent
 1961,Barndoor Skate - Percent suitable,79.48070904166343,NE,percent
@@ -2014,6 +2074,8 @@ Time,Var,Value,EPU,Units
 2021,Barndoor Skate - Percent suitable,55.08349069391021,NE,percent
 2022,Barndoor Skate - Percent suitable,76.3285967884529,NE,percent
 2023,Barndoor Skate - Percent suitable,91.32185454792001,NE,percent
+2024,Barndoor Skate - Percent suitable,89.12379791765792,NE,percent
+2025,Barndoor Skate - Percent suitable,91.0607060813832,NE,percent
 1959,Clearnose Skate - Anomaly,1.8321872597195181,NE,percentage points
 1960,Clearnose Skate - Anomaly,1.131008754539664,NE,percentage points
 1961,Clearnose Skate - Anomaly,1.2082254379943862,NE,percentage points
@@ -2079,6 +2141,8 @@ Time,Var,Value,EPU,Units
 2021,Clearnose Skate - Anomaly,-0.963944766306966,NE,percentage points
 2022,Clearnose Skate - Anomaly,-2.1860464370734007,NE,percentage points
 2023,Clearnose Skate - Anomaly,-2.4860275168041284,NE,percentage points
+2024,Clearnose Skate - Anomaly,-2.397447674848806,NE,percentage points
+2025,Clearnose Skate - Anomaly,-0.33514490255107887,NE,percentage points
 1959,Clearnose Skate - Percent suitable,97.8067399923786,NE,percent
 1960,Clearnose Skate - Percent suitable,97.10556148719874,NE,percent
 1961,Clearnose Skate - Percent suitable,97.18277817065346,NE,percent
@@ -2144,6 +2208,8 @@ Time,Var,Value,EPU,Units
 2021,Clearnose Skate - Percent suitable,95.01060796635211,NE,percent
 2022,Clearnose Skate - Percent suitable,93.78850629558568,NE,percent
 2023,Clearnose Skate - Percent suitable,93.48852521585495,NE,percent
+2024,Clearnose Skate - Percent suitable,93.57710505781027,NE,percent
+2025,Clearnose Skate - Percent suitable,95.639407830108,NE,percent
 1959,Goosefish - Anomaly,3.4913407451427645,NE,percentage points
 1960,Goosefish - Anomaly,-8.223990009130269,NE,percentage points
 1961,Goosefish - Anomaly,-2.9234707771176147,NE,percentage points
@@ -2209,6 +2275,8 @@ Time,Var,Value,EPU,Units
 2021,Goosefish - Anomaly,-18.476915203173128,NE,percentage points
 2022,Goosefish - Anomaly,-12.968286425886909,NE,percentage points
 2023,Goosefish - Anomaly,2.217912723596399,NE,percentage points
+2024,Goosefish - Anomaly,5.92596905035515,NE,percentage points
+2025,Goosefish - Anomaly,5.577136777170992,NE,percentage points
 1959,Goosefish - Percent suitable,74.69112504680831,NE,percent
 1960,Goosefish - Percent suitable,62.97579429253528,NE,percent
 1961,Goosefish - Percent suitable,68.27631352454793,NE,percent
@@ -2274,6 +2342,8 @@ Time,Var,Value,EPU,Units
 2021,Goosefish - Percent suitable,52.72286909849242,NE,percent
 2022,Goosefish - Percent suitable,58.231497875778636,NE,percent
 2023,Goosefish - Percent suitable,73.41769702526194,NE,percent
+2024,Goosefish - Percent suitable,77.1257533520207,NE,percent
+2025,Goosefish - Percent suitable,76.77692107883654,NE,percent
 1959,Haddock - Anomaly,7.024326557487797,NE,percentage points
 1960,Haddock - Anomaly,2.13349729406616,NE,percentage points
 1961,Haddock - Anomaly,7.183833849291645,NE,percentage points
@@ -2336,9 +2406,11 @@ Time,Var,Value,EPU,Units
 2018,Haddock - Anomaly,-5.0559772791887525,NE,percentage points
 2019,Haddock - Anomaly,-10.7106294177063,NE,percentage points
 2020,Haddock - Anomaly,-7.250227526898669,NE,percentage points
-2021,Haddock - Anomaly,-15.945743607288676,NE,percentage points
-2022,Haddock - Anomaly,-14.329271816744388,NE,percentage points
-2023,Haddock - Anomaly,1.5172001064289873,NE,percentage points
+2021,Haddock - Anomaly,-15.94574360728835,NE,percentage points
+2022,Haddock - Anomaly,-14.329271816744082,NE,percentage points
+2023,Haddock - Anomaly,1.5172001064292289,NE,percentage points
+2024,Haddock - Anomaly,7.367443094628868,NE,percentage points
+2025,Haddock - Anomaly,6.843572727023357,NE,percentage points
 1959,Haddock - Percent suitable,71.65149417609271,NE,percent
 1960,Haddock - Percent suitable,66.76066491267107,NE,percent
 1961,Haddock - Percent suitable,71.81100146789656,NE,percent
@@ -2401,9 +2473,11 @@ Time,Var,Value,EPU,Units
 2018,Haddock - Percent suitable,59.57119033941616,NE,percent
 2019,Haddock - Percent suitable,53.916538200898614,NE,percent
 2020,Haddock - Percent suitable,57.376940091706246,NE,percent
-2021,Haddock - Percent suitable,48.68142401131624,NE,percent
-2022,Haddock - Percent suitable,50.29789580186053,NE,percent
-2023,Haddock - Percent suitable,66.1443677250339,NE,percent
+2021,Haddock - Percent suitable,48.681424011316565,NE,percent
+2022,Haddock - Percent suitable,50.29789580186083,NE,percent
+2023,Haddock - Percent suitable,66.14436772503414,NE,percent
+2024,Haddock - Percent suitable,71.99461071323378,NE,percent
+2025,Haddock - Percent suitable,71.47074034562827,NE,percent
 1959,Little Skate - Anomaly,2.6900771547770717,NE,percentage points
 1960,Little Skate - Anomaly,0.9951672459045824,NE,percentage points
 1961,Little Skate - Anomaly,0.7234506132372616,NE,percentage points
@@ -2466,9 +2540,11 @@ Time,Var,Value,EPU,Units
 2018,Little Skate - Anomaly,-2.282551095939027,NE,percentage points
 2019,Little Skate - Anomaly,-12.353229665303559,NE,percentage points
 2020,Little Skate - Anomaly,-4.727297724823799,NE,percentage points
-2021,Little Skate - Anomaly,-3.979498454977346,NE,percentage points
-2022,Little Skate - Anomaly,-7.8626583791881615,NE,percentage points
-2023,Little Skate - Anomaly,-5.9775270606618705,NE,percentage points
+2021,Little Skate - Anomaly,-3.9794984549772607,NE,percentage points
+2022,Little Skate - Anomaly,-7.862658379188119,NE,percentage points
+2023,Little Skate - Anomaly,-5.977527060661828,NE,percentage points
+2024,Little Skate - Anomaly,-4.560077431850829,NE,percentage points
+2025,Little Skate - Anomaly,-7.179906632431056,NE,percentage points
 1959,Little Skate - Percent suitable,96.12957880838168,NE,percent
 1960,Little Skate - Percent suitable,94.43466889950919,NE,percent
 1961,Little Skate - Percent suitable,94.16295226684187,NE,percent
@@ -2531,9 +2607,11 @@ Time,Var,Value,EPU,Units
 2018,Little Skate - Percent suitable,91.15695055766558,NE,percent
 2019,Little Skate - Percent suitable,81.08627198830105,NE,percent
 2020,Little Skate - Percent suitable,88.71220392878081,NE,percent
-2021,Little Skate - Percent suitable,89.46000319862726,NE,percent
-2022,Little Skate - Percent suitable,85.57684327441645,NE,percent
-2023,Little Skate - Percent suitable,87.46197459294274,NE,percent
+2021,Little Skate - Percent suitable,89.46000319862735,NE,percent
+2022,Little Skate - Percent suitable,85.57684327441649,NE,percent
+2023,Little Skate - Percent suitable,87.46197459294278,NE,percent
+2024,Little Skate - Percent suitable,88.87942422175378,NE,percent
+2025,Little Skate - Percent suitable,86.25959502117355,NE,percent
 1959,Managed species mean - Anomaly,4.85603313021097,NE,percentage points
 1960,Managed species mean - Anomaly,-0.19568684734303451,NE,percentage points
 1961,Managed species mean - Anomaly,2.542106876294307,NE,percentage points
@@ -2596,9 +2674,11 @@ Time,Var,Value,EPU,Units
 2018,Managed species mean - Anomaly,-6.960860387461911,NE,percentage points
 2019,Managed species mean - Anomaly,-21.78955703958944,NE,percentage points
 2020,Managed species mean - Anomaly,-7.613696502485813,NE,percentage points
-2021,Managed species mean - Anomaly,-18.322280478567308,NE,percentage points
-2022,Managed species mean - Anomaly,-12.01979834933918,NE,percentage points
-2023,Managed species mean - Anomaly,-1.6553648821432507,NE,percentage points
+2021,Managed species mean - Anomaly,-18.32228047856726,NE,percentage points
+2022,Managed species mean - Anomaly,-12.019798349339162,NE,percentage points
+2023,Managed species mean - Anomaly,-1.655364882143231,NE,percentage points
+2024,Managed species mean - Anomaly,2.5562140147004944,NE,percentage points
+2025,Managed species mean - Anomaly,2.1944819450550246,NE,percentage points
 1959,Ocean Pout - Anomaly,8.816408807562532,NE,percentage points
 1960,Ocean Pout - Anomaly,4.821933092051161,NE,percentage points
 1961,Ocean Pout - Anomaly,10.7350662021773,NE,percentage points
@@ -2661,9 +2741,11 @@ Time,Var,Value,EPU,Units
 2018,Ocean Pout - Anomaly,-6.094180179643423,NE,percentage points
 2019,Ocean Pout - Anomaly,-13.123051775888172,NE,percentage points
 2020,Ocean Pout - Anomaly,-11.528843745139639,NE,percentage points
-2021,Ocean Pout - Anomaly,-16.63633932849084,NE,percentage points
-2022,Ocean Pout - Anomaly,-13.892197025186285,NE,percentage points
-2023,Ocean Pout - Anomaly,1.3777100097673483,NE,percentage points
+2021,Ocean Pout - Anomaly,-16.6363393284908,NE,percentage points
+2022,Ocean Pout - Anomaly,-13.892197025186256,NE,percentage points
+2023,Ocean Pout - Anomaly,1.377710009767405,NE,percentage points
+2024,Ocean Pout - Anomaly,9.291383823362942,NE,percentage points
+2025,Ocean Pout - Anomaly,7.460673179703683,NE,percentage points
 1959,Ocean Pout - Percent suitable,71.11419831184782,NE,percent
 1960,Ocean Pout - Percent suitable,67.11972259633644,NE,percent
 1961,Ocean Pout - Percent suitable,73.03285570646258,NE,percent
@@ -2726,9 +2808,11 @@ Time,Var,Value,EPU,Units
 2018,Ocean Pout - Percent suitable,56.20360932464186,NE,percent
 2019,Ocean Pout - Percent suitable,49.17473772839711,NE,percent
 2020,Ocean Pout - Percent suitable,50.768945759145645,NE,percent
-2021,Ocean Pout - Percent suitable,45.66145017579444,NE,percent
-2022,Ocean Pout - Percent suitable,48.405592479099,NE,percent
-2023,Ocean Pout - Percent suitable,63.67549951405263,NE,percent
+2021,Ocean Pout - Percent suitable,45.661450175794485,NE,percent
+2022,Ocean Pout - Percent suitable,48.40559247909903,NE,percent
+2023,Ocean Pout - Percent suitable,63.67549951405269,NE,percent
+2024,Ocean Pout - Percent suitable,71.58917332764823,NE,percent
+2025,Ocean Pout - Percent suitable,69.75846268398897,NE,percent
 1959,Pollock - Anomaly,2.0718042383861786,NE,percentage points
 1960,Pollock - Anomaly,-1.0021879996616292,NE,percentage points
 1961,Pollock - Anomaly,2.5634599682314416,NE,percentage points
@@ -2794,6 +2878,8 @@ Time,Var,Value,EPU,Units
 2021,Pollock - Anomaly,-8.405952546344139,NE,percentage points
 2022,Pollock - Anomaly,-6.459820735499136,NE,percentage points
 2023,Pollock - Anomaly,-0.23478789753828266,NE,percentage points
+2024,Pollock - Anomaly,0.23703009242123585,NE,percentage points
+2025,Pollock - Anomaly,0.6063866439159113,NE,percentage points
 1959,Pollock - Percent suitable,95.13893210761861,NE,percent
 1960,Pollock - Percent suitable,92.06493986957081,NE,percent
 1961,Pollock - Percent suitable,95.63058783746388,NE,percent
@@ -2859,6 +2945,8 @@ Time,Var,Value,EPU,Units
 2021,Pollock - Percent suitable,84.6611753228883,NE,percent
 2022,Pollock - Percent suitable,86.6073071337333,NE,percent
 2023,Pollock - Percent suitable,92.83233997169415,NE,percent
+2024,Pollock - Percent suitable,93.30415796165367,NE,percent
+2025,Pollock - Percent suitable,93.67351451314835,NE,percent
 1959,Red Hake - Anomaly,6.242300027119441,NE,percentage points
 1960,Red Hake - Anomaly,-0.3657298757595129,NE,percentage points
 1961,Red Hake - Anomaly,2.566631518722957,NE,percentage points
@@ -2924,6 +3012,8 @@ Time,Var,Value,EPU,Units
 2021,Red Hake - Anomaly,-20.127895354672795,NE,percentage points
 2022,Red Hake - Anomaly,-13.999265946048318,NE,percentage points
 2023,Red Hake - Anomaly,-0.6483980602428829,NE,percentage points
+2024,Red Hake - Anomaly,2.455276465444996,NE,percentage points
+2025,Red Hake - Anomaly,1.7939730418768818,NE,percentage points
 1959,Red Hake - Percent suitable,79.71707690244224,NE,percent
 1960,Red Hake - Percent suitable,73.10904699956329,NE,percent
 1961,Red Hake - Percent suitable,76.04140839404576,NE,percent
@@ -2989,6 +3079,8 @@ Time,Var,Value,EPU,Units
 2021,Red Hake - Percent suitable,53.34688152065001,NE,percent
 2022,Red Hake - Percent suitable,59.475510929274485,NE,percent
 2023,Red Hake - Percent suitable,72.82637881507992,NE,percent
+2024,Red Hake - Percent suitable,75.9300533407678,NE,percent
+2025,Red Hake - Percent suitable,75.26874991719968,NE,percent
 1959,Rosette Skate - Anomaly,4.603907895753068,NE,percentage points
 1960,Rosette Skate - Anomaly,-3.081680862801619,NE,percentage points
 1961,Rosette Skate - Anomaly,-9.856526151928648,NE,percentage points
@@ -3054,6 +3146,8 @@ Time,Var,Value,EPU,Units
 2021,Rosette Skate - Anomaly,-41.132743549230796,NE,percentage points
 2022,Rosette Skate - Anomaly,-5.721503365800743,NE,percentage points
 2023,Rosette Skate - Anomaly,-1.0421618490021842,NE,percentage points
+2024,Rosette Skate - Anomaly,-21.298792028154566,NE,percentage points
+2025,Rosette Skate - Anomaly,-10.086304837954714,NE,percentage points
 1959,Rosette Skate - Percent suitable,83.82788891003258,NE,percent
 1960,Rosette Skate - Percent suitable,76.1423001514779,NE,percent
 1961,Rosette Skate - Percent suitable,69.36745486235087,NE,percent
@@ -3119,6 +3213,8 @@ Time,Var,Value,EPU,Units
 2021,Rosette Skate - Percent suitable,38.09123746504872,NE,percent
 2022,Rosette Skate - Percent suitable,73.50247764847877,NE,percent
 2023,Rosette Skate - Percent suitable,78.18181916527733,NE,percent
+2024,Rosette Skate - Percent suitable,57.92518898612495,NE,percent
+2025,Rosette Skate - Percent suitable,69.1376761763248,NE,percent
 1959,Sea Scallop - Anomaly,5.136908465051377,NE,percentage points
 1960,Sea Scallop - Anomaly,-1.6078972712094242,NE,percentage points
 1961,Sea Scallop - Anomaly,-2.1332077518315486,NE,percentage points
@@ -3181,9 +3277,11 @@ Time,Var,Value,EPU,Units
 2018,Sea Scallop - Anomaly,-4.0217191043996365,NE,percentage points
 2019,Sea Scallop - Anomaly,-23.040209733388394,NE,percentage points
 2020,Sea Scallop - Anomaly,-4.510758800941446,NE,percentage points
-2021,Sea Scallop - Anomaly,-22.386477852691556,NE,percentage points
-2022,Sea Scallop - Anomaly,-12.363606307032413,NE,percentage points
-2023,Sea Scallop - Anomaly,-2.326013410852255,NE,percentage points
+2021,Sea Scallop - Anomaly,-22.38647785269147,NE,percentage points
+2022,Sea Scallop - Anomaly,-12.36360630703237,NE,percentage points
+2023,Sea Scallop - Anomaly,-2.3260134108522834,NE,percentage points
+2024,Sea Scallop - Anomaly,-1.1696631883045399,NE,percentage points
+2025,Sea Scallop - Anomaly,-1.2376171500301183,NE,percentage points
 1959,Sea Scallop - Percent suitable,81.64676186217899,NE,percent
 1960,Sea Scallop - Percent suitable,74.90195612591819,NE,percent
 1961,Sea Scallop - Percent suitable,74.37664564529607,NE,percent
@@ -3246,9 +3344,11 @@ Time,Var,Value,EPU,Units
 2018,Sea Scallop - Percent suitable,72.48813429272798,NE,percent
 2019,Sea Scallop - Percent suitable,53.46964366373922,NE,percent
 2020,Sea Scallop - Percent suitable,71.99909459618617,NE,percent
-2021,Sea Scallop - Percent suitable,54.12337554443606,NE,percent
-2022,Sea Scallop - Percent suitable,64.1462470900952,NE,percent
-2023,Sea Scallop - Percent suitable,74.18383998627536,NE,percent
+2021,Sea Scallop - Percent suitable,54.12337554443614,NE,percent
+2022,Sea Scallop - Percent suitable,64.14624709009524,NE,percent
+2023,Sea Scallop - Percent suitable,74.18383998627533,NE,percent
+2024,Sea Scallop - Percent suitable,75.34019020882307,NE,percent
+2025,Sea Scallop - Percent suitable,75.2722362470975,NE,percent
 1959,Silver Hake - Anomaly,4.462934209349953,NE,percentage points
 1960,Silver Hake - Anomaly,-2.450940414920467,NE,percentage points
 1961,Silver Hake - Anomaly,-2.287768897781305,NE,percentage points
@@ -3314,6 +3414,8 @@ Time,Var,Value,EPU,Units
 2021,Silver Hake - Anomaly,-20.218545792930612,NE,percentage points
 2022,Silver Hake - Anomaly,-11.066261709748005,NE,percentage points
 2023,Silver Hake - Anomaly,-2.5140723581047837,NE,percentage points
+2024,Silver Hake - Anomaly,-0.9767708649831377,NE,percentage points
+2025,Silver Hake - Anomaly,-1.4438554217638568,NE,percentage points
 1959,Silver Hake - Percent suitable,83.45439378104703,NE,percent
 1960,Silver Hake - Percent suitable,76.54051915677661,NE,percent
 1961,Silver Hake - Percent suitable,76.70369067391577,NE,percent
@@ -3379,6 +3481,8 @@ Time,Var,Value,EPU,Units
 2021,Silver Hake - Percent suitable,58.772913778766465,NE,percent
 2022,Silver Hake - Percent suitable,67.92519786194907,NE,percent
 2023,Silver Hake - Percent suitable,76.4773872135923,NE,percent
+2024,Silver Hake - Percent suitable,78.01468870671394,NE,percent
+2025,Silver Hake - Percent suitable,77.54760414993322,NE,percent
 1959,Smooth Skate - Anomaly,3.59942053498969,NE,percentage points
 1960,Smooth Skate - Anomaly,-5.478920581191545,NE,percentage points
 1961,Smooth Skate - Anomaly,-1.1824222017735764,NE,percentage points
@@ -3444,6 +3548,8 @@ Time,Var,Value,EPU,Units
 2021,Smooth Skate - Anomaly,-35.311904500873496,NE,percentage points
 2022,Smooth Skate - Anomaly,-26.027107368003954,NE,percentage points
 2023,Smooth Skate - Anomaly,-19.610948727694492,NE,percentage points
+2024,Smooth Skate - Anomaly,6.20762885974203,NE,percentage points
+2025,Smooth Skate - Anomaly,5.200311072880297,NE,percentage points
 1959,Smooth Skate - Percent suitable,94.75185466885603,NE,percent
 1960,Smooth Skate - Percent suitable,85.67351355267479,NE,percent
 1961,Smooth Skate - Percent suitable,89.97001193209276,NE,percent
@@ -3509,6 +3615,8 @@ Time,Var,Value,EPU,Units
 2021,Smooth Skate - Percent suitable,55.84052963299284,NE,percent
 2022,Smooth Skate - Percent suitable,65.12532676586238,NE,percent
 2023,Smooth Skate - Percent suitable,71.54148540617184,NE,percent
+2024,Smooth Skate - Percent suitable,97.36006299360837,NE,percent
+2025,Smooth Skate - Percent suitable,96.35274520674663,NE,percent
 1959,Spiny Dogfish - Anomaly,2.3208912456485677,NE,percentage points
 1960,Spiny Dogfish - Anomaly,-7.48146661405157,NE,percentage points
 1961,Spiny Dogfish - Anomaly,-6.136424553019538,NE,percentage points
@@ -3574,6 +3682,8 @@ Time,Var,Value,EPU,Units
 2021,Spiny Dogfish - Anomaly,-19.337322044176204,NE,percentage points
 2022,Spiny Dogfish - Anomaly,-10.172999795204163,NE,percentage points
 2023,Spiny Dogfish - Anomaly,-1.5158754156900045,NE,percentage points
+2024,Spiny Dogfish - Anomaly,-0.426592971896568,NE,percentage points
+2025,Spiny Dogfish - Anomaly,-0.32969562546225006,NE,percentage points
 1959,Spiny Dogfish - Percent suitable,80.99299933226217,NE,percent
 1960,Spiny Dogfish - Percent suitable,71.19064147256204,NE,percent
 1961,Spiny Dogfish - Percent suitable,72.53568353359407,NE,percent
@@ -3639,6 +3749,8 @@ Time,Var,Value,EPU,Units
 2021,Spiny Dogfish - Percent suitable,59.3347860424374,NE,percent
 2022,Spiny Dogfish - Percent suitable,68.49910829140944,NE,percent
 2023,Spiny Dogfish - Percent suitable,77.1562326709236,NE,percent
+2024,Spiny Dogfish - Percent suitable,78.24551511471704,NE,percent
+2025,Spiny Dogfish - Percent suitable,78.34241246115135,NE,percent
 1959,Thorny Skate - Anomaly,6.434417270581378,NE,percentage points
 1960,Thorny Skate - Anomaly,5.43811564531282,NE,percentage points
 1961,Thorny Skate - Anomaly,11.354678896065508,NE,percentage points
@@ -3701,9 +3813,11 @@ Time,Var,Value,EPU,Units
 2018,Thorny Skate - Anomaly,-18.359948586955248,NE,percentage points
 2019,Thorny Skate - Anomaly,-44.22277000474533,NE,percentage points
 2020,Thorny Skate - Anomaly,-17.943761178816345,NE,percentage points
-2021,Thorny Skate - Anomaly,-25.344635855328868,NE,percentage points
-2022,Thorny Skate - Anomaly,-17.138900689132605,NE,percentage points
-2023,Thorny Skate - Anomaly,-3.876220704811388,NE,percentage points
+2021,Thorny Skate - Anomaly,-25.344635855328832,NE,percentage points
+2022,Thorny Skate - Anomaly,-17.138900689132875,NE,percentage points
+2023,Thorny Skate - Anomaly,-3.8762207048112174,NE,percentage points
+2024,Thorny Skate - Anomaly,12.271844988221446,NE,percentage points
+2025,Thorny Skate - Anomaly,7.145164092057854,NE,percentage points
 1959,Thorny Skate - Percent suitable,85.89897785143049,NE,percent
 1960,Thorny Skate - Percent suitable,84.90267622616193,NE,percent
 1961,Thorny Skate - Percent suitable,90.81923947691462,NE,percent
@@ -3766,9 +3880,11 @@ Time,Var,Value,EPU,Units
 2018,Thorny Skate - Percent suitable,61.10461199389386,NE,percent
 2019,Thorny Skate - Percent suitable,35.24179057610378,NE,percent
 2020,Thorny Skate - Percent suitable,61.520799402032765,NE,percent
-2021,Thorny Skate - Percent suitable,54.11992472552024,NE,percent
-2022,Thorny Skate - Percent suitable,62.325659891716505,NE,percent
-2023,Thorny Skate - Percent suitable,75.58833987603772,NE,percent
+2021,Thorny Skate - Percent suitable,54.11992472552028,NE,percent
+2022,Thorny Skate - Percent suitable,62.325659891716235,NE,percent
+2023,Thorny Skate - Percent suitable,75.58833987603789,NE,percent
+2024,Thorny Skate - Percent suitable,91.73640556907056,NE,percent
+2025,Thorny Skate - Percent suitable,86.60972467290696,NE,percent
 1959,White Hake - Anomaly,4.822354465652381,NE,percentage points
 1960,White Hake - Anomaly,-7.23721495114868,NE,percentage points
 1961,White Hake - Anomaly,0.9401445031551674,NE,percentage points
@@ -3834,6 +3950,8 @@ Time,Var,Value,EPU,Units
 2021,White Hake - Anomaly,-15.869217917379466,NE,percentage points
 2022,White Hake - Anomaly,-12.09275493222949,NE,percentage points
 2023,White Hake - Anomaly,6.0864290770182805,NE,percentage points
+2024,White Hake - Anomaly,10.166945964717016,NE,percentage points
+2025,White Hake - Anomaly,11.888859295142652,NE,percentage points
 1959,White Hake - Percent suitable,75.00344733830818,NE,percent
 1960,White Hake - Percent suitable,62.94387792150712,NE,percent
 1961,White Hake - Percent suitable,71.12123737581096,NE,percent
@@ -3899,6 +4017,8 @@ Time,Var,Value,EPU,Units
 2021,White Hake - Percent suitable,54.31187495527633,NE,percent
 2022,White Hake - Percent suitable,58.08833794042631,NE,percent
 2023,White Hake - Percent suitable,76.26752194967408,NE,percent
+2024,White Hake - Percent suitable,80.34803883737281,NE,percent
+2025,White Hake - Percent suitable,82.06995216779845,NE,percent
 1959,Windowpane - Anomaly,3.0434388981306455,NE,percentage points
 1960,Windowpane - Anomaly,2.592126070123399,NE,percentage points
 1961,Windowpane - Anomaly,3.0509446412911814,NE,percentage points
@@ -3964,6 +4084,8 @@ Time,Var,Value,EPU,Units
 2021,Windowpane - Anomaly,-2.928655433380186,NE,percentage points
 2022,Windowpane - Anomaly,-2.8028797669268783,NE,percentage points
 2023,Windowpane - Anomaly,-5.359838344993435,NE,percentage points
+2024,Windowpane - Anomaly,-3.797889890424514,NE,percentage points
+2025,Windowpane - Anomaly,-6.724991059276292,NE,percentage points
 1959,Windowpane - Percent suitable,96.28969437451423,NE,percent
 1960,Windowpane - Percent suitable,95.83838154650698,NE,percent
 1961,Windowpane - Percent suitable,96.29720011767476,NE,percent
@@ -4029,6 +4151,8 @@ Time,Var,Value,EPU,Units
 2021,Windowpane - Percent suitable,90.3176000430034,NE,percent
 2022,Windowpane - Percent suitable,90.4433757094567,NE,percent
 2023,Windowpane - Percent suitable,87.88641713139015,NE,percent
+2024,Windowpane - Percent suitable,89.44836558595907,NE,percent
+2025,Windowpane - Percent suitable,86.52126441710729,NE,percent
 1959,Winter Flounder - Anomaly,4.112680233121594,NE,percentage points
 1960,Winter Flounder - Anomaly,2.7567621904608473,NE,percentage points
 1961,Winter Flounder - Anomaly,-0.4696245082781729,NE,percentage points
@@ -4091,9 +4215,11 @@ Time,Var,Value,EPU,Units
 2018,Winter Flounder - Anomaly,-5.587071122070682,NE,percentage points
 2019,Winter Flounder - Anomaly,-20.689213732966564,NE,percentage points
 2020,Winter Flounder - Anomaly,-5.881634625665413,NE,percentage points
-2021,Winter Flounder - Anomaly,-17.619508126072844,NE,percentage points
-2022,Winter Flounder - Anomaly,-13.91018501574949,NE,percentage points
-2023,Winter Flounder - Anomaly,-6.618838781141861,NE,percentage points
+2021,Winter Flounder - Anomaly,-17.619508126072773,NE,percentage points
+2022,Winter Flounder - Anomaly,-13.910185015749505,NE,percentage points
+2023,Winter Flounder - Anomaly,-6.618838781141875,NE,percentage points
+2024,Winter Flounder - Anomaly,-4.559842209210316,NE,percentage points
+2025,Winter Flounder - Anomaly,-7.959037084013332,NE,percentage points
 1959,Winter Flounder - Percent suitable,95.2540397095793,NE,percent
 1960,Winter Flounder - Percent suitable,93.89812166691856,NE,percent
 1961,Winter Flounder - Percent suitable,90.67173496817954,NE,percent
@@ -4156,9 +4282,11 @@ Time,Var,Value,EPU,Units
 2018,Winter Flounder - Percent suitable,85.55428835438703,NE,percent
 2019,Winter Flounder - Percent suitable,70.45214574349114,NE,percent
 2020,Winter Flounder - Percent suitable,85.2597248507923,NE,percent
-2021,Winter Flounder - Percent suitable,73.52185135038486,NE,percent
-2022,Winter Flounder - Percent suitable,77.23117446070822,NE,percent
-2023,Winter Flounder - Percent suitable,84.52252069531585,NE,percent
+2021,Winter Flounder - Percent suitable,73.52185135038494,NE,percent
+2022,Winter Flounder - Percent suitable,77.2311744607082,NE,percent
+2023,Winter Flounder - Percent suitable,84.52252069531583,NE,percent
+2024,Winter Flounder - Percent suitable,86.58151726724739,NE,percent
+2025,Winter Flounder - Percent suitable,83.18232239244438,NE,percent
 1959,Winter Skate - Anomaly,2.078970508144252,NE,percentage points
 1960,Winter Skate - Anomaly,1.5860544616036947,NE,percentage points
 1961,Winter Skate - Anomaly,1.0316276576868972,NE,percentage points
@@ -4224,6 +4352,8 @@ Time,Var,Value,EPU,Units
 2021,Winter Skate - Anomaly,-5.937613354006032,NE,percentage points
 2022,Winter Skate - Anomaly,-7.42055236444898,NE,percentage points
 2023,Winter Skate - Anomaly,-3.441293787936658,NE,percentage points
+2024,Winter Skate - Anomaly,-3.2622924136701528,NE,percentage points
+2025,Winter Skate - Anomaly,-5.316091744047014,NE,percentage points
 1959,Winter Skate - Percent suitable,99.70312295378969,NE,percent
 1960,Winter Skate - Percent suitable,99.21020690724913,NE,percent
 1961,Winter Skate - Percent suitable,98.65578010333233,NE,percent
@@ -4289,6 +4419,8 @@ Time,Var,Value,EPU,Units
 2021,Winter Skate - Percent suitable,91.6865390916394,NE,percent
 2022,Winter Skate - Percent suitable,90.20360008119646,NE,percent
 2023,Winter Skate - Percent suitable,94.18285865770878,NE,percent
+2024,Winter Skate - Percent suitable,94.36186003197528,NE,percent
+2025,Winter Skate - Percent suitable,92.30806070159842,NE,percent
 1959,Witch Flounder - Anomaly,7.693835795551124,NE,percentage points
 1960,Witch Flounder - Anomaly,-0.4951571714523766,NE,percentage points
 1961,Witch Flounder - Anomaly,6.559441378233487,NE,percentage points
@@ -4354,6 +4486,8 @@ Time,Var,Value,EPU,Units
 2021,Witch Flounder - Anomaly,-12.5275545818901,NE,percentage points
 2022,Witch Flounder - Anomaly,-10.457150113944564,NE,percentage points
 2023,Witch Flounder - Anomaly,2.6508750578789204,NE,percentage points
+2024,Witch Flounder - Anomaly,6.7039269263647725,NE,percentage points
+2025,Witch Flounder - Anomaly,8.124187872887433,NE,percentage points
 1959,Witch Flounder - Percent suitable,85.1185726147751,NE,percent
 1960,Witch Flounder - Percent suitable,76.9295796477716,NE,percent
 1961,Witch Flounder - Percent suitable,83.98417819745747,NE,percent
@@ -4419,6 +4553,8 @@ Time,Var,Value,EPU,Units
 2021,Witch Flounder - Percent suitable,64.89718223733388,NE,percent
 2022,Witch Flounder - Percent suitable,66.96758670527942,NE,percent
 2023,Witch Flounder - Percent suitable,80.0756118771029,NE,percent
+2024,Witch Flounder - Percent suitable,84.12866374558875,NE,percent
+2025,Witch Flounder - Percent suitable,85.54892469211141,NE,percent
 1959,Yellowtail Flounder - Anomaly,9.271898228756449,NE,percentage points
 1960,Yellowtail Flounder - Anomaly,4.659415023253338,NE,percentage points
 1961,Yellowtail Flounder - Anomaly,7.00216753261801,NE,percentage points
@@ -4481,9 +4617,11 @@ Time,Var,Value,EPU,Units
 2018,Yellowtail Flounder - Anomaly,-7.479962217492343,NE,percentage points
 2019,Yellowtail Flounder - Anomaly,-28.63854955560371,NE,percentage points
 2020,Yellowtail Flounder - Anomaly,-9.375827206160452,NE,percentage points
-2021,Yellowtail Flounder - Anomaly,-31.016299705071194,NE,percentage points
-2022,Yellowtail Flounder - Anomaly,-22.630163851874876,NE,percentage points
-2023,Yellowtail Flounder - Anomaly,0.9769512394789288,NE,percentage points
+2021,Yellowtail Flounder - Anomaly,-31.016299705070974,NE,percentage points
+2022,Yellowtail Flounder - Anomaly,-22.630163851874812,NE,percentage points
+2023,Yellowtail Flounder - Anomaly,0.9769512394787654,NE,percentage points
+2024,Yellowtail Flounder - Anomaly,4.623020186120634,NE,percentage points
+2025,Yellowtail Flounder - Anomaly,4.9847682029751255,NE,percentage points
 1959,Yellowtail Flounder - Percent suitable,70.76022185719789,NE,percent
 1960,Yellowtail Flounder - Percent suitable,66.14773865169478,NE,percent
 1961,Yellowtail Flounder - Percent suitable,68.49049116105945,NE,percent
@@ -4546,6 +4684,8 @@ Time,Var,Value,EPU,Units
 2018,Yellowtail Flounder - Percent suitable,54.0083614109491,NE,percent
 2019,Yellowtail Flounder - Percent suitable,32.84977407283773,NE,percent
 2020,Yellowtail Flounder - Percent suitable,52.11249642228099,NE,percent
-2021,Yellowtail Flounder - Percent suitable,30.472023923370248,NE,percent
-2022,Yellowtail Flounder - Percent suitable,38.858159776566566,NE,percent
-2023,Yellowtail Flounder - Percent suitable,62.46527486792037,NE,percent
+2021,Yellowtail Flounder - Percent suitable,30.472023923370468,NE,percent
+2022,Yellowtail Flounder - Percent suitable,38.85815977656663,NE,percent
+2023,Yellowtail Flounder - Percent suitable,62.46527486792021,NE,percent
+2024,Yellowtail Flounder - Percent suitable,66.11134381456208,NE,percent
+2025,Yellowtail Flounder - Percent suitable,66.47309183141657,NE,percent
