@@ -86,6 +86,7 @@ paths <- list(
     "~/EDAB_Datasets/GLORYS/V12/SOURCE/NES_9KM_DAILY/GLOBAL_MULTIYEAR_PHY_001_030/BOTTOMT"
   },
   soe_dir      = here::here("data/soe"),
+  glorys_cache  = here::here("data-raw/glorys_cache"),   # local copies of GLORYS files (not committed)
   
   # Pipeline outputs
   niche        = here::here("data-raw/thermal_niche.rds"),

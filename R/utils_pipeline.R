@@ -219,3 +219,20 @@ index_glorys <- function(dir, pattern = "BOTTOMT-\\d{8}\\.nc$") {
   if (anyNA(idx$date)) stop("Could not read a date from ", sum(is.na(idx$date)), " file name(s).")
   idx
 }
+
+#' Copy GLORYS files to a local cache and return the local paths
+#'
+#' Reading these netCDF files directly from the network share can fail
+#' (HDF chunk fetch errors); local copies read reliably. Files already in the
+#' cache with the same size are not copied again.
+cache_glorys <- function(files, cache_dir) {
+  if (is.null(cache_dir)) return(files)
+  dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
+  local <- file.path(cache_dir, basename(files))
+  need  <- !file.exists(local) | file.size(local) != file.size(files)
+  if (any(need)) {
+    ok <- file.copy(files[need], local[need], overwrite = TRUE)
+    if (!all(ok)) stop("Could not copy ", sum(!ok), " GLORYS file(s) to ", cache_dir)
+  }
+  local
+}

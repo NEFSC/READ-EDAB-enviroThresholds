@@ -171,7 +171,7 @@ message("--- GLORYS: ", if (length(glorys_yrs)) paste(range(glorys_yrs), collaps
         " (", n_distinct(glorys_index$file), " files) ---")
 
 results_glorys <- map(glorys_yrs, function(yr) {
-  files   <- unique(glorys_index$file[glorys_index$year == yr])
+  files   <- cache_glorys(unique(glorys_index$file[glorys_index$year == yr]), paths$glorys_cache)
   bt_fall <- fall_layers(read_glorys(files, params$glorys_var), yr)
   if (is.null(bt_fall)) return(NULL)
   

@@ -1,3 +1,4 @@
 *.nc
 .Rproj.user
 .Rhistory
+data-raw/glorys_cache/
